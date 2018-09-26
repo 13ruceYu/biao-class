@@ -1,0 +1,10 @@
+@import url(./2.css);
+
+*  {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-size: 200%;
+}

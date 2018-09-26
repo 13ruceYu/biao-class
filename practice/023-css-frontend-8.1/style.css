@@ -1,0 +1,141 @@
+/* 元素选择器 */
+/* div {
+    border: solid;
+}
+
+span {
+    color: mediumseagreen;
+}
+
+p {
+    background: pink;
+}
+
+a {
+    font-size: 200%;
+} */
+
+/* 类选择器 */
+/* .blue-border {
+    border: solid royalblue;
+}
+
+.blue {
+    color: royalblue;
+}
+
+div {
+    color: royalblue;
+}
+
+.danger {
+    color: darkred;
+} */
+
+/* 属性选择器 */
+/* [href] {
+    text-decoration: none;
+}
+
+[href="http://t.tt"] {
+    color: darkred;
+}
+
+[href="http://google.com"] {
+    color: mediumseagreen;
+}
+
+[href="http://biaoyansu.com"] {
+    color: pink;
+}
+
+[href*="wiki"] {
+    color: violet;
+}
+
+[href^="http://dri"] {
+    color: royalblue;
+}
+
+[href$="hance.com"] {
+    color: orange;
+}*/
+
+/* 全局选择器 */
+/* * {
+    background: lightgray;
+} */
+
+/* 分组选择 */
+/* a, button, span {
+    border: 1px #000 solid;
+    color: #000;
+} */
+/* .a, .c {
+    border: black solid;
+}
+
+.b, .c {
+    color: tomato;
+} */
+
+/* 多条件选择 */
+/* a.red {
+    color: tomato;
+} */
+
+/* 后代选择 */
+/* .a .c {
+    color: tomato;
+} */
+
+/* 子选择 */
+/* .grandpa > .father {
+    border: solid 2px #000;
+}  */
+/* ul > li {
+    color: royalblue;
+}
+
+ol > li {
+    color: hotpink;
+} */
+
+/* 相邻兄弟选择 */
+/* #me ~ span {
+    border: solid 2px tomato;
+} */
+
+/* 伪类——按元素指定样式 */
+/* a:hover {
+    border: solid 2px tomato;
+}
+
+a:active {
+    color: darkred;
+}
+
+input:focus {
+    background: mediumseagreen;
+}
+
+[type="checkbox"]:checked {
+    outline: 3px solid darkred;
+} */
+
+/* 伪元素 */
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: solid 1px #000;
+}
+
+td:last-of-type::before {
+    content: "￥";
+}
+
+td:last-of-type::after {
+    content: "元";
+}

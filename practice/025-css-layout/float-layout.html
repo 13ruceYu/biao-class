@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Float</title>
+    <style>
+        .float {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 109, 182, .8);
+            display: inline-block;
+
+            float: left;
+        }
+
+        div:nth-of-type(2) {
+            background: rgba(255, 168, 6, .8);
+        }
+
+        div:nth-of-type(3) {
+            background: rgba(70, 113, 241, .8);
+        }
+
+        div:nth-of-type(4) {
+            background: rgba(62, 190, 120, .8);
+            clear: both;
+        }
+        .clear {
+            clear: both;
+        }
+
+        .parent {
+            border: 2px dashed gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="float"></div>
+        <div class="float"></div>
+        <div class="float"></div>
+        <div class="float"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

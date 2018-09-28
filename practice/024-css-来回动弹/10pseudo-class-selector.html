@@ -29,6 +29,24 @@
             color: royalblue;
             font-size: 150%;
         }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid tomato;
+        }
+
+        td:last-of-type::before {
+            content:"￥";
+            color: pink;
+        }
+
+        td:first-of-type::before {
+            content: "@";
+            color: mediumseagreen;
+        }
     </style>
 </head>
 <body>
@@ -38,5 +56,26 @@
         <span>二佬</span>
         <span>三佬</span>
     </div>
+
+    <table>
+        <thead>
+            <th>菜名</th>
+            <th>价格</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>回锅肉</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>酸菜鱼</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>土豆丝</td>
+                <td>10</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

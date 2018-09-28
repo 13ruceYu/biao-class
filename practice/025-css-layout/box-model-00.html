@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Box-Model</title>
+    <style>
+        #parent {
+            border: 5px solid #000;
+            width: 200px;
+        }
+
+        #a, #b {
+            width: 50%;
+            height: 100px;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        #a {
+            background: hotpink;
+            border: 4px dashed orange;
+        }
+
+        #b {
+            background: royalblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="a"></div><!--
+         注释 
+        --><div id="b"></div>
+    </div>
+</body>
+</html>

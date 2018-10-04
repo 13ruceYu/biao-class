@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            border: solid tomato;
+            float: left;
+            margin: 1px 0;
+        }
+
+        .col-1 {
+            width: 8.333333333333%;
+        }
+
+        .col-2 {
+            width: 16.666666666666%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.333333333333%;
+        }
+
+        .col-5 {
+            width: 41.666666666666%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.333333333333%;
+        }
+
+        .col-8 {
+            width: 66.666666666666%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.333333333333%;
+        }
+
+        .col-11 {
+            width: 91.666666666666%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        #wrapper {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="row global-nav">
+        <div class="col col-8">nav left</div>
+        <div class="col col-4">nav right</div>
+    </div>
+
+    <div id="wrapper" class="row page-nav">
+        <div class="col col-8">nav left page</div>
+        <div class="col col-4">nav right page</div>
+    </div>
+
+    <div id="wrapper" class="row main">
+        <div class="col col-12">讨论精选</div>
+        <div class="col col-8">Block-left</div>
+        <div class="col col-4">Block-right</div>
+        <div class="col col-8">翻页</div>
+    </div>
+
+    <div id="wrapper" class="row footer">
+        <div class="col col-6">© 2005－2018 douban.com, all rights reserved 北京豆网科技有限公司</div>
+        <div class="col col-6">关于豆瓣</div>
+    </div>
+</body>
+</html>

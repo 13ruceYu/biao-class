@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>douban02</title>
+	<style>
+		* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		div {
+			padding: 5px;
+			margin-bottom: 5px;
+		}
+
+		.row {
+			border: solid royalblue;
+		}
+
+		.col {
+			border: solid tomato;
+			float: left;
+		}
+
+		.row::before,
+		.row::after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.col-1 {
+			width: 8.333333333333%;
+		}
+
+		.col-2 {
+			width: 16.666666666666%;
+		}
+
+		.col-3 {
+			width: 25%;
+		}
+
+		.col-4 {
+			width: 33.333333333333%;
+		}
+
+		.col-5 {
+			width: 41.666666666666%;
+		}
+
+		.col-6 {
+			width: 50%;
+		}
+
+		.col-7 {
+			width: 58.333333333333%;
+		}
+
+		.col-8 {
+			width: 66.666666666666%;
+		}
+
+		.col-9 {
+			width: 75%;
+		}
+
+		.col-10 {
+			width: 83.333333333333%;
+		}
+
+		.col-11 {
+			width: 91.666666666666%;
+		}
+
+		.col-12 {
+			width: 100%;
+		}
+	</style>
+</head>
+	<div class="row nav-global">
+		<div class="col col-7">nav-left</div>
+		<div class="col col-5">nav-right</div>
+	</div>
+
+	<div class="row nav-page">
+		<div class="col col-6">nav-page-left</div>
+		<div class="col col-6">nav-page-right</div>
+	</div>
+
+	<div class="row main">
+		<div class="row col-12"><h1>Title</h1></div>
+		<div class="col col-8">
+			<div class="col col-1">likes</div>
+			<div class="col col-11">
+				<div class="row">sub-title</div>
+				<div class="row">content-preview</div>
+				<div class="row">link-group</div>
+			</div>
+		</div>
+		<div class="col col-4">
+			<h2>sub-title</h2>
+			<div class="col col-2">thumbnail</div>
+			<div class="col col-8">
+				<div class="row">title</div>
+				<div class="row">desc</div>
+			</div>
+		</div>
+		<div class="col col-8">page-turning</div>
+	</div>
+
+	<div class="row footer">
+		<div class="col col-6">© 2005－2018 douban.com, all rights reserved 北京豆网科技有限公司</div>
+		<div class="col col-6">link</div>
+	</div>
+<body>
+	
+</body>
+</html>

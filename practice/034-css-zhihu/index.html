@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            border: solid royalblue;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+            border: solid tomato;
+        }
+
+        .col-1 {
+			width: 8.333333333333%;
+		}
+
+		.col-2 {
+			width: 16.666666666666%;
+		}
+
+		.col-3 {
+			width: 25%;
+		}
+
+		.col-4 {
+			width: 33.333333333333%;
+		}
+
+		.col-5 {
+			width: 41.666666666666%;
+		}
+
+		.col-6 {
+			width: 50%;
+		}
+
+		.col-7 {
+			width: 58.333333333333%;
+		}
+
+		.col-8 {
+			width: 66.666666666666%;
+		}
+
+		.col-9 {
+			width: 75%;
+		}
+
+		.col-10 {
+			width: 83.333333333333%;
+		}
+
+		.col-11 {
+			width: 91.666666666666%;
+		}
+
+		.col-12 {
+			width: 100%;
+		}
+
+        div {
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row header">
+        <div class="col col-2">logo</div>
+        <div class="col col-3">link-group</div>
+        <div class="col col-4">search-bar</div>
+        <div class="col col-3">lalala</div>
+    </div>
+
+    <div class="row main-footer">
+        <div class="col col-8">
+            <div class="row">do something</div>
+            <div class="row">
+                <div class="row">from</div>
+                <div class="row">writer</div>
+                <div class="row">
+                    <div class="col col-4">thumbnail</div>
+                    <div class="col col-8">desc</div>
+                </div>
+                <div class="row">link group</div>
+            </div>
+        </div>
+        <div class="col col-4">
+            <div class="row">service</div>
+            <div class="row">mine</div>
+            <div class="row">footer</div>
+        </div>
+    </div>
+</body>
+</html>

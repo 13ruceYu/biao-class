@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>知乎</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        .row::after,
+        .row::before {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-18 {
+            width: 75%;
+        }
+
+        .col-4 {
+            width: 25%;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="row nav">
+        <div class="col col-18">
+            <a href="#"><img src="" alt="logo"></a>
+            <a href="#">首页</a>
+            <a href="#">发现</a>
+            <a href="#">话题</a>
+            <table>
+                <input type="text">
+                <button type="submit">提问</button>
+            </table>
+        </div>
+        <div class="col col-4">
+            <a href="#"><img src="" alt="小钟"></a>
+            <a href="#"><img src="" alt="信息"></a>
+            <a href="#"><img src="" alt="头像"></a>
+        </div>
+    </div>
+</body>
+</html>

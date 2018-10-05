@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>douban</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        a {
+            color: inherit;
+            font-family: Helvetica, "Microsoft Yahei", sans-serif;
+            text-decoration: none;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-16 {
+            width: 66.66666666666667%;
+        }
+
+        .col-8 {
+            width: 33.33333333333333%;
+        }
+
+        .txt-r {
+            text-align: right;
+        }
+
+        .nav-global {
+            background: #545652;
+            color: #fff;
+        }
+
+        .nav-global a {
+            padding: .5em 1em;
+            display: inline-block;
+            color: #d5d5d5;
+        }
+
+        .nav-global a:hover {
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="row nav-global">
+        <div class="col col-16">
+            <a href="#">豆瓣</a>
+            <a href="#">读书</a>
+            <a href="#">电影</a>
+            <a href="#">音乐</a>
+            <a href="#">同城</a>
+            <a href="#">小组</a>
+            <a href="#">阅读</a>
+            <a href="#">FM</a>
+            <a href="#">时间</a>
+            <a href="#">豆品</a>
+            <a href="#">更多</a>
+        </div>
+        <div class="col col-8 txt-r">
+            <a href="#">下载豆瓣客户端</a>
+            <a href="#">登录</a>
+            <a href="#">注册</a>
+        </div>
+    </div>
+</body>
+</html>

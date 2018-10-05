@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lianjia</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Microsoft Yahei", sans-serif;
+            background: #555;
+            font-size: 14px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-6 {
+            width: 25%;
+        }
+
+        .col-18 {
+            width: 75%;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .nav {
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .nav a {
+            padding: .5em;
+        }
+ 
+        #logo {
+            display: inline-block;
+            width: 160px;
+            height: 70px;
+            margin-left: 10px;
+            background-image: url(./lianjia.png);
+            background-position: -35px -35px;
+        }
+
+        .location-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-image: url(./lianjia.png);
+            background-position: -373px -37px;
+            position: relative;
+            bottom: 14px;
+        }
+
+        .location {
+            position: relative;
+           
+        }
+
+        .city {
+            position: relative;
+            bottom: 30px;
+        }
+
+        .auth {
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="row nav">
+        <div class="col col-6">
+            <a href="#" id="logo"></a>
+            <span class="location"><span class="location-icon"></span><span class="city">北京</span></span>
+        </div>
+        <div class="col col-18 right">
+            <div class="auth">
+                <a href="#">登录</a>
+                <a href="#">注册</a>
+            </div>
+            <div class="cat">
+                <a href="#">二手房</a>
+                <a href="#">新房</a>
+                <a href="#">租房</a>
+                <a href="#">旅居</a>
+                <a href="#">海外</a>
+                <a href="#">小区</a>
+                <a href="#">经纪人</a>
+                <a href="#">指南</a>
+                <a href="#">房价</a>
+                <a href="#">工具</a>
+                <a href="#">经验</a>
+                <a href="#">发布房源</a>
+                <a href="#">企业汇</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

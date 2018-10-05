@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mi.com</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-16 {
+            width: 66.66666666666667%;
+        }
+
+        .col-8 {
+            width: 33.33333333333333%;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .nav-global {
+            background: #333;
+            color: #b0b0b0;
+        }
+
+        .nav-global a {
+            display: inline-block;
+            font-size: 12px;
+            padding: 1em .2em;
+        }
+
+        .nav-global a:hover {
+            color: #fff;
+        }
+
+        .split {
+            color: #424242;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row nav-global">
+        <div class="container">
+            <div class="col col-16">
+                <a href="#">小米商城</a>
+                <span class="split">|</span>
+                <a href="#">MIUI</a>
+                <span class="split">|</span>
+                <a href="#">lo T</a>
+                <span class="split">|</span>
+                <a href="#">云服务</a>
+                <span class="split">|</span>
+                <a href="#">金融</a>
+                <span class="split">|</span>
+                <a href="#">有品</a>
+                <span class="split">|</span>
+                <a href="#">小爱开放平台</a>
+                <span class="split">|</span>
+                <a href="#">政企服务</a>
+                <span class="split">|</span>
+                <a href="#">Select Region</a>
+            </div>
+            <div class="col col-8 right">
+                <a href="#">登录</a>
+                <span class="split">|</span>
+                <a href="#">注册</a>
+                <span class="split">|</span>
+                <a href="#">消息通知</a>
+                <span class="split">|</span>
+                <a href="#">购物车</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

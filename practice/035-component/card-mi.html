@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mi-card</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft Yahei", sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+            padding: 0 5px;
+        }
+
+        .col-4 {
+            width: 20%;
+        }
+
+        .card {
+            background: #fff;
+            box-shadow: 0 0 5px pink;
+        }
+
+        .card .thumbnail {
+            position: relative;
+        }
+
+        .card .flag {
+            background: #b10;
+            color: #fff;
+            padding: 3px 8px;
+            font-size: 12px;
+            width: 72px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -36px;
+            
+        }
+
+        .txt {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        
+        .title {
+            font-weight: bold;
+        }
+
+        .desc {
+            font-size: 10px;
+            margin-top: .5em;
+            margin-bottom: 1em;
+            letter-spacing: .5px;
+        }
+
+        .now {
+            color: #ff6700;
+            font-weight: bold;
+        }
+
+        .muted {
+            opacity: .5;
+        }
+
+        .deleted {
+            text-decoration: line-through;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="row card-block">
+        <div class="container">
+            <div class="col col-4">
+                <div class="row card">
+                    <div class="row thumbnail">
+                        <img src="http://dummyimage.com/500x500" alt="">
+                        <span class="flag">减 200 元</span>
+                    </div>
+                    <div class="row txt">
+                        <div class="title">
+                            小米8 青春版 4GB+64GB
+                        </div>
+                        <div class="desc muted">
+                            潮流镜面变色，2400万自拍旗舰
+                        </div>
+                        <div class="price">
+                            <span class="now">1399元</span>
+                            <span class="muted deleted">1599元</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-4">
+                    <div class="row card">
+                        <div class="row thumbnail">
+                            <img src="http://dummyimage.com/500x500" alt="">
+                            <span class="flag">减 200 元</span>
+                        </div>
+                        <div class="row txt">
+                            <div class="title">
+                                小米8 青春版 4GB+64GB
+                            </div>
+                            <div class="desc muted">
+                                潮流镜面变色，2400万自拍旗舰
+                            </div>
+                            <div class="price">
+                                <span class="now">1399元</span>
+                                <span class="muted deleted">1599元</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col col-4">
+                    <div class="row card">
+                        <div class="row thumbnail">
+                            <img src="http://dummyimage.com/500x500" alt="">
+                            <span class="flag">减 200 元</span>
+                        </div>
+                        <div class="row txt">
+                            <div class="title">
+                                小米8 青春版 4GB+64GB
+                            </div>
+                            <div class="desc muted">
+                                潮流镜面变色，2400万自拍旗舰
+                            </div>
+                            <div class="price">
+                                <span class="now">1399元</span>
+                                <span class="muted deleted">1599元</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col col-4">
+                    <div class="row card">
+                        <div class="row thumbnail">
+                            <img src="http://dummyimage.com/500x500" alt="">
+                            <span class="flag">减 200 元</span>
+                        </div>
+                        <div class="row txt">
+                            <div class="title">
+                                小米8 青春版 4GB+64GB
+                            </div>
+                            <div class="desc muted">
+                                潮流镜面变色，2400万自拍旗舰
+                            </div>
+                            <div class="price">
+                                <span class="now">1399元</span>
+                                <span class="muted deleted">1599元</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col col-4">
+                    <div class="row card">
+                        <div class="row thumbnail">
+                            <img src="http://dummyimage.com/500x500" alt="">
+                            <span class="flag">减 200 元</span>
+                        </div>
+                        <div class="row txt">
+                            <div class="title">
+                                小米8 青春版 4GB+64GB
+                            </div>
+                            <div class="desc muted">
+                                潮流镜面变色，2400万自拍旗舰
+                            </div>
+                            <div class="price">
+                                <span class="now">1399元</span>
+                                <span class="muted deleted">1599元</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lianjia-card</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft Yahei", sans-serif;
+            margin: 0;
+            background: #eeeef1;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+            padding: 0 10px;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .col-8 {
+            width: 33.33333333333333%;
+        }
+
+        .card {
+            background: #fff;
+            box-shadow: 0 0 5px pink;
+        }
+
+        .txt {
+            padding: 15px;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .info {
+            margin-top: 5px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .birth {
+            font-size: 12px;
+            opacity: .5;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="row card-block">
+        <div class="container">
+            <div class="col col-8">
+                <div class="row card">
+                    <div class="row thumbnail">
+                        <img src="http://dummyimage.com/600x400" alt="">
+                    </div>
+                    <div class="row txt">
+                        <div class="row title">远洋山水</div>
+                        <div class="row info">
+                            <span class="price">65520元/米</span>
+                            <span class="birth fr">2003年建</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-8">
+                <div class="row card">
+                    <div class="row thumbnail">
+                        <img src="http://dummyimage.com/600x400" alt="">
+                    </div>
+                    <div class="row txt">
+                        <div class="row title">远洋山水</div>
+                        <div class="row info">
+                            <span class="price">65520元/米</span>
+                            <span class="birth fr">2003年建</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-8">
+                <div class="row card">
+                    <div class="row thumbnail">
+                        <img src="http://dummyimage.com/600x400" alt="">
+                    </div>
+                    <div class="row txt">
+                        <div class="row title">远洋山水</div>
+                        <div class="row info">
+                            <span class="price">65520元/米</span>
+                            <span class="birth fr">2003年建</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

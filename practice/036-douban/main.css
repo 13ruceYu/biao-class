@@ -1,0 +1,317 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft Yahei", sans-serif;
+    margin: 0;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.row::before,
+.row::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.col {
+    float: left;
+}
+
+.col-1 {
+    width: 8.333333333333333%;
+}
+
+.col-2 {
+    width: 16.666666666666666%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.333333333333333%;
+}
+
+.col-5 {
+    width: 41.666666666666666%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.333333333333333%;
+}
+
+.col-8 {
+    width: 66.666666666666666%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33333333333333%;
+}
+
+.col-11 {
+    width: 91.66666666666666%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.right {
+    text-align: right;
+}
+
+/* ========== nav-global ========== */
+
+.nav-global {
+    background: #545652;
+    padding: 0 6px;
+}
+
+.nav-global a {
+    color: #d5d5d5;
+    font-size: 12px;
+    padding: .5em .8em .55em .8em;
+    display: inline-block;
+}
+
+.nav-global a:hover {
+    color: #fff;
+}
+
+.nav-global img {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 250px;
+    display: none;
+}
+
+.download:hover .nav-global img {
+    display: block;
+}
+
+/* ========== nav-page =========== */
+
+.nav-page {
+    background: #f0f6f3;
+}
+
+#logo a {
+    color: #09829e;
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    padding: .5em .5em .55em 0em;
+}
+
+.cat a{
+    color: #037b82;
+    font-size: 14px;
+    padding: 1.4em 1em;
+    display: inline-block;
+}
+
+.cat a:hover {
+    color: #29bcc4;
+}
+
+#search-input,
+.search-btn {
+    float: right;
+    background: #fff;
+    border: 1px solid rgb(201, 201, 201);
+    height: 25px;
+}
+
+#search-input {
+    outline: none;
+    width: 220px;
+    border-right: none;
+    padding-left: 10px;
+}
+
+::-webkit-input-placeholder {
+    font-family: "Microsoft Yahei";
+    opacity: .5;
+    font-size: 12px;
+}
+
+.search-btn {
+    border-left: none;
+}
+
+.search-btn:hover {
+    cursor: pointer;
+}
+
+.search-bar {
+    padding: 15px 0;
+}
+
+.fa-search {
+    font-size: 12px;
+    opacity: .3;
+}
+
+/* =========== main =========== */
+
+.title {
+    font-size: 25px;
+    color: #444;
+    margin: 1.5em 0;
+}
+
+.back {
+    background: #fae9da;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.num {
+    color: #ca6445;
+    line-height: 20px;
+    padding-top: 2px;
+}
+
+.c-title a {
+    color: #37a;
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.c-title a:hover {
+    color: rgb(112, 160, 197);
+}
+
+.card {
+    background: #f9f9f9;
+    padding: 8px;
+}
+
+.card .prev {
+    font-size: 13px;
+    padding-left: 15px;
+    opacity: .4;
+}
+
+.from {
+    font-size: 12px;
+    color: #666;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.from a {
+    color: #666;
+}
+
+.from a:hover {
+    color: #37a;
+}
+
+.from span {
+    color: #aaa;
+    margin-left: 15px;
+}
+
+.r-title {
+    font-size: 13px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.r-name a {
+    color: #37a;
+    font-size: 13px;
+    display: block;
+    position: relative;
+    top: -3px;
+}
+
+.r-name a:hover {
+    color: rgb(136, 190, 231);
+}
+
+.desc {
+    font-size: 13px;
+    color: #555;
+    position: relative;
+    bottom: -18px;
+}
+
+.desc a {
+    color: #37a;
+}
+
+.desc a:hover {
+    color: rgb(136, 190, 231);
+}
+
+.r-card {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0 6px 0;
+}
+
+.r-card-block {
+    padding-left: 20px;
+}
+
+.l-card-block {
+    padding-right: 20px;
+}
+
+.card-block {
+    margin-bottom: 20px;
+}
+
+.web-info {
+    font-size: 13px;
+    opacity: .5;
+    padding: 10px 0 10px 0;
+}
+
+.web-link {
+    font-size: 13px;
+    padding: 10px 0 10px 0;
+}
+
+.web-link a {
+    padding-left: 4px;
+    color: #37a;
+}
+
+.web-link a:hover {
+    color: rgb(122, 187, 236);
+}
+
+.footer {
+    border-top: 1px dashed #ccc;
+    margin-top: 30px;
+}

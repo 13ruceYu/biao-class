@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Douban</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        /* ====== global ======= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft Yahei", sans-serif;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #37a;
+        }
+
+        a:hover {
+            color: rgb(93, 157, 206);
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .row::before,
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-1 {
+            width: 4.166666666666666%;
+        }
+
+        .col-2 {
+            width: 8.333333333333333%;
+        }
+
+        .col-3 {
+            width: 12.5%;
+        }
+
+        .col-4 {
+            width: 16.666666666666666%;
+        }
+
+        .col-5 {
+            width: 20.833333333333332%;
+        }
+
+        .col-6 {
+            width: 25%;
+        }
+
+        .col-7 {
+            width: 29.166666666666666%;
+        }
+
+        .col-8 {
+            width: 33.333333333333333%;
+        }
+
+        .col-9 {
+            width: 37.5%;
+        }
+
+        .col-10 {
+            width: 41.666666666666666%;
+        }
+
+        .col-11 {
+            width: 45.833333333333333%;
+        }
+
+        .col-12 {
+            width: 50%;
+        }
+
+        .col-13 {
+            width: 54.166666666666666%;
+        }
+
+        .col-14 {
+            width: 58.333333333333333%;
+        }
+
+        .col-15 {
+            width: 62.5%;
+        }
+
+        .col-16 {
+            width: 66.66666666666667%;
+        }
+
+        .col-17 {
+            width: 70.83333333333333%;
+        }
+
+        .col-18 {
+            width: 75%;
+        }
+
+        .col-19 {
+            width: 79.16666666666666%;
+        }
+
+        .col-20 {
+            width: 83.33333333333333%;
+        }
+
+        .col-21 {
+            width: 87.5%;
+        }
+
+        .col-22 {
+            width: 91.66666666666666%;
+        }
+
+        .col-23 {
+            width: 95.83333333333333%;
+        }
+
+        .col-24 {
+            width: 100%;
+        }
+
+        /* ====== nav-global ======= */
+        .nav-global {
+            background: #545652;;
+        }
+
+        .nav-global a {
+            color: #ccc;
+            font-size: 13px;
+            padding: .5em .8em .55em .8em;
+            display: inline-block;
+        }
+
+        .nav-global a:hover {
+            color: #fff;
+        }
+
+        .g-right {
+            text-align: right;
+        }
+
+        /* ====== nav-page ====== */
+
+        .nav-page {
+            background: #f0f6f3;
+        }
+
+        #logo {
+            width: 165px;
+            padding: 22px 40px 21px 10px;
+        }
+
+        .cat a {
+            color: #037b82;
+            display: inline-block;
+            padding: 25px 25px 25px 0;
+        }
+
+        .cat a:hover {
+            color: #02aab3;
+        }
+
+        .search input,
+        .search button {
+            float: right;
+            height: 30px;
+            border: 1px solid #ddd;
+            padding: 8px;
+            background: #fff;
+        }
+
+        .search input {
+            outline: none;
+            border-right: none;
+            width: 240px;
+        }
+
+        ::-webkit-input-placeholder {
+            font-family: "Microsoft Yahei";
+            opacity: .5;
+            font-size: 12px;
+        }
+
+        .search button {
+            color: #ddd;
+            border-left: none;
+        }
+
+        .search {
+            padding: 20px 0;
+        }
+
+        /* ====== main ====== */
+        
+        .title {
+            font-size: 28px;
+            color: #555;
+            padding: 30px 0 20px 0;
+        }
+
+        .like {
+            background: #fae9da;
+            color: #ca6445;
+            text-align: center;
+            font-size: 13px;
+            padding: 12px 0;
+        }
+
+        .l-title {
+            margin-top: -4px;
+            margin-bottom: 10px;
+        }
+
+        .preview {
+            background: #f9f9f9;
+            padding: 8px;
+        }
+
+        .l-txt {
+            font-size: 14px;
+            color: #aaa;
+            padding-left: 15px;
+        }
+
+        .bot {
+            font-size: 13px;
+            color: #555;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .bot .time {
+            color: #aaa;
+        }
+
+        .l-content {
+            padding-left: 20px;
+        }
+
+        .r-title {
+            color: #555;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+        
+        .desc {
+            font-size: 14px;
+            margin-top: -3px;
+        }
+
+        .l-bot {
+            font-size: 13px;
+            margin-top: 18px;
+        }
+
+        .r-content {
+            padding-left: 16px;
+        }
+
+        .r-block {
+            padding-left: 20px;
+        }
+
+        .l-card {
+            margin-top: 20px;
+        }
+
+        .r-card {
+            padding: 12px 0 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* ====== footer ====== */
+        
+        .footer {
+            font-size: 13px;
+            color: #888;
+            padding: 15px 0;
+            border-top: 1px dashed #ccc;
+            margin: 40px;
+        }
+
+        .web-link {
+            text-align: right;
+        }
+
+        .l-card {
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="row nav-global">
+        <div class="col col-18 g-left">
+            <a href="#">豆瓣</a>
+            <a href="#">读书</a>
+            <a href="#">电影</a>
+            <a href="#">音乐</a>
+            <a href="#">同城</a>
+            <a href="#">小组</a>
+            <a href="#">阅读</a>
+            <a href="#">FM</a>
+            <a href="#">时间</a>
+            <a href="#">豆品</a>
+            <a href="#">更多</a>
+        </div>
+        <div class="col col-6 g-right">
+            <a href="#">下载豆瓣客户端</a>
+            <a href="#">登录</a>
+            <a href="#">注册</a>
+        </div>
+    </div>
+
+    <div class="row nav-page">
+        <div class="container">
+            <div class="col col-4" id="logo">
+                <a href="#"><img src="./douban-group.png" alt="logo"></a>
+            </div>
+            <div class="col col-12 cat">
+                <a href="#">精选</a>
+                <a href="#">文化</a>
+                <a href="#">行摄</a>
+                <a href="#">娱乐</a>
+                <a href="#">时尚</a>
+                <a href="#">生活</a>
+                <a href="#">科技</a>
+            </div>
+            <div class="col col-8 search">
+                <form action="">
+                    <button><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="小组、话题">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row main">
+        <div class="container">
+            <div class="row title">
+                讨论精选
+            </div>
+            <div class="row">
+                <div class="col col-17 l-block">
+                    <div class="row l-card">
+                        <div class="col col-2 like">
+                            <div class="numb">28</div>
+                            <div>喜欢</div>
+                        </div>
+                        <div class="col col-22 l-content">
+                            <div class="row l-title">
+                                <a href="#">学电气焊技术哪家强？</a>
+                            </div>
+                            <div class="row preview">
+                                <div class="col col-3 thumbnail">
+                                    <img src="http://dummyimage.com/150x150" alt="">
+                                </div>
+                                <div class="col col-21 l-txt">
+                                    中国西安找表锅！找表锅！Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat expedita aspernatur, similique rerum illum veritatis magnam molestiae maxime odio! Sunt?
+                                </div>
+                            </div>
+                            <div class="row bot">
+                                <div class="col col-5 from">
+                                    来自<a href="#">表小组</a>
+                                </div>
+                                <div class="col col-19 time">
+                                    明天00:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row l-card">
+                        <div class="col col-2 like">
+                            <div class="numb">28</div>
+                            <div>喜欢</div>
+                        </div>
+                        <div class="col col-22 l-content">
+                            <div class="row l-title">
+                                <a href="#">学电气焊技术哪家强？</a>
+                            </div>
+                            <div class="row preview">
+                                <div class="col col-3 thumbnail">
+                                    <img src="http://dummyimage.com/150x150" alt="">
+                                </div>
+                                <div class="col col-21 l-txt">
+                                    中国西安找表锅！找表锅！Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat expedita aspernatur, similique rerum illum veritatis magnam molestiae maxime odio! Sunt?
+                                </div>
+                            </div>
+                            <div class="row bot">
+                                <div class="col col-5 from">
+                                    来自<a href="#">表小组</a>
+                                </div>
+                                <div class="col col-19 time">
+                                    明天00:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row l-card">
+                        <div class="col col-2 like">
+                            <div class="numb">28</div>
+                            <div>喜欢</div>
+                        </div>
+                        <div class="col col-22 l-content">
+                            <div class="row l-title">
+                                <a href="#">学电气焊技术哪家强？</a>
+                            </div>
+                            <div class="row preview">
+                                <div class="col col-3 thumbnail">
+                                    <img src="http://dummyimage.com/150x150" alt="">
+                                </div>
+                                <div class="col col-21 l-txt">
+                                    中国西安找表锅！找表锅！Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat expedita aspernatur, similique rerum illum veritatis magnam molestiae maxime odio! Sunt?
+                                </div>
+                            </div>
+                            <div class="row bot">
+                                <div class="col col-5 from">
+                                    来自<a href="#">表小组</a>
+                                </div>
+                                <div class="col col-19 time">
+                                    明天00:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row l-card">
+                        <div class="col col-2 like">
+                            <div class="numb">28</div>
+                            <div>喜欢</div>
+                        </div>
+                        <div class="col col-22 l-content">
+                            <div class="row l-title">
+                                <a href="#">学电气焊技术哪家强？</a>
+                            </div>
+                            <div class="row preview">
+                                <div class="col col-3 thumbnail">
+                                    <img src="http://dummyimage.com/150x150" alt="">
+                                </div>
+                                <div class="col col-21 l-txt">
+                                    中国西安找表锅！找表锅！Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat expedita aspernatur, similique rerum illum veritatis magnam molestiae maxime odio! Sunt?
+                                </div>
+                            </div>
+                            <div class="row bot">
+                                <div class="col col-5 from">
+                                    来自<a href="#">表小组</a>
+                                </div>
+                                <div class="col col-19 time">
+                                    明天00:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row l-card">
+                        <div class="col col-2 like">
+                            <div class="numb">28</div>
+                            <div>喜欢</div>
+                        </div>
+                        <div class="col col-22 l-content">
+                            <div class="row l-title">
+                                <a href="#">学电气焊技术哪家强？</a>
+                            </div>
+                            <div class="row preview">
+                                <div class="col col-3 thumbnail">
+                                    <img src="http://dummyimage.com/150x150" alt="">
+                                </div>
+                                <div class="col col-21 l-txt">
+                                    中国西安找表锅！找表锅！Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat expedita aspernatur, similique rerum illum veritatis magnam molestiae maxime odio! Sunt?
+                                </div>
+                            </div>
+                            <div class="row bot">
+                                <div class="col col-5 from">
+                                    来自<a href="#">表小组</a>
+                                </div>
+                                <div class="col col-19 time">
+                                    明天00:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="col col-7 r-block">
+                    <div class="row r-title">
+                        值得加入的小组
+                    </div>
+                    <div class="row r-card">
+                        <div class="col col-4 avatar">
+                            <img src="https://dummyimage.com/100x100" alt="">
+                        </div>
+                        <div class="col col-20 r-content">
+                            <div class="row desc">
+                                <a href="#">表锅冲鸭!</a>
+                            </div>
+                            <div class="row l-bot">
+                                <div class="col col-12 member">
+                                    233333个成员
+                                </div>
+                                <div class="col col-12 join">
+                                    <a href="#">＋加入小组</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row r-card">
+                        <div class="col col-4 avatar">
+                            <img src="https://dummyimage.com/100x100" alt="">
+                        </div>
+                        <div class="col col-20 r-content">
+                            <div class="row desc">
+                                <a href="#">表锅冲鸭!</a>
+                            </div>
+                            <div class="row l-bot">
+                                <div class="col col-12 member">
+                                    233333个成员
+                                </div>
+                                <div class="col col-12 join">
+                                    <a href="#">＋加入小组</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row r-card">
+                        <div class="col col-4 avatar">
+                            <img src="https://dummyimage.com/100x100" alt="">
+                        </div>
+                        <div class="col col-20 r-content">
+                            <div class="row desc">
+                                <a href="#">表锅冲鸭!</a>
+                            </div>
+                            <div class="row l-bot">
+                                <div class="col col-12 member">
+                                    233333个成员
+                                </div>
+                                <div class="col col-12 join">
+                                    <a href="#">＋加入小组</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+            <div class="row footer">
+                <div class="col col-12 web-info">© 2005－2018 douban.com, all rights reserved 北京豆网科技有限公司</div>
+                <div class="col col-12 web-link">
+                    <a href="#">关于豆瓣</a>
+                    <span>·</span>
+                    <a href="#">在豆瓣工作</a>
+                    <span>·</span>
+                    <a href="#">联系我们</a>
+                    <span>·</span>
+                    <a href="#">免责声明</a>
+                    <span>·</span>
+                    <a href="#">帮助中心</a>
+                    <span>·</span>
+                    <a href="#">移动应用</a>
+                    <span>·</span>
+                    <a href="#">豆瓣广告</a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

@@ -22,6 +22,10 @@ a:hover {
     color: #00b86b;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -277,9 +281,10 @@ a:hover {
 
 .header {
     background-image: url(./banner-header.jpg);
-    background-size: cover;
+    /* background-size: cover; */
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center 0;
+    background-attachment: fixed;
 }
 
 /* ====== main ====== */
@@ -303,4 +308,238 @@ a:hover {
 .service img {
     width: 25%;
 }
+
+.app-prom {
+    background: #888;
+    color: #333;
+    padding: 30px 0;
+    background-image: url(./bg-app.jpg);
+    padding-left: 40px;
+}
+
+.app-prom .up-title {
+    font-size: 45px;
+    font-weight: thin;
+}
+
+.app-prom .bot-title {
+    font-size: 70px;
+}
+
+.app-prom .desc {
+    padding: 20px 0 30px 0;
+}
+
+.app-prom button {
+    background: #00b55b;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    width: 100%;
+    height: 50px;
+    border-radius: 2px;
+}
+
+.app-prom button:hover {
+    cursor: pointer;
+}
+
+.app-prom .d-btn {
+    margin-right: 10px;
+}
+
+.app-prom .android {
+    margin-top: 10px;
+}
+
+.app-prom img {
+    height: 110px;
+}
+
+.recom {
+    padding-left: 30px;
+}
+
+.recom .title {
+    color: #333;
+    margin-top: 60px;
+    padding-left: 10px;
+}
+
+.recom .b-title,
+.recom .r-title {
+    font-size: 30px;
+}
+
+.recom .b-title {
+    font-weight: bold;
+}
+
+.recom .b-desc {
+    color: #888;
+    padding: 5px 10px 30px 10px;
+}
+
+.recom .more {
+    text-align: right;
+}
+
+.card-block {
+    padding-bottom: 40px;
+}
+
+.card-block .card-box {
+    padding: 0 10px;
+}
+
+.card-block .card {
+    background: #fff;
+    box-shadow: 1px 1px 5px #bbb;
+    position: relative;
+}
+
+.card-block .c-title,
+.card-block .desc {
+    padding-left: 20px;
+}
+
+.card-block .c-title {
+    padding-bottom: 10px;
+}
+
+.card-block .desc {
+    font-size: 12px;
+    padding-bottom: 10px;
+    color: #888;
+}
+
+.card-block .tag {
+    font-size: 12px;
+    padding-top: 15px;
+    color: #888;
+}
+
+.card-block span {
+    background: #394043;
+    color: #fff;
+    position: absolute;
+    top: 140px;
+    left: 0;
+    font-weight: bold;
+    font-size: .9em;
+    text-align: center;
+    padding: 4px 10px 6px 10px;
+}
+
+.card-block img {
+    width: 100%;
+}
+
+.promise {
+    color: #fff;
+    background-image: url(./promise.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    padding-left: 40px;
+}
+
+.promise .up-title {
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.promise .bot-title {
+    font-size: 45px;
+}
+
+.promise .guarantee {
+    font-size: 14px;
+}
+
+.promise input,
+.promise button {
+    float: right;
+    height: 35px;
+    background: #fff;
+    border: 1px solid #aaa;
+}
+
+.promise input {
+    border-right: none;
+    width: 90%;
+    padding-left: 10px;
+    outline: none;
+}
+
+.promise button {
+    border-left: none;
+    color: #aaa;
+    width: 10%;
+    text-align: center;
+}
+
+.promise .p-search {
+    padding-right: 10px;
+}
+
+.promise .g-1 {
+    padding: 8px 0;
+}
+
+.promise .g-2 {
+    padding-bottom: 20px;
+}
+
+/* ====== footer ====== */
+
+.footer {
+    background-image: url(./footer-bg.jpg);
+    color: #fff;
+    font-size: 12px;
+    padding-left: 40px;
+}
+
+.footer .reg-link a {
+    padding: 25px 10px 20px 0;
+    display: inline-block;
+}
+
+.footer .reg-link .tel {
+    text-align: right;
+    color: #02a161;
+    padding: 25px 10px 20px 0;
+}
+
+.footer .reg-link {
+    border-bottom: 1px solid #555;
+}
+
+.footer .cat-link {
+    padding-top: 10px;
+}
+
+.footer .up-link a {
+    display: inline-block;
+    background: #121212;
+    padding: 5px 8px;
+    color: #666;
+    margin-right: 5px;
+    margin-bottom: 150px;
+}
+
+.footer .web-info {
+    font-size: 12px;
+    color: #666;
+    padding: 20px 0 100px 0;
+    border-top: 1px solid #555;
+}
+
+.footer .end {
+    padding-top: 5px;
+    
+}
+
+
 

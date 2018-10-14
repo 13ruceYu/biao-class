@@ -557,6 +557,7 @@ input::placeholder {
     width: 80%;
     padding-left: 10px;
     border-radius: 2px 0 0 2px;
+    outline: none;
 }
 
 .promise button {

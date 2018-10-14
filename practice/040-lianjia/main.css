@@ -159,6 +159,10 @@ button:hover {
     background-position: -16px -375px;
 }
 
+.nav .locale {
+    padding-left: 10px;
+}
+
 .nav .location {
     background: rgba(0, 0, 0, 0.5);
     display: inline-block;
@@ -358,11 +362,11 @@ button:hover {
 
 .recom {
     padding-left: 30px;
+    padding-top: 50px;
 }
 
 .recom .title {
     color: #333;
-    margin-top: 60px;
     padding-left: 10px;
 }
 
@@ -492,6 +496,10 @@ button:hover {
     padding-bottom: 20px;
 }
 
+.dim {
+    background: #eee;
+}
+
 /* ====== footer ====== */
 
 .footer {
@@ -540,6 +548,7 @@ button:hover {
     padding-top: 5px;
     
 }
+
 
 
 

@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: "Microsoft Yahei", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
     margin: 0;
 }
 
@@ -234,7 +234,7 @@ button:hover {
     border-right: none;
 }
 
-.nav-page input:focus +button {
+.nav-page input:focus + button {
     border: 1px solid #ff6b00;
 }
 
@@ -301,6 +301,13 @@ button:hover {
     color: rgba(9, 9, 9, .2);
     font-size: 30px;
     position: absolute;
+    padding: 20px 10px;
+}
+
+.cat-slider .l-btn:hover,
+.cat-slider .r-btn:hover {
+    background: rgba(0, 0, 0, .3);
+    color: #aaa;
 }
 
 .cat-slider .l-btn {
@@ -309,7 +316,235 @@ button:hover {
 
 .cat-slider .r-btn {
     top: 230px;
-    left: 960px;
+    left: 953px;
 }
+
+/* ====== header-card ====== */
+
+.header-card {
+    margin-top: 15px;
+}
+
+.header-card img {
+    width: 316px;
+}
+
+.header-card .wrapper .card-block > * {
+    margin-right: 14.6px;
+}
+
+.card-block,
+.slider {
+    width: 1300px;
+}
+
+.header-card .wrapper .d-hcard {
+    margin-right: 0;
+}
+
+.header-card .a-hcard {
+    background: #5f5750;
+    color: #cfcdcb;
+    text-align: center;
+    font-size: 12px;
+    width: 234px;
+    padding: 3px;
+}
+
+.header-card .a-hcard .col {
+    width: 76px;
+    height: 82px;
+    padding: 3px 3px;
+}
+
+.header-card .a-hcard a {
+    display: inline-block;
+    padding: 18px 0;
+}
+
+.header-card .a-hcard a:hover {
+    color: #fff;
+}
+
+.header-card .a-hcard i {
+    font-size: 22px;
+    padding-bottom: 5px;
+}
+
+.header-card .a-hcard .up .col,
+.header-card .a-hcard .bot .col {
+    border-right: 1px solid #665e57;
+}
+
+.header-card .a-hcard .up .col {
+    border-bottom: 1px solid #665e57;
+}
+
+.header-card .a-hcard .up .col:last-child,
+.header-card .a-hcard .bot .col:last-child {
+    border-right: none;
+}
+
+/* ====== main ====== */
+
+/* flash-purchase */
+
+.block-title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.block-title .title {
+    font-size: 22px;
+    font-weight: 200;
+    color: #333;
+}
+
+.block-title button {
+    background: #fff;
+    padding: 3px 10px 3px 10px;
+    border: 1px solid #ddd;
+    color: #aaa;
+    float: left;
+}
+
+.block-title .left {
+    border-right: none;
+    color: #ddd;
+}
+
+.block-title .right:hover {
+    color: #ff6b00;
+}
+
+.card {
+    width: 234px;
+    height: 340px;
+}
+
+.flash-purchase .a-card {
+    background: #f1eded;
+    border-top: 1px solid #e53935;
+}
+
+.flash-purchase .a-card .start {
+    text-align: center;
+    font-size: 21px;
+    color: #ef3a3b;
+    padding-top: 50px;
+}
+
+.flash-purchase .a-card .subtitle {
+    text-align: center;
+    color: rgba(0,0,0,0.54);
+    padding: 10px 0 30px 0;
+}
+
+.flash-purchase .a-card img {
+    margin: 25px auto;
+}
+
+.flash-purchase .a-card .countdown {
+    margin: 0 auto;
+    width: 168px;
+}
+
+.flash-purchase .a-card .time {
+    width: 46px;
+    height: 46px;
+    background: #605751;
+    color: #fff;
+    line-height: 46px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.flash-purchase .a-card .colon {
+    line-height: 46px;
+    font-size: 24px;
+    color: #605751;
+    padding: 0 4px;
+}
+
+.flash-purchase .b-card {
+    background: #fff;
+    border-top: 1px solid #ff6700;
+    text-align: center;
+    padding-top: 40px;
+    position: relative;
+    margin-left: 14px;
+}
+
+.flash-purchase .b-card .mask {
+    background: rgba(0,0,0,0.02);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.flash-purchase .b-card img {
+    width: 160px;
+    height: 160px;
+}
+
+.flash-purchase .b-card .thumbnail {
+    margin: 0 auto 22px auto;
+    width: 160px;
+}
+
+.flash-purchase .b-card .tag {
+    background: #e53935;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+    width: 64px;
+    position: absolute;
+    left: 85px;
+    z-index: 2;
+    text-align: center;
+    top: -1px;
+}
+
+.flash-purchase .b-card .title {
+    color: #212121;
+    font-size: 14px;
+    padding-bottom: 3px;
+}
+
+.flash-purchase .b-card .desc {
+    font-size: 12px;
+    color: #b0b0b0;
+    height: 18px;
+    padding-bottom: 12px;
+}
+
+.flash-purchase .b-card .price {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.flash-purchase .b-card .price .now {
+    color: #ff6709;
+}
+
+.flash-purchase .b-card .price .before {
+    color: #b0b0b0;
+    text-decoration: line-through;
+    padding-left: 5px;
+}
+
+/* banner */
+
+.banner {
+    margin: 40px auto;
+}
+
+
+
+
+
 
 

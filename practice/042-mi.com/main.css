@@ -197,9 +197,13 @@ button:hover {
 }
 
 .nav-page .cat a {
-    padding: 22px 5px;
+    padding: 22px 10px;
     display: inline-block;
     color: #444;
+}
+
+.nav-page .cat a:hover {
+    color: #ff6700;
 }
 
 .nav-page form {

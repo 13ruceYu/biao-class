@@ -572,9 +572,9 @@ button:hover {
 }
 
 .mmain .b-card:hover {
-    top: -2px;
-    box-shadow: 1px 1px 15px #aaa;
+    box-shadow: 1px 1px 15px #bbb;
     transition: all .5s;
+    transform: scale(1.01);
 }
 
 .mmain .b-card img {

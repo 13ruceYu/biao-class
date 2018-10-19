@@ -1,0 +1,280 @@
+/* universal */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+    margin: 0;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/* ====== nav-global ====== */
+
+.nav-global {
+    background: #333;
+    height: 40px;
+}
+
+.nav-global a {
+    color: #b0b0b0;
+    line-height: 40px;
+    font-size: 12px;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.nav-global a:hover {
+    color: #fff;
+}
+
+.nav-global span {
+    color: #444;
+}
+
+.nav-global .fr .cart {
+    background: #424242;
+    padding: 0 15px;
+    margin-left: 10px;
+}
+
+.nav-global .cart i {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.nav-global .fr .cart:hover {
+    background: #fff;
+    color: #ff6b00;
+    transition: all .2s;
+}
+
+/* ====== nav-page ====== */
+
+.nav-page {
+    height: 100px;
+    background: #eee;
+}
+
+.nav-page #logo a {
+    width: 55px;
+    display: inline-block;
+    padding-top: 22.5px;
+}
+
+.nav-page .cat-page a {
+    color: #333;
+    display: inline-block;
+    padding: 0 6px;
+    line-height: 100px;
+}
+
+.nav-page .cat-page a:hover {
+    color: #ff6b00;
+}
+
+.nav-page .search input,
+.nav-page .search button {
+    height: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+    float: left;
+    outline: none;
+}
+
+.nav-page .search input {
+    border-right: none;
+    width: 80%;
+    padding-left: 10px;
+}
+
+.nav-page .search button {
+    width: 20%;
+    font-size: 16px;
+}
+
+.nav-page .search input:focus {
+    border: 1px solid #ff6b00;
+    border-right: none;
+}
+
+.nav-page .search input:focus + button {
+    border: 1px solid #ff6b00;
+}
+
+.nav-page .tag a {
+    font-size: 12px;
+    color: #999;
+    background: #eee;
+    padding: 2px 5px;
+}
+
+.nav-page .tag a:hover {
+    color: #fff;
+    background: #ff6b00;
+}
+
+.nav-page .search {
+    position: relative;
+    margin-top: 30px;
+}
+
+.nav-page .tag {
+    position: absolute;
+    top: 9px;
+    left: 75px;
+}
+
+/* ====== cat-slider ====== */
+
+.cat-slider .cat {
+    background: rgba(0,0,0,0.6);
+    height: 460px;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.cat-slider .cat a {
+    color: #fff;
+    display: inline-block;
+    height: 42px;
+    line-height: 42px;
+    font-size: 14px;
+    padding-left: 30px;
+    width: 100%;
+}
+
+.cat-slider .cat a:hover {
+    background: #ff6b00;
+}
+
+.cat-slider .cat a i {
+    float: right;
+    padding-right: 20px;
+    font-size: 12px;
+    line-height: 42px;
+    color: #999;
+}
+
+.cat-slider .slider {
+    position: absolute;
+    width: 1200px;
+}
+
+.cat-slider .slider img {
+    height: 460px;
+    width: 100%;
+}
+
+/* ====== header-card ====== */
+
+.header-card {
+    margin: 10px 0 26px 0;
+}
+
+.header-card .a-card {
+    height: 170px;
+    background: #5f5750;
+    padding: 12px 0;
+    position: relative;
+    padding-left: 2px;
+}
+
+.header-card .a-card a {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    padding: 14px 15px;
+    text-align: center;
+    float: left;
+}
+
+.header-card .a-card a:hover {
+    color: #fff;
+    transition: all .2s;
+}
+
+.header-card .a-card a {
+    border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+.header-card .a-card a:nth-of-type(1),
+.header-card .a-card a:nth-of-type(4) {
+    border-left: none;
+}
+
+.header-card .a-card a:nth-of-type(4),
+.header-card .a-card a:nth-of-type(5),
+.header-card .a-card a:nth-of-type(6) {
+    border-bottom: none;
+}
+
+
+.header-card .a-card a i {
+    font-size: 24px;
+    padding-bottom: 5px;
+}
+
+.header-card .b-card img {
+    height: 170px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+/* ====== flash-purchase ====== */
+
+.fp-title {
+    height: 58px;
+}
+
+.fp-title .title {
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #333;
+}
+
+.fp-title .more a {
+    color: #333;
+    display: inline-block;
+    line-height: 58px;
+}
+
+.fp-title .more i {
+    color: #b0b0b0;
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.fp-title .more a:hover {
+    color: #ff6b00;
+}
+
+.fp-title .more a:hover i {
+    color: #ff6b00;
+}
+

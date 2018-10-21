@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex</title>
+    <style>
+        .parent {
+            border: solid;
+
+            display: flex;
+
+            /* flex-direction: row, row-reverse, column ,column-reverse; */
+
+            /* justify-content: flex-start, flex-end, center, space-around, space-between, space-evenly; */
+
+            /* align-items: flex-start, flex-end, center, stretch, baseline; */
+
+        }
+
+        .child {
+            border: solid tomato;
+
+            width: 500px;
+        }
+
+        .b {
+            flex-shrink: 2;
+        }
+
+        /* .a {
+            flex-grow: 2;
+            align-self: flex-start, flex-end, center, stretch, baseline;
+        }
+
+        .b {
+            flex-grow: 2;
+        }
+
+        .c {
+            flex-grow: 4;
+        } */
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child a">A</div>
+        <div class="child b">B</div>
+        <div class="child c">C</div>
+    </div>
+</body>
+</html>

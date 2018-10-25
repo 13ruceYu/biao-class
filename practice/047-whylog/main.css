@@ -1,0 +1,166 @@
+/* ====== universal ====== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.row::before,
+.row::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.col-4 {
+    width: 40%;
+}
+
+.col-6 {
+    width: 60%;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.tac {
+    text-align: center;
+}
+
+/* ====== header ====== */
+
+.nav {
+    background: #22252d;
+    height: 60px;
+}
+
+.nav .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav img {
+    width: 30px;
+    padding: 15px 0;
+}
+
+.nav a {
+    color: #ccc;
+    line-height: 60px;
+    padding: 0 10px;
+}
+
+.nav a:hover {
+    color: #fff;
+}
+
+.header .bg {
+    position: relative;
+}
+
+.header .bg .slogan {
+    position: absolute;
+    top: 35%;
+    width: 50%;
+    left: 25%;
+}
+
+.header .bg .motto {
+    position: absolute;
+    top: 55%;
+    width: 40%;
+    left: 30%;
+}
+
+/* ====== main ====== */
+
+.main .card-block {
+    margin: 2%;
+}
+
+.main .card-block .card {
+    color: #333;
+}
+
+.main .card-block .card .txt {
+    border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    height: 28.5vw;
+    margin-left: 10px;
+    position: relative;
+}
+
+.main .card-block .card .txt .title {
+    font-size: 30px;
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+.main .card-block .card .txt .time {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.main .card-block .card .txt .prev {
+    padding: 25px 0;
+    font-size: 14px;
+}
+
+.main .card-block .card .txt .share {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+}
+
+.main .card-block .card .txt .share i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* ====== footer ====== */
+
+.footer {
+    background: #22252d;
+}
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@
 body {
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    background: #fafbfc;
 }
 
 .wrapper {
@@ -26,6 +27,13 @@ img {
 
 button:hover {
     cursor: pointer;
+}
+
+.row::before,
+.row::after {
+    content: '';
+    display: block;
+    clear: both;
 }
 
 .fl {
@@ -140,3 +148,104 @@ button:hover {
 .header-banner .r-part .bot a:first-child {
     padding-right: 5px;
 }
+
+/* ====== main ====== */
+
+.main {
+    color: #333;
+}
+
+.main .wrapper {
+    display: flex;
+    padding-top: 45px;
+}
+
+.main .wrapper > .col {
+    flex-grow: 1;
+    flex-basis: 0%;
+}
+
+.main .wrapper .article-area {
+    flex-grow: 2;
+    margin-right: 20px;
+}
+
+.article-card {
+    background: #fff;
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #ddd;
+    margin-bottom: 20px;
+}
+
+.article-card .head {
+    display: flex;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.article-card .head .avatar {
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.article-card .head .writer-time {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.article-card .head .writer-time .name {
+    height: 20px;
+    line-height: 20px;
+}
+
+.article-card .head .writer-time .time {
+    height: 20px;
+    vertical-align: bottom;
+    display: table-cell;
+    color: #999;
+}
+
+.article-card .head .option {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #bbb;
+}
+
+.article-card .article-cover {
+    margin-bottom: 25px;
+}
+
+.article-card .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.article-card .title a:hover {
+    color: #d7191a;
+}
+
+.article-card .like-commit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    color: #aaa;
+    font-weight: 100;
+}
+
+.article-card .like-commit .like {
+    margin-right: 20px;
+}
+
+
+
+
+
+

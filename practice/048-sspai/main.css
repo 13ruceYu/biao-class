@@ -1,0 +1,142 @@
+/* ====== universal ====== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.wrapper {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tal {
+    text-align-last: left;
+}
+
+.tac {
+    text-align: center;
+}
+
+.tar {
+    text-align: right;
+}
+
+/* ====== header ====== */
+
+.nav-global {
+    background: #292525;
+    height: 60px;
+    color: #fff;
+}
+
+.nav-global > .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-global #logo a {
+    background-image: url(./img/logo.png);
+    width: 108px;
+    height: 38px;
+    background-size: contain;
+    display: inline-block;
+    margin: 11px 0;
+}
+
+.nav-global .auth a {
+    line-height: 60px;
+    padding: 0 10px;
+    color: #999;
+}
+
+.nav-page {
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-page > .wrapper {
+    display: flex;
+}
+
+.nav-page .wrapper a {
+    flex-grow: 1;
+    text-align: center;
+    display: inline-block;
+    line-height: 40px;
+    border-left: 1px solid #ccc;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.nav-page .wrapper a:hover {
+    color: #d7191a;
+}
+
+.nav-page .wrapper a:last-child {
+    border-right: 1px solid #ccc;
+}
+
+.header-banner,
+.header-banner .r-part .row {
+    display: flex;
+}
+
+.header-banner {
+    margin: 0 10px;
+    margin-top: 45px;
+}
+
+.header-banner > .col {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.header-banner .l-part {
+    padding-right: 5px;
+    flex-grow: 1;
+}
+
+.header-banner .r-part .row a {
+    display: inline-block;
+    flex-grow: 1;
+}
+
+.header-banner .r-part .top {
+    margin-bottom: 5px;
+}
+
+.header-banner .r-part .top a:first-child {
+    padding-right: 5px;
+}
+
+.header-banner .r-part .bot a:first-child {
+    padding-right: 5px;
+}

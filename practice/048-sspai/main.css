@@ -158,6 +158,8 @@ button:hover {
 .main .wrapper {
     display: flex;
     padding-top: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .main .wrapper > .col {
@@ -414,8 +416,78 @@ button:hover {
     display: block;
 }
 
+/* ====== article-part ====== */
+.article {
+    color: #333;
+}
 
+.article-wrapper {
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
 
+.article .title {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.article .time {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.article .writer-info {
+    display: flex;
+    height: 36px;
+    margin: 20px 0;
+}
+
+.article .avatar {
+    width: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.article .name {
+    font-size: 14px;
+    line-height: 36px;
+    margin-left: 15px;
+}
+
+.article .name a:hover {
+    text-decoration: underline;
+    color: #d7191a;
+}
+
+.article .article-desc {
+    color: #999;
+    margin-top: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+.article .article-desc a {
+    text-decoration: underline;
+}
+
+.article p {
+    line-height: 26px;
+}
+
+hr {
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.article-wrapper .tag span {
+    background: #ddd;
+    font-size: 14px;
+    color: #aaa;
+    padding: 5px 8px;
+}
 
 
 

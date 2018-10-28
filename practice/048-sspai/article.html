@@ -10,37 +10,39 @@
 </head>
 <body>
     <div class="row header">
-        <div class="row nav-global">
-            <div class="wrapper">
-                <div class="col" id="logo">
-                    <a href="http://sspai.com"></a>
-                </div>
-                <div class="col auth fr">
-                    <a href="#">
-                        <i class="fas fa-pen"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-bell"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-user-circle"></i>
-                    </a>
+        <div class="fixed">
+            <div class="row nav-global">
+                <div class="wrapper">
+                    <div class="col" id="logo">
+                        <a href="http://sspai.com"></a>
+                    </div>
+                    <div class="col auth fr">
+                        <a href="#">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-bell"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row nav-page">
-            <div class="wrapper">
-                <a href="#">正版软件</a>
-                <a href="#">付费栏目</a>
-                <a href="#">Matrix</a>
-                <a href="#">专题广场</a>
-                <a href="#">热门文章</a>
-                <a href="#">生活方式</a>
-                <a href="#">新玩意</a>
+    
+            <div class="row nav-page">
+                <div class="wrapper">
+                    <a href="#">正版软件</a>
+                    <a href="#">付费栏目</a>
+                    <a href="#">Matrix</a>
+                    <a href="#">专题广场</a>
+                    <a href="#">热门文章</a>
+                    <a href="#">生活方式</a>
+                    <a href="#">新玩意</a>
+                </div>
             </div>
         </div>
     </div>  
@@ -155,7 +157,7 @@
         <div class="share">
             <div class="col like">
                 <span>
-                    <i class="fas fa-heart"></i>
+                    <i class="far fa-heart"></i>
                     <span class="num">76</span>
                 </span>
             </div>
@@ -167,9 +169,77 @@
     
         <div class="writer-detail"></div>
     
-        <div class="comment"></div>
+        <div class="comment-box">
+            <form>
+                <a href="#">
+                    <img src="./img/avatar-1.png" alt="">
+                </a>
+                <section>
+                    <div class="textarea-wrap">
+                        <div class="el-textarea">
+                            <textarea name="comment" rows="8"></textarea>
+                        </div>
+                        <button>发送</button>
+                    </div>
+                </section>
+            </form>
+        </div>
+        <div class="comment-area">
+            <div class="title">
+                评论 <span>（12）</span>
+            </div>
+            <ul class="comment-list">
+                <li class="one-list comment-item">
+                    <a href="#" class="c-avatar">
+                        <img src="./img/avatar-2.png">
+                    </a>
+                    <section>
+                        <div class="acomlist">
+                            <h5>Bruce_Y_</h5>
+                            <div class="c-body">
+                                <div class="commetContent">我的天哪！原来评论可以显示在这里。</div>
+                            </div>
+                            <div class="c-state">
+                                <div class="time">2天前</div>
+                                <div class="share-btn">
+                                    <a href="#"><i class="far fa-thumbs-up"></i>12</a>
+                                    <a href="#" class="message"><i class="far fa-comment-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="relative-articel"></div>
+
+    <div class="row footer">
+        <div class="wrapper">
+            <div class="row contact-way">
+                <a href="#" class="mail"><i class="fas fa-envelope"></i></a>
+                <a href="#" class="weibo"><i class="fab fa-weibo"></i></a>
+                <a href="#" class="wechat"><i class="fab fa-weixin"></i></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="rss"><i class="fas fa-rss"></i></a>
+            </div>
+            <div class="row web-link">
+                <a href="#">支持我们</a>
+                <a href="#">作者招募</a>
+                <a href="#">用户协议</a>
+                <a href="#">FAQ</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="row web-info">
+                © 2013-2018 
+                <a href="#">少数派</a>
+                | 
+                <a href="#">粤ICP备09128966号-4</a>
+                |
+                <a href="#">CC BY-NC 4.0</a>
+        </div>
+        </div>
+    </div>
 </body>
 </html>

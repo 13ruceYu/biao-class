@@ -411,7 +411,6 @@ button:hover {
 .footer .web-info {
     font-size: 12px;
     color: #999;
-    vertical-align: baseline;
     display: table-cell;
     display: block;
 }
@@ -489,7 +488,138 @@ hr {
     padding: 5px 8px;
 }
 
+.article-wrapper .share {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 40px;
+    padding: 30px 0;
+}
 
+.article-wrapper .share .like {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #d7191a;
+    border-radius: 20px;
+    color: #d7191a;
+    font-size: 14px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.article-wrapper .share .share-save {
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    color: #666;
+}
+
+.article-wrapper .share-save i {
+    margin-left: 20px;
+}
+
+.comment-box {
+    margin: 30px 0;
+}
+
+.comment-box a {
+    width: 40px;
+    float: left;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.comment-box section {
+    overflow: hidden;
+    text-align: right;
+}
+
+.comment-box .el-textarea {
+    width: 100%;
+    vertical-align: bottom;
+}
+
+.comment-box .el-textarea textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.comment-box .el-textarea textarea:hover {
+    border-color: #888;
+}
+
+.comment-box button {
+    background: #292525;
+    color: #fff;
+    height: 35px;
+    width: 80px;
+    border-radius: 20px;
+    font-family: inherit;
+    border: none;
+    margin-top: 20px;
+} 
+
+.comment-box button:hover {
+    background: #fff;
+    color: #292525;
+    border: 1px solid #292525;
+}
+
+.comment-list {
+    padding: 0;
+}
+
+.comment-list section {
+    display: block;
+    overflow: hidden;
+    padding-left: 15px;
+}
+
+.comment-item {
+    list-style: none;
+    color: #333;
+}
+
+.comment-item .c-avatar {
+    width: 50px;
+    display: inline-block;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+
+.comment-item .acomlist h5 {
+    line-height: 25px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.comment-item .acomlist .c-body .commetContent {
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+}
+
+.comment-item .acomlist .c-state {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    color: #bbb;
+}
+
+.comment-item .c-state .time {
+    font-size: 12px;
+}
+
+.comment-item .c-state .message {
+    margin-left: 10px;
+}
 
 
 

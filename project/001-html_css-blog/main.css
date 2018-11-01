@@ -1,0 +1,171 @@
+/* ====== universal ====== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.col {
+    float: left;
+}
+
+.col-2 {
+    width: 20%;
+}
+
+.col-8 {
+    width: 80%;
+}
+
+.col-10 {
+    width: 100%;
+}
+
+.row::before,
+.row::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+/* ====== nav ====== */
+
+.nav {
+    padding: 5px;
+    border-right: 1px solid #aaa;
+    text-align: center;
+}
+
+.nav #logo,
+.nav .motto {
+    border-bottom: 1px solid #aaa;
+    padding: 10px 0;
+}
+
+.nav .cat {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #333;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #aaa;
+    padding-left: 10%;
+}
+
+.nav .cat a {
+    padding-bottom: 15px;
+    font-weight: 700;
+}
+
+.nav .cat a:hover,
+.nav .link a:hover {
+    color: #FC195D;
+}
+
+.nav .portfolio,
+.nav .contact {
+    padding: 20px 0;
+    padding-left: 10%;
+    border-bottom: 1px solid #aaa;
+}
+
+.nav .portfolio .title,
+.nav .contact .title {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.nav .portfolio .link,
+.nav .contact .link {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.nav .link a {
+    margin-bottom: 10px;
+}
+
+
+/* ====== main ====== */
+
+.main {
+    padding: 5px;
+    display: flex;
+}
+
+.main .row-card {
+    display: flex;
+    padding: 10px 15px;
+}
+
+.main .card {
+    border: 1px solid #ccc;
+    margin: 0 1%;
+    transition: all .4s;
+    flex-basis: 50%;
+}
+
+.main .card:hover {
+    box-shadow: 1px 1px 15px #bbb;
+    transition: all .3s;
+}
+
+.main .card .txt {
+    padding: 10px 15px;
+}
+
+.main .card .title {
+    font-weight: 700;
+}
+
+.main .card .desc {
+    font-size: 12px;
+    margin: 8px 0;
+    color: #888;
+}
+
+.main .status {
+    display: flex;
+    font-size: 14px;
+    color: #888;
+}
+
+.main .status .time {
+    flex-grow: 1;
+}
+
+

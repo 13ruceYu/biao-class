@@ -28,6 +28,10 @@ img {
     width: 20%;
 }
 
+.col-5 {
+    width: 50%;
+}
+
 .col-8 {
     width: 80%;
 }
@@ -128,15 +132,13 @@ img {
 }
 
 .main .row-card {
-    display: flex;
     padding: 10px 15px;
 }
 
 .main .card {
     border: 1px solid #ccc;
-    margin: 0 1%;
+    margin: 2% 2%;
     transition: all .4s;
-    flex-basis: 50%;
 }
 
 .main .card:hover {

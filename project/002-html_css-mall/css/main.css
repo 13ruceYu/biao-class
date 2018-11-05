@@ -1,0 +1,133 @@
+/* ====== universal ====== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    color: #333;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.tac {
+    text-align: center;
+}
+
+.wrap {
+    max-width: 1640px;
+    margin: 0 auto;
+}
+
+/* ====== header ====== */
+
+.nav {
+    height: 60px;
+    background: #fff;
+    position: fixed;
+    width: 100%;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.nav img {
+    width: auto;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.nav .left a {
+    line-height: 60px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.nav .right i {
+    line-height: 60px;
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+.nav .left a:hover,
+.nav .right a:hover {
+    color: #666;
+}
+
+.slider {
+    padding-top: 100px;
+}
+
+/* ====== main ====== */
+
+.new-arrival,
+.recom {
+    margin-top: 40px;
+}
+
+.block-title {
+    margin-bottom: 20px;
+}
+
+.block-title .main-title {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.block-title .sub-title {
+    margin-left: 10px;
+}
+
+.new-arrival .block-card {
+    display: flex;
+}
+
+.new-arrival .block-card .tooth {
+    margin: 0 20px;
+}
+
+.new-arrival .card-box .title {
+    font-weight: 700;
+    margin: 10px 0 5px 0;
+}
+
+.new-arrival .card-box .price .now {
+    font-weight: 700;
+}
+
+.new-arrival .card-box .price .before {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+

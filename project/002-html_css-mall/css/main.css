@@ -46,7 +46,7 @@ button:hover {
 }
 
 .wrap {
-    max-width: 1640px;
+    max-width: 1220px;
     margin: 0 auto;
 }
 
@@ -153,7 +153,7 @@ button:hover {
 }
 
 .recom .card-box .card-txt .price {
-    margin-top: 420px;
+    margin-top: 200px;
     font-size: 24px;
     border-bottom: 1px solid #666;
 }
@@ -197,21 +197,13 @@ button:hover {
     height: 40px;
 }
 
-.btn-g .detail {
-    background: #fafafa;
-}
-
-.btn-g .detail:hover {
-    background: #333;
-    color: #fff;
-}
-
+.btn-g .detail,
 .btn-g .cart {
-    color: #fff;
-    background: #333;
+    background: #fafafa;
 }
 
+.btn-g .detail:hover,
 .btn-g .cart:hover {
-    background: #fafafa;
-    color: #333;
+    background: #333;
+    color: #fff;
 }

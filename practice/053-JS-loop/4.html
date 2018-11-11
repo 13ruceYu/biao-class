@@ -1,0 +1,23 @@
+<script>
+    let list = [
+        '王花花',
+        '李拴蛋',
+        '赵可爽',
+    ];
+
+    let str = '';
+    let length = list.length;
+
+    for (let i = 0; i < length; i++) {
+        let box = list[i];
+        let connector = ',';
+
+        if (i == length -1) {
+            connector = ' ';
+        }
+
+        str = str + box + connector;
+    }
+
+    console.log(str);
+</script>

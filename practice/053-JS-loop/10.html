@@ -1,0 +1,20 @@
+<script>
+    let list = [
+        {name: '王花花'},
+        {name: '王拴蛋'},
+        {name: '牛备备'},
+    ];
+    let arr = [];
+
+    for (let i = 0; i < list.length; i++) {
+        let it = list[i];
+
+        if (!it.name.startsWith('王')) {
+            continue;
+        }
+
+        arr.push(it);
+    }
+
+    console.log(arr);
+</script>

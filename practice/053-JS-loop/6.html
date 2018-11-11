@@ -1,0 +1,20 @@
+<script>
+    let list = ['Yo', 'Em', 1, 'La', 4, 8, 'Ha', 11, 5];
+    let sum = 0;
+    let all = '';
+
+    for (let i = 0; i < list.length; i++) {
+        let num = list[i];
+
+        if (typeof num != 'number') {
+            all += num;
+            continue;
+        }
+
+        sum += num;
+    }
+
+    console.log(sum);
+
+    console.log(all);
+</script>

@@ -1,0 +1,22 @@
+<script>
+    let list = [
+        '王花花',
+        '李拴蛋',
+        '赵可爽',
+    ];
+
+    let arr = '';
+
+    for (let i = 0; i < list.length; i++) {
+        let it = list[i];
+        let connector = ', ';
+
+        if (i == list.length - 1) {
+            connector = '';
+        }
+
+        arr += it + connector;
+    }
+
+    console.log(arr);
+</script>

@@ -1,0 +1,26 @@
+<script>
+    function glue(arr, connector) {
+        let box = '';
+        for (let i = 0; i < arr.length; i++) {
+            let it = arr[i];
+
+            if (i === arr.length - 1) {
+                connector = '';
+            }
+
+            box = box + it + connector;
+        }
+        // return box;
+        console.log(box);
+    }
+
+    let list = [
+        '王花花',
+        '李拴蛋',
+        '赵可爽',
+    ];
+
+    // console.log(glue(list, ', '));
+    // console.log(glue(list, '-'));
+    glue(list, ', ');
+</script>

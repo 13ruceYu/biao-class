@@ -1,0 +1,23 @@
+<script>
+    function printer(arr, jumper) {
+        for (let i = 0; i < arr.length; i++) {
+            let it = arr[i];
+
+            if (it == jumper) {
+                continue;
+            }
+
+            console.log(it);
+        }
+    }
+
+    let list = [
+        '王花花',
+        '刘备备',
+        '李拴蛋',
+    ];
+
+    printer(list, '李拴蛋');
+    printer(list, '王花花');
+
+</script>

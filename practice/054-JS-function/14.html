@@ -1,0 +1,22 @@
+<script>
+    function search(arr, keyword) {
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+            let it = arr[i];
+
+            if (it.includes(keyword)) {
+                result.push(it);
+            }
+        }
+        console.log(result);
+    }
+
+    let list = [
+        'abb',
+        'bcc',
+        'cdd',
+        'daa',
+    ];
+
+    search(list, 'a');
+</script>

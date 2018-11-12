@@ -1,0 +1,18 @@
+<script>
+    function filterSum(arr) {
+        let sum = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            let it = arr[i];
+
+            if (typeof it === 'number') {
+                sum += it;
+            }
+        }
+
+        console.log(sum);
+    }
+
+    filterSum([1, 2, 'Yo']);
+    filterSum([1, 'a', 2, 3]);
+</script>

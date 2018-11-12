@@ -1,0 +1,18 @@
+<script>
+    function sumEven(arr) {
+        let sum = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            let it = arr[i];
+
+            if (it % 2 === 0) {
+                sum += it;
+            }
+        }
+
+        console.log(sum);
+    }
+
+    sumEven([1, 2, 3, 4]);
+    sumEven([2, 5, 2]);
+</script>

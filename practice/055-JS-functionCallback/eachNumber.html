@@ -1,0 +1,93 @@
+<script>
+    function eachNumber(arr, fn) {
+        for (let i = 0; i < arr.length; i++) {
+            let biu = arr[i];
+
+            if (typeof biu != 'number')
+                throw biu + '不是number类型';
+
+            fn(biu);
+        }
+    }
+
+    function evenNumber(arr) {
+        let result = [];
+        eachNumber(arr, function (biu) {
+            if (biu % 2)
+                return;
+
+            result.push(biu);
+        })
+
+        return result;
+    };
+
+    function oddNumber(arr) {
+        let result = [];
+
+        eachNumber(arr, function (biu) {
+            if (!(biu % 2))
+                return;
+
+            result.push(biu);
+        })
+
+        return result;
+    }
+
+    function sum(arr) {
+        let sum = 0;
+
+        eachNumber(arr, (biu) => {
+            sum += biu;
+        })
+
+        return sum;
+    }
+
+    function max(arr) {
+        let result;
+        eachNumber(arr, (biu) => {
+            if (result === undefined) {
+                result = biu;
+                return result;
+            }
+
+
+            if (result < biu); {
+                result = biu;
+            }
+        });
+
+        return result;
+    }
+
+    function min(arr) {
+        let result;
+
+        eachNumber(arr,(biu) => {
+            if (result === undefined) {
+                result = biu;
+                return;
+            }
+
+            if (result > biu) {
+                result = biu;
+            }
+        })
+
+        return result;
+    }
+
+    let evenList = evenNumber([1, 2, 3, 4]);
+    let oddList = oddNumber([1, 2, 3, 4]);
+    let addAll = sum([1, 2, 3, 4]);
+    let showMax = max([1, 2, 3, 4]);
+    let showMin = min([1, 2, 3, 4]);
+
+    console.log(evenList);
+    console.log(oddList);
+    console.log(addAll);
+    console.log(showMax);
+    console.log(showMin);
+</script>

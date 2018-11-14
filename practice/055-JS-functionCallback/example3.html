@@ -1,0 +1,27 @@
+<script>
+    // 母上这次要开始做饭了
+    function cooking(eatWhat, numOfGuest, noEat) {
+        console.log('1.买菜：买与' + eatWhat() + '相关的食材');
+        console.log('2.蒸饭：蒸' + numOfGuest() + '个人的饭');
+        console.log('3.炒菜：客人' + noEat());
+    }
+
+    function redMeat() {
+        return '红烧肉';
+    }
+
+    function countGuest() {
+        let myGuest = 2;
+        let dadsGuest = 3;
+        return myGuest + dadsGuest;
+    }
+
+    function noEatWhat() {
+        let myGuest = '不吃辣';
+        let dadsGuest = '不吃饭';
+
+        return [myGuest, dadsGuest];
+    }
+
+    cooking(redMeat, countGuest, noEatWhat);
+</script>

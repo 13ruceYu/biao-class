@@ -1,0 +1,18 @@
+<script>
+    //母上开始买菜做饭
+
+    function shop(askColor) {
+        console.log('买菜');
+        console.log('买生活用品');
+        // 给娃买个秋裤
+        let color = askColor();
+        console.log('给娃买个' + color + '色的秋裤，娃一定很开兴！');
+        console.log('结账');
+    }
+
+    function tellColor() {
+        return '红';
+    }
+
+    shop(tellColor);
+</script>

@@ -1,0 +1,79 @@
+<script>
+    function eachStr(arr, fn) {
+        for (let i = 0; i < arr.length; i++) {
+            let biu = arr[i];
+            fn(biu);
+        }
+
+    };
+
+    //get yo
+    function getYo(arr) {
+        let result = [];
+        eachStr(arr, (biu) => {
+            if (biu.includes('yo')) {
+                return result.push(biu);
+            }
+        });
+        
+        console.log(result);
+    }
+
+    getYo(['a', 'yo', 'yoo']);
+
+    //short string
+
+    function shortStr(arr) {
+        let result = [];
+        eachStr(arr, (niu) => {
+            if (niu.length == 1) {
+                result.push(niu);
+            }
+        })
+
+        console.log(result);
+    };
+
+    shortStr(['a', 'foo', 'b', 'bar']);
+
+    //join
+
+    function join(arr) {
+        let result = '';
+        eachStr(arr, (pia) => {
+            result += pia;
+        })
+
+        console.log(result);
+    }
+
+    join(['Y', 'o', 'o']);
+
+    // search
+
+    function search(arr, keyword) {
+        let result = [];
+        eachStr(arr, (bia) => {
+            if (bia.includes(keyword)) {
+                result.push(bia);
+            }
+        })
+        console.log(result);
+    }
+    search(['背背山', '六六坡', '背背路'], '背背');
+
+    //exclude
+
+    function exclude(arr, keyword) {
+        let result = [];
+
+        eachStr(arr, (hia) => {
+            if (!hia.includes(keyword))
+                result.push(hia);
+            
+        });
+        console.log(result);
+    }
+
+    exclude(['背背山', '六六坡', '背背路'], '背背');
+</script>

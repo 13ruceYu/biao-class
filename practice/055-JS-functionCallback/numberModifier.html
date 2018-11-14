@@ -1,0 +1,66 @@
+<script>
+    function numberModifier(num, fn) {
+
+        if (typeof num != 'number') {
+            throw '请输入数字类型';
+        }
+
+        fn(num);
+        
+    }
+
+    //增量函数
+    function increment(num) {
+        let result;
+        numberModifier(num, (num) => {
+            result = num + 1;
+        })
+
+        return result;
+    }
+
+    console.log(increment(1));
+    console.log(increment(2));
+
+    //双倍函数
+    function double(num) {
+        let result;
+        numberModifier(num, (num) => {
+            result = 2 * num;
+            return;
+        })
+
+        console.log(result);
+    }
+
+    double(1);
+    double(10);
+
+    //十倍函数
+    function decuple(num) {
+        let result;
+        numberModifier(num, (num) => {
+            result = 10 * num;
+        })
+
+        console.log(result);
+    }
+
+    decuple(1);
+    decuple(10);
+
+    //造数列函数
+    function list(num) {
+        numberModifier(num, (biu) => {
+            let result = [];
+
+            for (let i = 0; i < biu; i++) {
+                result.push(i + 1);
+            }
+
+            console.log(result);
+        })
+    };
+
+    list(3);
+</script>

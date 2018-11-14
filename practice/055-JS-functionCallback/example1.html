@@ -1,0 +1,41 @@
+<script>
+    let arr = ['a', 'b', 'c'];
+
+    /*
+    function printer(list) {
+        for(let i = 0; i < list.length; i++) {
+            console.log(list[i]);
+        }
+    }
+    */
+
+    function iterator(list, fn) {
+        for(let i = 0; i < list.length; i++) {
+            fn(list[i]);
+        }
+    }
+
+    // printer(arr);
+
+    iterator(arr, function (s) {
+        console.log(s);
+    });
+
+    iterator(arr, function (x) {
+        console.log('我是' + x);
+    });
+
+    let strOfArr = '';
+
+    iterator(arr, function (x) {
+        strOfArr += x;
+    });
+
+    console.log(strOfArr);
+
+    //forEach 是自带的喔
+
+    arr.forEach(function (it) {
+        console.log(it);
+    });
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .board {
+            font-family: 'Microsoft YaHei UI', sans-serif;
+            background: #000;
+            color: red;
+            display: inline-block;
+            padding: 10px;
+            font-size: 30px;
+            font-weight: 300;
+            padding-bottom: 13px;
+            border: 3px solid red;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="board">
+        <span class="text">修脚 贴膜</span>
+    <div>
+    
+    
+</body>
+    <script>
+        const board = document.querySelector('.board');
+        const text = board.querySelector('.text');
+
+        setInterval(() => {
+            if (getComputedStyle(text).opacity == 1) {
+                text.style.opacity = 0;
+            } else {
+                text.style.opacity = 1;
+            }
+        }, 500);
+    </script>
+</html>

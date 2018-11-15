@@ -1,0 +1,24 @@
+<script>
+    let list = ['a', 'b', 'c'];
+
+    function iterator(arr, fn) {
+        for (let i = 0; i < arr.length; i++) {
+            let it = arr[i];
+            fn(it);
+        }
+    }   
+
+    iterator(list, (biu) => {
+        console.log(biu);
+    })
+
+    function conlg(biu) {
+        console.log(biu);
+    };
+
+    iterator(list, conlg);
+
+    list.forEach((biu) => {
+        console.log(biu);
+    })
+</script>

@@ -1,0 +1,86 @@
+<script>
+    function eachNumber(arr, fn) {
+        for (let i = 0; i < arr.length; i++) {
+            biu = arr[i];
+
+            fn(biu);
+        }
+
+    }
+
+    function evenNumber(arr) {
+        let result = [];
+
+        eachNumber(arr, function (biu) {
+            if (!(biu % 2)) {
+                result.push(biu);
+            }
+        })
+
+        console.log(result);
+    };
+
+    evenNumber([1, 2, 3, 4]);
+
+    function oddNumber(arr) {
+        let result = [];
+
+        eachNumber(arr, (pia) => {
+            if (pia % 2) {
+                result.push(pia);
+            }
+        })
+        console.log(result);
+
+    };
+
+    oddNumber([1, 2, 3, 4]);
+
+    function sum(arr) {
+        let sum = 0;
+
+        eachNumber(arr, (biu) => {
+            sum += biu;
+        })
+
+        console.log(sum);
+    }
+
+    sum([1, 2]);
+
+    function max(arr) {
+        let result;
+
+        eachNumber(arr, (biu) => {
+            if (result === undefined) {
+                result = biu;
+            }
+
+            if (result < biu) {
+                result = biu;
+            }
+        })
+
+        console.log(biu);
+    }
+
+    max([1, 2, 3, 4]);
+
+    function min(arr) {
+        let result;
+
+        eachNumber(arr, (biu) => {
+            if (result === undefined) {
+                result = biu;
+            }
+
+            if (result > biu) {
+                result = biu;
+            }
+        })
+
+        console.log(result);
+    }
+
+    min([1, 2, 3, 4]);
+</script>

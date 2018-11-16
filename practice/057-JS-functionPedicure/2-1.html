@@ -1,0 +1,82 @@
+<style>
+    :root {
+        font-size: 18px;
+    }
+
+    .board {
+        background: #000;
+        color: red;
+        font-size: 2rem;
+        padding: 6px 10px;
+        border: 3px solid red;
+        display: inline-block;
+    }
+
+    .ps {
+        color: #13c7fd;
+        border-color: #13c7fd;
+    }
+
+    .ai {
+        color: #ff7c01;
+        border-color: #ff7c01;
+    }
+</style>
+
+<body>
+    <div class="board">
+        <div class="inner">
+            修脚 贴膜
+        </div>
+    </div>
+
+    <div class="board ps">
+        <div class="inner">
+            Ps
+        </div>
+    </div>
+
+    <div class="board ai">
+        <div class="inner">
+            Ai
+        </div>
+    </div>
+</body>
+
+<script>
+    const board = document.querySelector('.board');
+    const inner = document.querySelector('.inner');
+
+    boot();
+
+    /**
+     * @msg: 初始函数
+     */
+    function boot() {
+        startFlash();
+    }
+
+    function startFlash() {
+        setInterval(() => {
+            
+            toggleBorder();
+            toggleText();
+        }, 500);
+    }
+
+    function toggleText() {
+        let visible = isVisible();
+        inner.style.opacity = visible ? 0 : 1;
+    }
+
+    function toggleBorder() {
+        let visible = isVisible();
+        board.style.borderColor = visible ? 'transparent' : 'inherit';
+    }
+
+    function isVisible() {
+        return getComputedStyle(inner).opacity == 1;
+    }
+
+    
+</script>

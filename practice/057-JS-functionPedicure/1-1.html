@@ -1,0 +1,61 @@
+<style>
+    :root {
+        font-size: 18px;
+    }
+
+    .board {
+        background: #000;
+        color: red;
+        font-size: 2rem;
+        border: 3px solid red;
+        padding: 10px;
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <div class="board">
+        <div class="inner">
+            修脚 贴膜
+        </div>
+    </div>
+</body>
+
+<script>
+    const board = document.querySelector('.board');
+    const inner = board.querySelector('.inner');
+ 
+    boot();
+    /**
+     * @msg: 初始函数 
+     */
+    function boot() {
+        startFlash();
+    }
+
+    function startFlash() {
+        setInterval(() => {
+            toggleText();
+            toggleColor();
+            
+        }, 500);
+    }
+
+    function isVisible() {
+        return getComputedStyle(inner).opacity == 1;
+    }
+
+    function toggleText() {
+        let visible = isVisible();
+        inner.style.opacity =  visible ? 0 : 1;
+    }
+
+    function toggleColor() {
+        if (isVisible()) {
+            if (getComputedStyle(board).color == 'rgb(255, 0, 0)')
+            board.style.color = 'rgb(0, 0, 255)';
+            else
+            board.style.color = 'rgb(255, 0, 0)';
+        }
+    }
+</script>

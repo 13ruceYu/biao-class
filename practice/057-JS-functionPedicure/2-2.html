@@ -1,0 +1,57 @@
+<style>
+    :root {
+        font-size: 18px;
+    }
+
+    .board {
+        background: #000;
+        color: red;
+        font-size: 2rem;
+        border: 3px solid red;
+        padding: 10px;
+        display: inline-block;
+    }
+
+    span {
+        font-size: .8rem;
+    }
+</style>
+
+<body>
+    <div class="board">
+        <div class="inner">
+            修脚 贴膜
+            <span class="counter">0</span><span>人用了都说好</span>
+        </div>
+    </div>
+</body>
+
+<script>
+    const board = document.querySelector('.board');
+    const inner = document.querySelector('.inner');
+    const counter = document.querySelector('.counter');
+
+    let num = 0;
+
+    boot();
+
+    function boot() {
+        startFlash();
+    };
+
+    function startFlash() {
+        setInterval(() => {
+            if (isVisible()) {
+                inner.style.opacity = 0;
+            } else {
+                inner.style.opacity = 1;
+                num++;
+                counter.innerText = num;
+            }
+        }, 500);
+    }
+
+    function isVisible() {
+        return getComputedStyle(inner).opacity == 1;
+    }
+</script>

@@ -43,20 +43,52 @@
     let current = 0;
     let lastIndex = items.length - 1;
 
-    setInterval(() => {
-        ++current;
+    boot();
 
-        if (current >= items.length) {
-            current = 0;
-        } else {
-            current = current;
-        }
+    function boot() {
+        show(items[current]);
+        slide();
+    }
+
+    function slide() {
+        setInterval(() => {
+            current++;
+
+            if (current >= items.length) {
+                current = 0;
+            }
+
+            let prev = getPrev();
+            let next = getNext();
+
+            show(next);
+
+            hide(prev);
+        }, 1000);
+    }
+
+    function show(el) {
+        if (!el)
+            return;
         
-        let next = items[current];
-        let prev = current == 0 ? items[lastIndex] : items[current - 1];
+        el.style.opacity = 1;
+    }
 
-        prev && (prev.style.opacity = 0);
-        next.style.opacity = 1;
+    function hide(el) {
+        if (!el)
+            return;
+        
+        el.style.opacity = 0;
+    }
 
-    }, 2000);
+    function getPrev() {
+        if (current == 0)
+            return items[lastIndex];
+        else
+            return items[current - 1];
+    }
+
+    function getNext() {
+        return items[current];
+    }
 </script>

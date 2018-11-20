@@ -13,7 +13,7 @@
     .item {
         display: block;
         position: absolute;
-        transition: all .5s;
+        transition: all 5s;
     }
 
     .slider {
@@ -37,10 +37,68 @@
     const slider = document.querySelector('.slider');
     const items = document.querySelectorAll('.item');
 
-    let current  = 1;
+    let currentIndex  = 0;
+    let lastIndex = items.length - 1;
 
-    setInterval(() => {
-        current++;
-        items[items.length - current].style.right = items [items.length - current].offsetWidth +' px';
-    }, 1000);
+    boot();
+
+    function boot() {
+        slideX();
+
+        slideZ();
+
+        setInterval(() => {
+            increment();
+
+            slideX();
+
+            slideZ();
+        }, 2000);
+    }
+
+    function slideX() {
+        let prev = getPrev();
+        let current = getCurrent();
+        let next = getNext();
+
+        prev.style.left = -prev.offsetWidth + 'px';
+        current.style.left = 0;
+        next.style.left = next.offsetWidth + 'px';
+    }
+
+    function slideZ() {
+        let prev = getPrev();
+        let current = getCurrent();
+        let next = getNext();
+
+        prev.style.zIndex = 1;
+        current.style.zIndex = 2;
+        next.style.zIndex = 0;
+    }
+
+    function increment() {
+        if (currentIndex < lastIndex)
+            currentIndex++;
+        else
+            currentIndex = 0;
+    }
+
+    function getPrev() {
+        if (currentIndex > 0)
+            return items[currentIndex - 1];
+        else
+            return items[lastIndex];
+    }
+
+    function getCurrent() {
+        return items[currentIndex];
+    }
+
+    function getNext() {
+        if (currentIndex < lastIndex)
+            return items[currentIndex + 1];
+        else
+            return items[0];
+    }
+    
 </script>

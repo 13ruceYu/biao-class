@@ -1,0 +1,33 @@
+<style>
+
+
+    .box {
+        border: 10px solid #333;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+        font-size: 10px;
+        color: #333;
+    }
+</style>
+
+<body>
+    <div class="box">M</div>
+</body>
+
+<script>
+    const box = document.querySelector('.box');
+
+    console.log(getComputedStyle(box).width); //8.9px 元素的实际宽度
+
+    console.log(box.clientWidth); // 49px 元素width + padding * 2的宽度
+
+    console.log(box.offsetWidth); // 69px 元素width + padding * 2 + border * 2 的宽度
+
+    console.log(box.offsetLeft); // 28px 元素的 margin + 与父级之间的距离
+
+    console.log(getComputedStyle(box).left);
+
+    box.style.left = '1000px';
+
+</script>

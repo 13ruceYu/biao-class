@@ -1,0 +1,46 @@
+<style>
+    .container {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img {
+        display: block;
+        min-width: 100%;
+    }
+
+    .item {
+        display: block;
+        position: absolute;
+        transition: all .5s;
+    }
+
+    .slider {
+        position: relative;
+        height: 500px;
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="slider">
+            <a href="#" class="item"><img src="./img/A.png" alt=""></a>
+            <a href="#" class="item"><img src="./img/B.png" alt=""></a>
+            <a href="#" class="item"><img src="./img/C.png" alt=""></a>
+        </div>
+    </div>
+</body>
+
+<script>
+    const slider = document.querySelector('.slider');
+    const items = document.querySelectorAll('.item');
+
+    let current  = 1;
+
+    setInterval(() => {
+        current++;
+        items[items.length - current].style.right = items [items.length - current].offsetWidth +' px';
+    }, 1000);
+</script>

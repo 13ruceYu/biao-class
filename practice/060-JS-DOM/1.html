@@ -1,0 +1,58 @@
+<style>
+    :root {
+        font-size: 25px;
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        background: #aaa;
+        padding: 10px;
+        font-size: inherit;
+    }
+
+    button:hover {
+        background: #888;
+    }
+
+    .more {
+        position: absolute;
+        margin-top: 10px;
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        background: #555;
+        padding: 10px;
+        color: #fff;
+    }
+
+    a:hover {
+        background: #999;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button class="toggle">查看更多</button>
+    <div class="more">
+        <a href="#">扫一扫</a>
+        <a href="#">加好友</a>
+        <a href="#">搜一搜</a>
+        <a href="#">帮一帮</a>
+        <a href="#">关于我们</a>
+    </div>
+</body>
+
+<script>
+    const more = document.querySelector('.more');
+    const toggle = document.querySelector('.toggle');
+
+    toggle.addEventListener('click', () => {
+        more.hidden = !more.hidden;
+    })
+</script>

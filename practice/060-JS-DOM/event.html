@@ -1,0 +1,42 @@
+<style>
+    #a {
+        display: inline-block;
+        width: 10em;
+        height: 10em;
+        background: tomato;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button id="toggle">显示或隐藏</button>
+    <div id="a"></div>
+</body>
+
+<script>
+    const a = document.getElementById('a');
+    const toggle = document.getElementById('toggle');
+
+    a.addEventListener('mouseenter', () => {
+        console.log('进来了');
+    })
+
+    a.addEventListener('mouseleave', () => {
+        console.log('出去了');
+    })
+
+    window.addEventListener('keyup', () => {
+        console.log('抬起键了');
+    })
+
+    window.addEventListener('keydown', (event) => {
+        console.log(event.key);
+    })
+
+
+
+    
+</script>

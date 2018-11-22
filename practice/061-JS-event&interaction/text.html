@@ -1,0 +1,46 @@
+<style>
+    div {
+        background: rgba(0, 0, 0, .2);
+        padding: 20px;
+    }
+</style>
+
+<body>
+    <div class="a">
+        a
+        <div class="b">
+            b
+            <div class="c">
+                c
+                <div class="d">
+                    d
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const a = document.querySelector('.a');
+        const b = document.querySelector('.b');
+        const c = document.querySelector('.c');
+        const d = document.querySelector('.d');
+
+        a.addEventListener('click', (biu) => {
+            console.log(biu);
+            console.log('a');
+        } )
+
+        b.addEventListener('click', (hia) => {
+            console.log(hia);
+            console.log('b');
+        }, true)
+
+        c.addEventListener('click', () => {
+            console.log('c');
+        })
+
+        d.addEventListener('click', () => {
+            console.log('d');
+        })
+    </script>
+</body>

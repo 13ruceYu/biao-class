@@ -1,0 +1,26 @@
+<!-- h1 没有事件就没法交互 -->
+
+<!-- h2 事件绑定的方法 -->
+
+<p onclick="console.log('yo')">yo</p> <!-- HTML on事件名 = "函数()"-->
+
+<p id="a">yo</p>
+
+<script>
+    a.onclick = function() {
+        console.log('yo');
+    }
+</script>
+<!-- DOM 的on属性绑定-->
+
+<p id="a">yo</p>
+
+<script>
+    a.addEventListener('click', () => {
+        console.log('yo')
+    })
+</script>
+<!-- addEventListener绑定-->
+
+
+

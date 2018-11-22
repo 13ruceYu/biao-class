@@ -1,0 +1,52 @@
+<style>
+    :root {
+        font-size: 30px;
+    }
+
+    .dropdown {
+        display: inline-block;
+        background: #666;
+        color: #fff;
+    }
+
+    .dropdown a {
+        color: inherit;
+        display: block;
+        min-width: 100px;
+        text-decoration: none;
+        text-align: center;
+        padding: 10px 20px;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button class="trigger">更多</button><br>
+
+    <div class="dropdown" hidden>
+        <a href="#">A</a>
+        <a href="#">B</a>
+        <a href="#">C</a>
+        <a href="#">D</a>
+    </div>
+
+    <script>
+        const trigger = document.querySelector('.trigger');
+        const dropdown = document.querySelector('.dropdown');
+
+        document.body.addEventListener('click', (biu) => {
+            let target = biu.target;
+
+            if (biu.target === trigger) {
+                dropdown.hidden = !dropdown.hidden;
+                return;
+            }
+
+            if (!target.closest('.dropdown'))
+                dropdown.hidden = true;
+        })
+    </script>
+</body>

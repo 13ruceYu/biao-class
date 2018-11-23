@@ -72,48 +72,92 @@
 
 
     <script>
+        //定义全文变量，在整个js文件内可见
         let trigger, popup, mask;
 
+        //用户定义JS开始
         boot('#trigger', '#popup');
+        //用户定义JS结束
 
+        /**
+         * @msg: 设置必要的弹出层信息
+         * @param {string}  点谁弹出（选择器）触发器
+         * @param {string}  弹出谁（选择器）触发目标
+         */
         function boot(triggerSelector, popupSelector) {
+            // 拿到trigger和popup的元素对象
             trigger = document.querySelector(triggerSelector);
             popup = document.querySelector(popupSelector);
 
+            // 准备popup
             initPopup();
+            //准别遮罩
             initMask();
 
+            // 绑定打开相关时间
             bindOpen();
+            // 绑定关闭相关事件
             bindClose();
         }
 
+        /**
+         * @msg: 设置是否可见
+         * @param {boolean} show true 为显示，false为隐藏
+         */
         function setVisibility(show = false) {
             popup.hidden = mask.hidden = !show;
         }
 
+        /**
+         * @msg: 初始化Popup元素
+         */
         function initPopup() {
-            popup.classList.add('c-popup');
+            // Popup一开始不应该现实
             popup.hidden = true;
+            // 添加插件专属类，这样就可以和插件自带的CSS接应配合
+            popup.classList.add('c-popup');
         }
 
+        /**
+         * @msg: 定位Popup
+         * @param {string} 
+         * @param {type} position 支持的位置有：
+         * center|top|bottom|left|right|top-left|top-right|bottom-left|bottom-right
+         * @param yOffset 标准定位后纵向偏移，单位：px
+         * @param xOffset 标准定位后横向偏移，单位：px
+         */
         function repositionPopup(postion = 'center', yOffset = 0, xOffset = 0) {
+            // 获取浏览器窗口的size
             let windowWidth = window.innerWidth;
             let windowHeight = window.innerHeight;
+            // 获取元素本身的size
             let width = popup.offsetWidth;
             let height = popup.offsetHeight;
 
+            // 将 Popup 居中
             popup.style.left = windowWidth / 2 - width / 2 + xOffset + 'px';
             popup.style.top = windowHeight / 2 - height / 2 + yOffset + 'px';
         }
 
+        /**
+         * @msg: 初始化遮罩
+         */
         function initMask() {
+            // 造一个新的元素
             mask = document.createElement('div');
+            // 给这个新元素添加类
             mask.classList.add('c-mask');
+            // 默认隐藏
             mask.hidden = true;
+            // 将这个元素追加到body的最后
             document.body.appendChild(mask);
         }
 
+        /**
+         * @msg: 绑定打开的相关事件
+         */
         function bindOpen() {
+            // 当trigger被点击时显示 popup和 mask
             trigger.addEventListener('click', () => {
                 setVisibility(true);
                 repositionPopup('center', -30);

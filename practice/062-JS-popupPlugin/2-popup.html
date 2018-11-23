@@ -1,0 +1,134 @@
+<style>
+    .c-popup {
+        position: fixed;
+        background: #fff;
+        padding: 10px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+        border: 1px solid #000;
+        z-index: 2;
+    }
+
+    .c-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, .4);
+        z-index: 1;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button id="trigger">收藏</button>
+    <div id="popup">
+        确定要收藏吗？
+        <img src="http://dummyimage.com/200x200" alt="">
+    </div>
+
+    <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint dignissimos ratione nihil ad perspiciatis!
+        Perferendis odit quae aut quasi at quam nihil minima praesentium eligendi? Doloremque sint ex unde mollitia
+        odit maxime nesciunt sapiente quos aliquid, autem cupiditate eius laborum!
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit beatae et temporibus amet impedit veritatis
+        hic, voluptatum debitis, obcaecati accusamus, iusto dignissimos libero? Cumque dolores quia rerum consequatur
+        eligendi quis.
+        Non molestiae accusamus repellat corrupti rerum qui a quas earum quod sit accusantium veritatis blanditiis,
+        asperiores laudantium minima porro distinctio nihil placeat maxime voluptas praesentium in sequi ipsum? Iste,
+        optio!
+        Quia, voluptatibus laborum iste repellat rerum placeat dolores impedit saepe, ullam fugit quas tempora ut non
+        eum ad molestias autem architecto? Inventore eius cupiditate laudantium provident ut sit, aperiam optio.
+        Voluptate natus similique tempore distinctio blanditiis? Maxime sit tenetur aperiam obcaecati culpa mollitia
+        quae pariatur vel vitae repellendus, et molestias incidunt qui blanditiis velit nulla debitis earum, illum
+        nostrum. Commodi.
+        Quasi exercitationem amet minus id, iusto aut cum deserunt ea molestias? Reprehenderit odit soluta nisi
+        molestiae magni fugiat libero consectetur ab sequi deserunt vitae assumenda id enim repellat, amet pariatur?
+    </div>
+
+
+    <script>
+        let trigger, popup, mask;
+
+        boot('#trigger', '#popup');
+
+        function boot(triggerSelector, popupSelector) {
+            trigger = document.querySelector(triggerSelector);
+            popup = document.querySelector(popupSelector);
+
+            initPopup();
+            initMask();
+
+            bindOpen();
+            bindClose();
+        }
+
+        function setVisibility(show = false) {
+            popup.hidden = mask.hidden = !show;
+        }
+
+        function initPopup() {
+            popup.classList.add('c-popup');
+            popup.hidden = true;
+        }
+
+        function repositionPopup(postion = 'center', yOffset = 0, xOffset = 0) {
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+            let width = popup.offsetWidth;
+            let height = popup.offsetHeight;
+
+            popup.style.left = windowWidth / 2 - width / 2 + xOffset + 'px';
+            popup.style.top = windowHeight / 2 - height / 2 + yOffset + 'px';
+        }
+
+        function initMask() {
+            mask = document.createElement('div');
+            mask.classList.add('c-mask');
+            mask.hidden = true;
+            document.body.appendChild(mask);
+        }
+
+        function bindOpen() {
+            trigger.addEventListener('click', () => {
+                setVisibility(true);
+                repositionPopup('center', -30);
+            });
+        }
+
+        function bindClose() {
+            mask.addEventListener('click', () => {
+                setVisibility(false);
+            })
+
+            window.addEventListener('keyup', (hia) => {
+                if (hia.code === 'Escape')
+                    setVisibility(false);
+            })
+        }
+    </script>
+</body>

@@ -1,0 +1,147 @@
+<style>
+    .x-popup {
+        position: fixed;
+        background: #fff;
+        border: 1px solid #000;
+        box-shadow: 1px 1px 5px #666;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .x-mask {
+        position: fixed;
+        background: rgba(0, 0, 0, .6);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button id="trigger">收藏</button>
+    <div id="popup">
+        确定要收藏吗？
+    </div>
+
+    <div>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias, accusantium enim libero rerum quasi ab
+        mollitia eveniet harum, aut fugit laudantium repellat, nihil distinctio explicabo! Fugit id ullam praesentium
+        cumque?
+        Ipsam aspernatur et provident atque minus necessitatibus, soluta nihil. Eos laboriosam illum praesentium
+        inventore quasi blanditiis velit, vero veritatis neque quidem quibusdam. Placeat sed explicabo odio officia
+        molestias commodi omnis?
+        Vitae optio, iusto excepturi temporibus maiores ut cumque dignissimos, expedita iste nam, consequatur incidunt
+        ipsum sunt odit eligendi. Consequuntur iusto ducimus atque aliquid aliquam praesentium non temporibus eius
+        incidunt rem!
+        Sint neque sunt nisi saepe debitis facere ex, blanditiis explicabo fugit, eum laborum? Minus soluta quidem
+        nesciunt sapiente veniam, nisi reiciendis quo rerum numquam doloremque corrupti animi obcaecati blanditiis!
+        Est!
+        Rem odio impedit hic aliquid recusandae accusamus consequuntur accusantium, dolores distinctio molestias
+        assumenda, quaerat quam molestiae rerum dolorem. Cumque quia voluptate perspiciatis laudantium ad voluptas
+        sequi culpa illo aliquam corrupti!
+        Eum quas quod est ab, cumque voluptatum, consequatur inventore corporis maiores beatae doloribus! Facilis quis
+        hic doloribus atque ea, quod totam nihil nostrum? Dolores quia molestiae dolorem dicta voluptatibus quam.
+        Iusto ut nobis pariatur quibusdam quo maiores a doloribus, molestiae voluptas, laborum, amet eveniet aperiam
+        assumenda sit est quod tempore. Expedita unde quidem ratione facere explicabo repellendus blanditiis, atque
+        temporibus.
+        Iure, ullam quisquam cumque nesciunt aut ducimus. Nostrum dolore veritatis repellat reiciendis repudiandae
+        voluptatum. Dolor cupiditate officiis maxime sed excepturi molestias! Obcaecati tenetur quas ab mollitia velit
+        consectetur deleniti iure?
+        At, natus maxime. Optio incidunt facilis doloribus, rem, animi magni dolorum et voluptatibus soluta minima
+        corrupti similique nihil. Perspiciatis explicabo blanditiis earum asperiores quasi aliquid nobis rerum quas
+        similique repudiandae.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit eligendi, nulla sint inventore eos
+        exercitationem laudantium corporis alias fugiat, vitae voluptas sunt doloremque, perspiciatis quam dolorem non
+        dolor. Aperiam delectus cumque numquam sequi vero aliquam, doloremque odio? A, odit eos.
+        Quos iste quidem distinctio ab corrupti nam reiciendis quo, quis aliquid quibusdam tempore dicta neque beatae
+        ratione vero culpa dolorem architecto. Dolores aliquam dolorum, quas et, aperiam voluptates, temporibus harum
+        odit quo error corrupti est voluptatibus natus cum fuga odio?
+        Veniam vitae eaque repellendus beatae distinctio hic iste tempore dolorum sequi repudiandae. Quas dolor et
+        quidem! Nobis dolor cum dolore earum odio, quae et ex at tempore repellat dignissimos ea modi quia. Ex nobis
+        expedita dolores in rem delectus voluptas.
+        Mollitia, natus. Voluptas id reprehenderit et delectus sed, cumque fugit nemo, saepe, nesciunt placeat
+        voluptate ipsa vero nihil laborum ipsum a! Nihil tempore veritatis aspernatur in reprehenderit, rerum facere
+        porro nulla excepturi, est minus quibusdam unde commodi. Cumque, eveniet odio?
+        Aperiam porro odit laudantium ipsum vel harum, nesciunt adipisci delectus architecto consectetur doloremque
+        possimus? Omnis, similique? Magnam optio animi sit ab nulla maxime dolore velit reiciendis omnis! Assumenda
+        eligendi recusandae atque quibusdam earum, corrupti vel modi hic eaque rerum nihil.
+        At in recusandae harum ipsum amet autem inventore. Tenetur mollitia quasi illo dolorum? Eius dolores expedita,
+        laboriosam illo, at commodi delectus nulla obcaecati aliquam iure quam omnis. Eaque repellat voluptatibus
+        sapiente, neque quasi aliquid. Odio ad et quibusdam rerum saepe.
+        Exercitationem aliquid nostrum pariatur repellendus? Magni nesciunt dolor aperiam dicta autem cupiditate. Odit
+        officiis quos ab illo dolorum necessitatibus autem nostrum a explicabo sequi, commodi est iste! Inventore
+        accusantium ipsa amet cum odit id, numquam voluptatum explicabo, vero dolores esse?
+    </div>
+
+    <script>
+        let trigger, popup, mask;
+
+        boot('#trigger', '#popup');
+
+        function boot(triggerSelector, popupSelector) {
+            trigger = document.querySelector(triggerSelector);
+            popup = document.querySelector(popupSelector);
+
+            initPopup();
+            
+            bindOpen();
+
+        }
+
+        function initPopup() {
+            // 给Popup添加初始样式
+            popup.classList.add('x-popup');
+            // Popup默认不可以见
+            popup.hidden = true;
+        }
+
+        function bindOpen() {
+            trigger.addEventListener('click', () => {
+                popup.hidden = false;
+
+                initMask();
+
+                repositionPopup('center', 30, 10);
+
+                bindClose();
+            })
+        }
+
+        function initMask() {
+            // 造一个新的遮罩
+            mask = document.createElement('div');
+            // 添加默认遮罩样式
+            mask.classList.add('x-mask');
+            // 设置遮罩添加的位置
+            document.body.appendChild(mask);
+        }
+
+        function bindClose() {
+            // 设置关闭popup事件
+                // 当点击除popup以外所有的区域均可关闭popup
+                mask.addEventListener('click', () => {
+                    popup.hidden = true;
+                    document.body.removeChild(mask);
+                })
+        }
+
+        function repositionPopup(position = 'center', yOffset = 0, xOffset = 0) {
+            // 设置Popup弹出的位置
+            // 拿到 popup和浏览器窗口的size
+            let popupWidth = popup.offsetWidth;
+            let popupHeight = popup.offsetHeight;
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+            
+            popup.style.left = windowWidth / 2 - popupWidth / 2 - xOffset;
+            popup.style.top = windowHeight / 2 - popupHeight / 2 - yOffset;
+        }
+    </script>
+
+</body>

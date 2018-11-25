@@ -1,0 +1,220 @@
+<style>
+    .biao-popup {
+        position: fixed;
+        z-index: 1000;
+        background: #fff;
+        padding: 10px;
+        border: 4px solid;
+        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+        -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+    }
+
+    .biao-mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, .6);
+        z-index: 999;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+
+    #popup button {
+        width: 100px;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    /*插件样式结束*/
+</style>
+
+<body>
+    <button id="trigger">收藏</button>
+    <div id="popup">
+        <div class="row">
+            <button id="top-left">topLeft</button>
+            <button id="top">top</button>
+            <button id="top-right">topRight</button>
+        </div>
+        <div class="row">
+            <button id="left">left</button>
+            <button id="center">center</button>
+            <button id="right">right</button>
+        </div>
+        <div class="row">
+            <button id="bottom-left">bottomLeft</button>
+            <button id="bottom">bottom</button>
+            <button id="bottom-right">bottomRight</button>
+        </div>
+    </div>
+
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis numquam consequatur, nobis tenetur omnis
+        repellendus odit maxime, veritatis fugit quidem accusamus voluptatum possimus similique molestias
+        exercitationem repellat distinctio labore? Magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+    </div>
+    <!--用户HTML结束-->
+
+    <script>
+        let trigger, popup, mask;
+
+        boot('#trigger', '#popup');
+
+        function boot(triggerSelector, popupSelector) {
+            trigger = document.querySelector(triggerSelector);
+            popup = document.querySelector(popupSelector);
+
+            initPopuo();
+
+            bindOpen();
+
+        };
+
+        function initPopuo() {
+            popup.classList.add('biao-popup');
+            popup.hidden = true;
+        }
+
+        function bindOpen() {
+            trigger.addEventListener('click', () => {
+                popup.hidden = false;
+
+                initMask();
+
+                repositionPopup();
+
+                bindClose();
+            })
+        }
+
+        function bindClose() {
+            mask.addEventListener('click', () => {
+                popup.hidden = true;
+                document.body.removeChild(mask);
+            })
+        }
+
+        function initMask() {
+            mask = document.createElement('div');
+            mask.classList.add('biao-mask');
+            document.body.appendChild(mask);
+        }
+
+        function repositionPopup(position = 'center', yOffset = 0, xOffset = 0) {
+            let popupWidth = popup.offsetWidth;
+            let popupHeight = popup.offsetHeight;
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+            popup.style.left = windowWidth / 2 - popupWidth / 2 + xOffset;
+            popup.style.top = windowHeight / 2 - popupHeight / 2 + yOffset;
+
+            popup.addEventListener('click', (e) => {
+                target = e.target.id;
+                console.log(target);
+                switch (target) {
+                    case 'center':
+                        popup.style.left = windowWidth / 2 - popupWidth / 2 + xOffset;
+                        popup.style.top = windowHeight / 2 - popupHeight / 2 + yOffset;
+                        break;
+                    case 'top':
+                        popup.style.left = windowWidth / 2 - popupWidth / 2 + xOffset;
+                        popup.style.top = yOffset;
+                        break;
+                    case 'top-right':
+                        popup.style.top = yOffset;
+                        popup.style.left = windowWidth - popupWidth;
+                        break
+                    case 'right':
+                        popup.style.left = windowWidth - popupWidth;
+                        popup.style.top = windowHeight / 2 - popupHeight / 2 + yOffset;
+                        break;
+                    case 'bottom-right':
+                        popup.style.top = windowHeight - popupHeight;
+                        popup.style.left = windowWidth - popupWidth;
+                        break;
+                    case 'bottom':
+                        popup.style.top = windowHeight - popupHeight;
+                        break;
+                    case 'bottom-left':
+                        popup.style.top = windowHeight - popupHeight;
+                        popup.style.left = xOffset;
+                        break;
+                    case 'left':
+                        popup.style.left = xOffset;
+                        popup.style.top = windowHeight / 2 - popupHeight / 2 + yOffset;
+                        break;
+                    case 'top-left':
+                        popup.style.top = yOffset;
+                        popup.style.left = xOffset;
+                        break;
+                }
+            })
+
+
+        }
+    </script>
+</body>

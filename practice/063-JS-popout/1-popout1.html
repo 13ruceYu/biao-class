@@ -1,0 +1,91 @@
+<style>
+    .popout {
+        padding: 10px;
+        display: inline-block;
+        position: fixed;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+        border-radius: 3px;
+        background: #fff;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button data-popout="yo yo yo">yo</button>
+    <button data-popout="ho ho ho">ho</button>
+    <button data-popout="biu biu biu">biu</button>
+    <button data-popout="hia hia hia">hia</button>
+    <button data-popout="skr skr skr">skr</button>
+</body>
+
+<script>
+    let triggers = new Set();
+    let lastTrigger;
+
+    boot();
+
+    function boot() {
+        bindEvents();
+    }
+
+    /**
+     * @msg: 绑定事件
+     */
+    function bindEvents() {
+        document.body.addEventListener('click', (e) => {
+            let el = e.target;
+            let content = el.dataset.popout;
+
+            if (content) {
+                lastTrigger && hide(lastTrigger);
+                lastTrigger = el;
+                show(el, content);
+                triggers.add(el);
+            } else {
+                hideAll(el);
+            }
+        })
+    }
+
+    /**
+     * @msg: 显示popout
+     * @param {HTMLButtonElement} button 
+     */
+    function show(button, content) {
+        if (!button.$popout) {
+            let popout = document.createElement('div');
+            popout.classList.add('popout');
+            popout.innerText = content;
+            button.$popout = popout;
+            document.body.appendChild(popout);
+        } else {
+            button.$popout.hidden = false;
+        }
+        reposition(button);
+
+    }
+
+    function hide(button) {
+        button.$popout.hidden = true;
+    }
+
+    /**
+     * @msg: 隐藏全部Popout
+     */
+    function hideAll() {
+        triggers.forEach(button => {
+            button.$popout.hidden = true;
+        });
+    }
+
+    function reposition(button) {
+        let p = button.$popout;
+        let buttonPosition = button.getBoundingClientRect();
+
+        p.style.left = buttonPosition.left + 'px';
+        p.style.top = buttonPosition.top + button.offsetHeight + 5 + 'px';
+    }
+</script>

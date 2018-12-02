@@ -1,0 +1,84 @@
+<style>
+  :root {
+    font-family: "Microsoft YaHei";
+  }
+
+  td,
+  th {
+    border: 1px solid;
+    padding: .5em;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 50%;
+    text-align: left;
+  }
+</style>
+
+<body>
+  <h1>背背山中学花名册</h1>
+  <table>
+    <thead>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>分数</th>
+      <th>操作</th>
+    </thead>
+    <tbody id="tbody">
+      <!-- <tr>
+        <td>王花花</td>
+        <td>男</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>李拴蛋</td>
+        <td>女</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>赵可爽</td>
+        <td>男</td>
+        <td>60</td>
+      </tr> -->
+    </tbody>
+  </table>
+
+  <script>
+    let users = [{
+        name: '王花花',
+        gender: '男',
+        score: 80,
+      },
+      {
+        name: '李拴蛋',
+        gender: '女',
+        score: 65,
+      },
+      {
+        name: '赵可爽',
+        gender: '男',
+        score: 75,
+      },
+    ]
+
+    users.forEach((user, i) => {
+      let tr = document.createElement('tr');
+      tr.innerHTML = `
+      <td>${user.name}</td>
+      <td>${user.gender}</td>
+      <td>${user.score}</td>
+      <td><button class = "del">删除</button></td>
+      `;
+
+      let delButton = tr.querySelector('.del');
+      delButton.addEventListener('click', () => {
+        users.splice(i, 1);
+        tr.remove();
+      })
+      
+      tbody.appendChild(tr);
+    });
+  </script>
+
+</body>

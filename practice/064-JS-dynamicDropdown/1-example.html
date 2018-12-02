@@ -1,0 +1,62 @@
+<style>
+  .dropdown {
+    display: inline-block;
+    border: 1px solid;
+    min-width: 5rem;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 5px;
+  }
+</style>
+
+<body>
+  <div class="dropdown" id="dropdown">
+  </div>
+
+  <script>
+    let list = [
+      {
+        text: 'a',
+        href: 'http://acfun.cn'
+      },
+      {
+        text: 'b',
+        href: 'http://bilibili.com'
+      },
+      {
+        text: 'c',
+        href: 'http://chaoshi.tmall.com' 
+      },
+      {
+        text: 'd',
+        href: 'http://douban.com'
+      }
+    ];
+
+    boot();
+
+    function boot() {
+      render();
+      setInterval(() => {
+        list.push({
+          text: 'e',
+          href: 'http://ebay.com'
+        });
+        render();
+      }, 500);
+    }
+
+    function render() {
+      dropdown.innerHTML = '';
+      list.forEach(it => {
+        let a = document.createElement('a');
+        a.href = it.href;
+        a.innerText = it.text;
+        dropdown.appendChild(a);
+      });
+    }
+
+  </script>
+</body>

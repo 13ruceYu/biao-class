@@ -1,0 +1,85 @@
+<style>
+  input {
+    width: 50%;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: auto;
+  }
+
+  button {
+    display: block;
+    background: #fff;
+    font-family: inherit;
+  }
+</style>
+
+<body>
+  <form id="a">
+    <input type="text" name="name" placeholder="姓名" value="biu">
+    <input type="number" name="age" placeholder="年龄" value="21">
+    <div>
+      性别：
+      <label for="male-radio">男</label>
+      <input type="radio" id="male-radio" name="gender" value="male">
+      <label for="female-radio">女</label>
+      <input type="radio" id="female-radio" name="gender" value="female">
+      <label for="intersex-radio">双性人</label>
+      <input type="radio" id="intersex-radio" name="gender" value="intersex" checked>
+    </div>
+    <div>
+      取向：
+      <label for="male-checkbox">男</label>
+      <input type="checkbox" name="orientation" value="male" id="male-checkbox" checked>
+      <label for="female-checkbox">女</label>
+      <input type="checkbox" name="orientation" value="female" id="female-checkbox">
+      <label for="car-checkbox">车</label>
+      <input type="checkbox" name="orientation" value="car" id="car-checkbox" checked>
+    </div>
+    <input type="number" name="balance" placeholder="余额" value="-11">
+    <input type="number" name="height" placeholder="身高" value="168">
+    <input type="email" name="email" placeholder="邮箱" value="biaoyansu@gmail.com">
+    <input type="date" name="birthday" placeholder="生日" value="2018-12-03">
+    <input type="week" name="week" value="2018-W11">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    /**
+     * @msg: 解析表单数据(取值)
+     * @param
+     * @return: {Object}
+     */
+    function getData(form) {
+      let data = {};
+      let input = document.querySelectorAll('[name]');
+
+      input.forEach(it => {
+        switch (it.type) {
+          case 'number':
+            data[it.name] = parseFloat(it.value);
+            break;
+          case 'radio':
+            if (!it.checked)
+              return;
+            data[it.name] = it.value;
+            break;
+          case 'checkbox':
+            if (!Array.isArray(data[it.name]))
+              data[it.name] = [];
+            if (it.checked)
+              data[it.name].push(it.value);
+            break;
+          default:
+            data[it.name] = it.value;
+        }
+      });
+
+      return data;
+    }
+
+    let d = getData(document.getElementById('a'));
+    console.log(d);
+  </script>
+</body>

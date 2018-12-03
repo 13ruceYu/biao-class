@@ -1,0 +1,89 @@
+<style>
+  input {
+    width: 50%;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: auto;
+  }
+
+  button {
+    display: block;
+    background: #fff;
+    font-family: inherit;
+  }
+</style>
+
+<body>
+  <form id="b">
+    <input type="text" name="name" placeholder="姓名">
+    <input type="number" name="age" placeholder="年龄">
+    <input type="email" name="email" placeholder="邮箱">
+    <input type="date" name="birthday" placeholder="生日">
+    <div>
+      性别
+      <label>
+        男<input type="radio" name="gender" value="male">
+      </label>
+      <label>
+        女<input type="radio" name="gender" value="female">
+      </label>
+    </div>
+    <div>
+      取向
+      <label>
+        男 <input type="checkbox" name="orientation" value="male">
+      </label>
+      <label>
+        女 <input type="checkbox" name="orientation" value="female">
+      </label>
+      <label>
+        车 <input type="checkbox" name="orientation" value="car">
+      </label>
+    </div>
+    <input type="number" name="balance" placeholder="余额">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    /**
+     * @msg: 通过纯数据填充值（存值）
+     * @param {}
+     * @return: {Object}
+     */
+    function setData(data, form) {
+      for (let key in data) {
+        let val = data[key];
+        let input = form.querySelector(`[name=${key}]`);
+
+        switch (input.type) {
+          case "radio":
+            let radio = form.querySelector(`[type=radio][value=${val}]`)
+            radio && (radio.checked = true);
+            break;
+          case "checkbox":
+            val.forEach(it => {
+              let checkbox = form.querySelector(`[type=checkbox][value=${it}]`)
+              checkbox && (checkbox.checked = true);
+            });
+            break;
+          default:
+            input.value = data[key];
+        }
+      }
+    }
+
+    let user = {
+      name: '王花花',
+      age: 18,
+      email: 'biaoyansu@gmail.com',
+      birthday: '1998-01-01',
+      gender: 'female',
+      orientation: ['car'],
+      balance: -100,
+    }
+
+    setData(user, document.getElementById('b'));
+  </script>
+</body>

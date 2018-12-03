@@ -1,0 +1,89 @@
+<style>
+  input {
+    width: 50%;
+    height: 3em;
+  }
+
+  input[type=checkbox] {
+    width: auto;
+  }
+
+  button {
+    display: block;
+    background: #fff;
+    font-family: inherit;
+  }
+</style>
+
+<body>
+  <form id="a">
+    <input type="text" name="name" placeholder="姓名" value="1">
+    <input type="text" name="age" placeholder="年龄" value="1">
+    <input type="text" name="gender" placeholder="性别" value="1">
+    <input type="text" name="height" placeholder="身高" value="1">
+    <button type="submit">提交</button>
+  </form>
+
+  <form id="b">
+    <input type="text" name="name" placeholder="姓名" value="2">
+    <input type="text" name="age" placeholder="年龄" value="2">
+    <input type="text" name="gender" placeholder="性别" value="2">
+    <input type="text" name="height" placeholder="身高" value="2">
+    <button type="submit">提交</button>
+  </form>
+
+  <form id="c">
+    <input type="text" name="name" placeholder="姓名" value="3">
+    <input type="text" name="age" placeholder="年龄" value="3">
+    <input type="text" name="gender" placeholder="性别" value="3">
+    <input type="text" name="height" placeholder="身高" value="3">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    /**
+     * @msg: 解析表单数据
+     * @param
+     * @return: {Object}
+     */
+    function getData(form) {
+      let data = {};
+      let input = document.querySelectorAll('[name]');
+
+      input.forEach(e => {
+        data[e.name] = e.value;
+      });
+
+      return data;
+    }
+
+    /**
+     * @msg: 通过纯数据填充表单
+     * @param {Object} data 填充的数据
+     * @param {HTMLFormElement} form 目标表单
+     */
+    function setData(data, form) {
+      for (let key in data) {
+        let input = form.querySelector(`[name=${key}]`);
+        input.value = data[key];
+      }
+    }
+
+    let dataA = {
+      name: '李拴蛋',
+      age: 2,
+      gender: 3,
+      height: 160,
+    }
+    let dataB = {
+      name: '王花花',
+      age: 2,
+      gender: 3,
+      height: 160,
+    }
+    
+    setData(dataA, document.getElementById('a'));
+    setData(dataB, document.getElementById('b'));
+
+  </script>
+</body>

@@ -1,0 +1,103 @@
+<style>
+  .popout {
+    padding: 10px;
+    display: inline-block;
+    position: fixed;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    background: #fff;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <button data-popout="Yo yo yo...">Yo</button>
+  <button data-popout="Ha ha ha...">Ha</button>
+  <button data-popout="1 ha ha...">1</button>
+  <button data-popout="2 ha ha...">2</button>
+  <button data-popout="3 ha ha...">3</button>
+
+  <script>
+    let triggers = new Set();
+    let lastTrigger;
+
+    boot();
+
+    function boot() {
+      bindEvents();
+    }
+
+    /**
+     * @msg: 绑定事件
+     */
+    function bindEvents() {
+      document.addEventListener('click', e => {
+        let el = e.target;
+        let content = el.dataset.popout;
+        // 如果点击的el里有我们所想要的内容（popout）
+        if (content) {
+          // 如果有上一次点击（不是第一次点击）
+          // 隐藏上一次点击
+          if (lastTrigger)
+            hide(lastTrigger);
+
+          // 将此次点击存为lastTrigger，为下次点击做准备
+          lastTrigger = el;
+
+          // 显示对应的popout
+          show(el, content);
+
+          // 将点击过的el都记录到triggers里面，方便 hideAll()
+          triggers.add(el);
+
+        } else {
+          // 如果点击的是btn以外的部分，则隐藏所有
+          hideAll();
+        }
+      })
+    }
+
+
+    /**
+     * @msg: 现实 Popout
+     * @param {HTMLButtonElement} button 
+     */
+    function show(button, content) {
+      // 如果按钮下没有隐藏的弹出框
+      if (!button.$popout) {
+        // 新建隐藏的弹出框
+        let popout = document.createElement('div');
+        // 给隐藏的弹出框添加内容
+        popout.innerText = content;
+        // 给隐藏的弹出框添加样式
+        popout.classList.add('popout');
+        document.body.appendChild(popout);
+        button.$popout = popout;
+      } else
+        button.$popout.hidden = false;
+
+
+      reposition(button);
+    }
+
+    function hide(button) {
+      button.$popout.hidden = true;
+    }
+
+    function hideAll() {
+      triggers.forEach(button => {
+        button.$popout.hidden = true;
+      });
+    }
+
+    function reposition(button) {
+      let p = button.$popout;
+      let buttonPosition = button.getBoundingClientRect();
+      p.style.left = buttonPosition.left + 'px';
+      p.style.top = buttonPosition.top + button.offsetHeight + 5 + 'px';
+    }
+  </script>
+</body>

@@ -1,0 +1,66 @@
+<style>
+  .popout {
+    padding: 10px;
+    display: inline-block;
+    position: fixed;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    background: #fff;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <button data-popout="Yo yo yo..." id="yo">Yo</button>
+  <button data-popout="Ha ha ha..." id="ha">Ha</button>
+  <button data-popout="1 ha ha..." id="1">1</button>
+  <button data-popout="2 ha ha..." id="2">2</button>
+  <button data-popout="3 ha ha..." id="3">3</button>
+
+  <script>
+    // 这是标准的流水账代码，嘻嘻
+    let popoutActived = new Set();
+    let lastPopup;
+
+    boot();
+
+    function boot() {
+      bindEvents();
+    }
+
+    function bindEvents() {
+      document.addEventListener('click', e => {
+        let el = e.target;
+        let content = el.dataset.popout;
+        let popout = document.createElement('div');
+        popout.innerText = content;
+        popout.classList.add('popout');
+        if (content) {
+          switch (popoutActived.size) {
+            case 0:
+              document.body.appendChild(popout);
+              popoutActived.add(el);
+              console.log(popoutActived);
+              console.log(popoutActived.size);
+              lastPopup = popout;
+              break;
+            case 1:
+              document.body.removeChild(lastPopup);
+              popoutActived.clear();
+              break;
+          }
+        } else {
+          if (popoutActived.size === 0)
+            return;
+          else {
+            document.body.removeChild(lastPopup);
+            popoutActived.clear();
+          }
+        }
+      })
+    }
+  </script>
+</body>

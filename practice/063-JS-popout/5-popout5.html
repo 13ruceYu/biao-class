@@ -74,12 +74,16 @@
         popout.innerText = content;
         // 给隐藏的弹出框添加样式
         popout.classList.add('popout');
+        // 显示隐藏的弹出框
         document.body.appendChild(popout);
+        // 将弹出框对象存到按钮对象里面，'$'是为了防止覆盖按钮自有的 property
         button.$popout = popout;
       } else
+        // 如果按钮下已有隐藏的弹出框，则直接显示
         button.$popout.hidden = false;
 
 
+      // 将现实的弹出框重新定位
       reposition(button);
     }
 

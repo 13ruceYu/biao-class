@@ -1,0 +1,122 @@
+<style>
+  :root {
+    font-family: 'Microsoft YaHei';
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 90%;
+  }
+
+  td,
+  th {
+    border: 1px solid;
+    text-align: left;
+    padding: .5em 1em;
+  }
+
+  .toolbar {
+    margin: .8em 0;
+  }
+</style>
+
+<body>
+  <h1>背背山中学花名册</h1>
+  <div class="toolbar">
+    <div id="score-filter">
+      <button data-max="100" data-min="0">查看全部</button>
+      <button data-max="100" data-min="80">只看学霸</button>
+      <button data-max="80" data-min="60">只看学酥</button>
+      <button data-max="60" data-min="0">只看学渣</button>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>分数</th>
+      <th>操作</th>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+  </table>
+
+  <script>
+    let users = [{
+        name: '王花花',
+        gender: '男',
+        score: 54,
+      },
+      {
+        name: '李拴蛋',
+        gender: '女',
+        score: 74,
+      },
+      {
+        name: '赵可爽',
+        gender: '男',
+        score: 94,
+      },
+    ];
+
+    let tbody = document.querySelector('#tbody');
+    let scoreFilter = document.querySelector('#score-filter');
+
+
+    boot();
+
+    function boot() {
+      render();
+      bindEvents();
+    }
+
+    function render(range) {
+      // 清空上次渲染内容，防止删除数据时出现错删
+      tbody.innerHTML = '';
+
+      // 循环每条数据
+      users.forEach((user, index) => {
+
+        // 如果设置了成绩范围，判断是否在范围内
+        if (range) {
+          let inRange =
+            user.score < +range.max && //也可将range.max转为浮点数，嘻嘻
+            user.score > +range.min;
+          // 如果不在成绩范围，则直接返回
+          if (!inRange)
+            return;
+        }
+
+        let tr = document.createElement('tr');
+        tr.innerHTML =
+          `
+      <td>${user.name}</td>
+      <td>${user.gender}</td>
+      <td>${user.score}</td>
+      <td><button id='del'>删除</button></td>
+      `;
+
+        let delButton = tr.querySelector('#del');
+        tbody.appendChild(tr);
+        delButton.addEventListener('click', () => {
+          users.splice(index, 1);
+          tr.remove();
+        })
+      });
+    }
+
+    function bindEvents() {
+      // 当成绩过滤器（母元素）被点击的时候
+      scoreFilter.addEventListener('click', e => {
+        let target = e.target;
+        // 如果子元素不是按钮就直接返回
+        if (target.nodeName != 'BUTTON')
+          return;
+        // 取到dataset：<button data-max=100 data-min=20> ==> {max: '100', min: '20'}
+        let range = target.dataset;
+        // 重新渲染
+        render(range);
+      });
+    }
+  </script>
+</body>

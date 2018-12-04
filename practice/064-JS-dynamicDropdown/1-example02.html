@@ -1,0 +1,52 @@
+<style>
+  .dropdown {
+    border: 2px solid;
+    display: inline-block;
+    min-width: 5rem;
+  }
+
+  .dropdown a {
+    display: block;
+    text-decoration: none;
+    padding: 5px;
+  }
+</style>
+
+<body>
+  <div id="dropdown" class="dropdown">
+    <a href="#">a</a>
+    <a href="#">b</a>
+    <a href="#">c</a>
+    <a href="#">d</a>
+  </div>
+
+  <script>
+    // let list = ['a', 'b', 'c', 'd'];
+    let list = [
+      {
+        text: 'a',
+        href: 'http://acfun.cn',
+      },
+      {
+        text: 'b',
+        href: 'http://biaoyansu.com',
+      },
+      {
+        text: 'c',
+        href: 'http://chaoshi.tmall.com',
+      },
+      {
+        text: 'd',
+        href: 'http://douban.com',
+      }
+    ]
+    let dropdown = document.querySelector('#dropdown');
+
+    list.forEach(e => {
+      let a = document.createElement('a');
+      a.innerText = e.text;
+      a.href = e.href;
+      dropdown.appendChild(a);
+    });
+  </script>
+</body>

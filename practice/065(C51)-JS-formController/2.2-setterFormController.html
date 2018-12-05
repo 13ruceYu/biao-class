@@ -1,0 +1,43 @@
+<style>
+  input {
+    width: 50%;
+    height: 3em;
+  }
+
+  input[type=checkbox] {
+    width: auto;
+  }
+
+  button {
+    display: block;
+    background: #fff;
+    font-family: inherit;
+  }
+</style>
+
+<body>
+  <form>
+    <input type="text" name="name" placeholder="姓名">
+    <input type="text" name="age" placeholder="年龄">
+    <input type="text" name="gender" placeholder="性别">
+    <input type="text" name="height" placeholder="身高">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    let data = {
+      name: 1,
+      age: 2,
+      gender: 3,
+      height: 4,
+    }
+
+    let form = document.querySelector('form');
+
+    for (let key in data) {
+      let input = form.querySelector(`[name=${key}]`);
+      input.value = data[key];
+    }
+    
+  </script>
+</body>

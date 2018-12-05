@@ -1,0 +1,136 @@
+<style>
+  input {
+      width: 80%;
+    }
+  
+    input[type=checkbox],
+    input[type=radio] {
+      width: auto;
+    }
+  
+    button {
+      display: block;
+      background: #fff;
+      font-family: inherit;
+    }
+  </style>
+
+<body>
+  <form id="a">
+    <input type="text" name="name" placeholder="姓名" value="王花花">
+    <input type="number" name="age" placeholder="年龄" value="1">
+    <div>
+      性别：
+      <label>男<input type="radio" name="gender" value="male"></label>
+      <label>女<input type="radio" name="gender" value="female"></label>
+      <label>双性人<input type="radio" name="gender" value="intersex" checked></label>
+    </div>
+    <div>
+      取向：
+      <label>男<input type="checkbox" name="orientation" value="male" checked></label>
+      <label>女<input type="checkbox" name="orientation" value="female" checked></label>
+    </div>
+    <input type="number" name="balance" placeholder="余额" value="-1">
+    <input type="number" name="height" placeholder="身高" value="166">
+    <input type="email" name="email" placeholder="邮箱" value="biaoyansu@gmail.com">
+    <button type="submit">提交</button>
+  </form>
+
+  <form id="b">
+    <input type="text" name="name" placeholder="姓名">
+    <input type="number" name="age" placeholder="年龄">
+    <div>
+      性别：
+      <label>男<input type="radio" name="gender" value="male"></label>
+      <label>女<input type="radio" name="gender" value="female"></label>
+      <label>双性人<input type="radio" name="gender" value="intersex"></label>
+    </div>
+    <div>
+      取向：
+      <label>男<input type="checkbox" name="orientation" value="male"></label>
+      <label>女<input type="checkbox" name="orientation" value="female"></label>
+    </div>
+    <input type="number" name="balance" placeholder="余额">
+    <input type="number" name="height" placeholder="身高">
+    <input type="email" name="email" placeholder="邮箱">
+    <button type="submit">提交</button>
+  </form>
+
+
+
+  <script>
+    /**
+     * @msg: 拿到指定表单数据，并且将数据转换为合适的类型
+     * @param {HTMLFormElement} 选择想要解析的表单
+     * @return: object
+     */
+    function getData(form) {
+      let data = {};
+      let inputs = form.querySelectorAll('[name]');
+
+      inputs.forEach(it => {
+        switch (it.type) {
+          case 'number':
+            data[it.name] = parseFloat(it.value);
+            break;
+          case 'radio':
+            if (!it.checked)
+              return;
+            data[it.name] = it.value;
+            break;
+          case 'checkbox':
+            if (!Array.isArray(data[it.name]))
+              data[it.name] = [];
+            if (it.checked)
+              data[it.name].push(it.value);
+            break;
+          default:
+            data[it.name] = it.value;
+        }
+      });
+      return data;
+    }
+
+    let d = getData(document.getElementById('a'));
+    console.log(d);
+
+    /**
+     * @msg: 给指定的表单填充指定的数据
+     * @param {object} data 数据 
+     * @param {HTMLFormElement} 指定的表单  
+     */
+    function setData(data, form) {
+      for (let key in data) {
+        let input = form.querySelector(`[name=${key}]`);
+        let val = data[key];
+
+        switch (input.type) {
+          case 'radio':
+            let radio = form.querySelector(`[type=radio][value=${val}]`);
+            radio && (radio.checked = true);
+            break;
+          case 'checkbox':
+            val.forEach(it => {
+              let checkbox = form.querySelector(`[type=checkbox][value=${it}]`)
+              checkbox && (checkbox.checked = true);
+            });
+            break;
+          default:
+            input.value = data[key];
+        }
+      }
+    }
+
+    let user = {
+      name: '王花花',
+      age: 19,
+      gender: 'male',
+      orientation: ['male'],
+      balance: 100,
+      height: 156,
+      email: 'bruceyuhongbo@gmail.com',
+    }
+
+    setData(user, document.getElementById('b'));
+  </script>
+</body>

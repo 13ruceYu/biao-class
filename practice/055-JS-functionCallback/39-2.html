@@ -1,0 +1,74 @@
+<body>
+  <script>
+    function eachNumber(arr, fn) {
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        fn(it);
+      }
+    };
+
+    function evenNumber(arr) {
+      let evenArr = [];
+      eachNumber(arr, function (it) {
+        if (it % 2)
+          return;
+        evenArr.push(it);
+      })
+      console.log(evenArr);
+    }
+
+    evenNumber([1, 2, 3, 4]);
+
+    function oddNumber(arr) {
+      let oddArr = [];
+      eachNumber(arr, it => {
+        if (!(it % 2))
+          return;
+        oddArr.push(it);
+      })
+      console.log(oddArr);
+    }
+
+    oddNumber([1, 2, 3, 4]);
+
+    function sum(arr) {
+      let result = 0;
+      eachNumber(arr, it => {
+        result += it;
+      })
+      console.log(result);
+    }
+
+    sum([1, 23873478347, 787878787878]);
+
+    function max(arr) {
+      let maxNum;
+      eachNumber(arr, it => {
+        if (maxNum === undefined) {
+          maxNum = it;
+        }
+
+        if (maxNum < it) {
+          maxNum = it;
+        }
+      })
+      console.log(maxNum);
+    }
+    max([1, 2, 3, 4]);
+
+    function min(arr) {
+      let minNum;
+      eachNumber(arr, it => {
+        if (minNum === undefined) {
+          return minNum = it;
+        }
+
+        if (minNum > it)
+          minNum = it;
+      })
+      console.log(minNum);
+    }
+
+    min([1, 2, 3, 4, 0]);
+  </script>
+</body>

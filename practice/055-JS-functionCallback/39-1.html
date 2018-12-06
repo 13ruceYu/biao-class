@@ -1,0 +1,32 @@
+<body>
+  <script>
+    let list = ['a', 'b', 'c'];
+
+    // function printer(variable) {
+    //   for (let i = 0; i < variable.length; i++) {
+    //     console.log(variable[i]);
+    //   }
+    // }
+
+    function iterator(variable, fn) {
+      for (let i = 0; i < variable.length; i++) {
+        fn(variable[i]);
+      }
+    }
+
+    // printer(list);
+
+    // function each(biu) {
+    //   console.log(biu);
+    // }
+
+    // 回调函数里使用匿名函数
+    iterator(list, function (it) {
+      console.log(it);
+    })
+
+    list.forEach(biu => {
+      console.log(biu);
+    });
+  </script>
+</body>

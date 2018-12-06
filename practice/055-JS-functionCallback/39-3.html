@@ -1,0 +1,66 @@
+<body>
+  <script>
+    function eachStr(arr, fn) {
+      for (let i = 0; i < arr.length; i++) {
+        let it = arr[i];
+        fn(it);
+      }
+    }
+
+    function getYo(arr) {
+      let yoArr = [];
+      eachStr(arr, it => {
+        if (it.includes('yo'))
+          yoArr.push(it);
+      })
+      console.log(yoArr);
+    }
+
+    getYo(['a', 'yo', 'yoo']);
+
+    function shortStr(arr) {
+      let shortArr = [];
+      eachStr(arr, it => {
+        if (it.length > 1)
+          return;
+        shortArr.push(it);
+      })
+      console.log(shortArr);
+    }
+
+    shortStr(['a', 'foo', 'b', 'bar']);
+
+    function join(arr) {
+      let result = '';
+      eachStr(arr, it => {
+        result += it;
+      })
+      console.log(result);
+    }
+
+    join(['Y', 'o', 'o']);
+
+    function search(arr) {
+      let result = [];
+      eachStr(arr, it => {
+        if (it.includes('背背'))
+          result.push(it);
+      })
+      console.log(result);
+    }
+
+    search(['背背山', '六六坡', '背背路']);
+
+    function exclude(arr) {
+      let result = [];
+      eachStr(arr, it => {
+        if (it.includes('背背'))
+          return;
+        result.push(it);
+      })
+      console.log(result);
+    }
+
+    exclude(['背背山', '六六坡', '背背路', 'sjdj']);
+  </script>
+</body>

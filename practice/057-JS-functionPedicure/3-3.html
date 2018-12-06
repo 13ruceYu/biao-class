@@ -1,0 +1,70 @@
+<style>
+  :root {
+    font-size: 25px;
+  }
+
+  .board {
+    background: #000;
+    display: inline-block;
+    padding: 8px;
+    border: 4px solid red;
+    color: red;
+  }
+
+  .inner {
+    font-size: 2em;
+  }
+
+  span {
+    font-size: 20px;
+  }
+</style>
+
+<body>
+  <div class="board">
+    <div class="inner">
+      修脚 贴膜
+      <span class="footnote">
+        <span class="counter">0</span>
+        人用了都说好！
+      </span>
+    </div>
+  </div>
+
+  <script>
+    let board = document.querySelector('.board');
+    let inner = document.querySelector('.inner');
+    let counter = document.querySelector('.counter');
+
+    boot();
+
+    function boot() {
+      startFlash();
+    }
+
+    function startFlash() {
+      setInterval(() => {
+        toggleText();
+        toggleBorder();
+        count();
+      }, 500);
+    }
+
+    function isVisible() {
+      return getComputedStyle(inner).opacity == '1';
+    }
+
+    function toggleText() {
+      inner.style.opacity = isVisible() ? 0 : 1;
+    }
+
+    function toggleBorder() {
+      board.style.borderColor = isVisible() ? 'inherit' : 'transparent';
+    }
+
+    function count() {
+      if (isVisible())
+        counter.innerText = +counter.innerText + 1;
+    }
+  </script>
+</body>

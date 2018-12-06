@@ -1,0 +1,70 @@
+<style>
+  :root {
+    font-family: sans-serif;
+    font-size: 15px;
+  }
+
+  .board {
+    display: inline-block;
+    font-size: 2rem;
+    background: #000;
+    color: red;
+    padding: 10px;
+    line-height: 1;
+    opacity: 1;
+    border: 2px solid red;
+  }
+
+  /*所有拥有hidden属性的元素都应该隐藏*/
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <div class="board">
+    <div class="inner">修脚 贴膜</div>
+  </div>
+
+  <script>
+    let board = document.querySelector('.board');
+    let inner = document.querySelector('.inner');
+    let size = 1;
+
+    boot();
+
+    function boot() {
+      startFlash();
+    }
+
+    function startFlash() {
+      setInterval(() => {
+        toggleText();
+        toggleBorder();
+        sizeLoop();
+      }, 500);
+    }
+
+    function isVisible() {
+      return getComputedStyle(inner).opacity == '1';
+    }
+
+    function toggleText() {
+      inner.style.opacity = isVisible() ? 0 : 1;
+    }
+
+    function toggleBorder() {
+      board.style.borderColor = isVisible() ? 'inherit' : 'transparent';
+    }
+
+    function sizeLoop() {
+      if (isVisible()) {
+        if (size < 3)
+          size++;
+        else
+          size = 1;
+        inner.style.fontSize = size * 2 + 'rem';
+      }
+    }
+  </script>
+</body>

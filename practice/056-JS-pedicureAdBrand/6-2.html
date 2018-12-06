@@ -1,0 +1,55 @@
+<style>
+  :root {
+    font-family: sans-serif;
+    font-size: 15px;
+  }
+
+  .board {
+    display: inline-block;
+    font-size: 2rem;
+    background: #000;
+    color: red;
+    padding: 10px;
+    line-height: 1;
+    opacity: 1;
+    border: 2px solid red;
+  }
+
+  /*所有拥有hidden属性的元素都应该隐藏*/
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <div class="board">
+    <div class="inner">修脚</div>
+  </div>
+
+  <script>
+    let board = document.querySelector('.board');
+    let inner = document.querySelector('.inner');
+    let services = ['修脚', '贴膜', '后空翻', '擀面皮', '保健用品', '申请上市'];
+    let i = 0;
+
+    setInterval(() => {
+      let visible = getComputedStyle(inner).opacity == '1';
+
+      if (visible) {
+        inner.style.opacity = 0;
+        board.style.borderColor = 'transparent';
+      } else {
+        inner.style.opacity = 1;
+        board.style.borderColor = 'inherit';
+        
+        if (i < services.length - 1) {
+          i++;
+        } else {
+          i = 0;
+        }
+
+        inner.innerText = services[i];
+      }
+    }, 500);
+  </script>
+</body>

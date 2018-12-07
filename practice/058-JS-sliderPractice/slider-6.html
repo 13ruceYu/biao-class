@@ -1,0 +1,86 @@
+<style>
+  .container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .slider {
+    position: relative;
+  }
+
+  .item {
+    position: absolute;
+    opacity: 0;
+    transition: all 2s;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="slider">
+      <a href="#" class="item">
+        <img src="./img/A.png">
+      </a>
+      <a href="#" class="item">
+        <img src="./img/B.png">
+      </a>
+      <a href="#" class="item">
+        <img src="./img/C.png">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let sliders = document.querySelectorAll('.item');
+    let current = 0;
+    let currentSlide;
+    let pastSlide;
+
+    boot();
+
+    function boot() {
+      slide();
+    }
+
+    function slide() {
+      setInterval(() => {
+        ++current;
+        if (current >= sliders.length) {
+          current = 0;
+        }
+        
+        // 获取当前要显示的 slide
+        currentSlide = sliders[current];
+
+        // 获取上一个已经显示的 slide
+        getPastSlide();
+
+        // 显示当前slide
+        show(currentSlide);
+        // 隐藏上一个slide
+        hide(pastSlide);
+
+      }, 1000);
+    }
+
+    function getPastSlide() {
+      pastSlide = sliders[current - 1];
+      if (!pastSlide) {
+        pastSlide = sliders[sliders.length - 1];
+      }
+    }
+
+    function show(el) {
+      el.style.opacity = 1;
+    }
+
+    function hide(el) {
+      el.style.opacity = 0;
+    }
+  </script>
+</body>

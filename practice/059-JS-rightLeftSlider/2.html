@@ -1,0 +1,103 @@
+<style>
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .container {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .slider {
+    position: relative;
+    overflow: hidden;
+    height: 290px;
+  }
+
+  .item {
+    position: absolute;
+    display: block;
+    transition: all 1s;
+    width: 100%;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="slider">
+      <a class="item" href="#">
+        <img src="./img/A.png" alt="A">
+      </a>
+      <a class="item" href="#">
+        <img src="./img/B.png" alt="B">
+      </a>
+      <a class="item" href="#">
+        <img src="./img/C.png" alt="C">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const container = document.querySelector('.container');
+    const sliders = document.querySelectorAll('.item');
+    // 将第一张slide放到最上面
+    sliders[0].style.zIndex = 999;
+
+    let pastSlide, currentSlide, nextSlide;
+    let current = 2;
+
+    // 一切从这里开始
+    boot();
+
+    // 启动函数
+    function boot() {
+      // 开始滑动
+      startSlide();
+    };
+
+    function startSlide() {
+      setInterval(() => {
+        current++;
+        if (current >= sliders.length) {
+          current = 0;
+        }
+
+        // 分别拿到前一张 slide，当前的 slide， 和下一张 slide
+        getPastSlide();
+        getCurrentSlide();
+        getNextSlide();
+
+        // 改变 3张slide的位置，让其移动
+        pastSlide.style.left = -pastSlide.offsetWidth;
+        currentSlide.style.left = 0;
+        nextSlide.style.left = nextSlide.offsetWidth;
+
+      }, 2000);
+    }
+
+
+
+    function getPastSlide() {
+      pastSlide = sliders[current - 1];
+      if (current == 0) {
+        pastSlide = sliders[sliders.length - 1];
+      }
+      pastSlide.style.zIndex = -1;
+    };
+
+    function getCurrentSlide() {
+      currentSlide = sliders[current];
+      currentSlide.style.zIndex = 999;
+    };
+
+    function getNextSlide() {
+      nextSlide = sliders[current + 1];
+      if (current == sliders.length - 1) {
+        nextSlide = sliders[0];
+      }
+      nextSlide.style.zIndex = -1;
+    }
+  </script>
+</body>

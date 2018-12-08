@@ -1,0 +1,57 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  button {
+    border: 0;
+    padding: 10px;
+    color: #000;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  .dropdown {
+    margin-top: 5px;
+    background: #555;
+    position: absolute;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .dropdown a:hover {
+    background: rgba(0, 0, 0, .1);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <button class="toggle">查看更多</button>
+
+  <div class="dropdown">
+    <a href="#">扫一扫</a>
+    <a href="#">加好友</a>
+    <a href="#">搜索</a>
+    <a href="#">帮助</a>
+    <a href="#">关于我们</a>
+  </div>
+
+  <script>
+    const toggle = document.querySelector('.toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    toggle.addEventListener('click', () => {
+      dropdown.hidden = !dropdown.hidden;
+    })
+  </script>
+</body>

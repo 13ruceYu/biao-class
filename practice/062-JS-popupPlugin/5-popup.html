@@ -1,0 +1,111 @@
+<style>
+    #popup {
+        position: fixed;
+        z-index: 1000;
+        background: #fff;
+        padding: 10px;
+        border: 4px solid;
+        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+        -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+    }
+
+    .mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, .6);
+        z-index: 999;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button id="trigger">收藏</button>
+    <div id="popup" hidden>
+        确定要收藏吗？
+        <img src="http://dummyimage.com/200x200">
+    </div>
+
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere inventore maiores nam natus necessitatibus
+        nihil
+        quasi quibusdam sit tempora, vel? Dolores eos est itaque, laborum numquam obcaecati vitae voluptate
+        voluptatibus!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolore ducimus eaque ex
+        id,
+        ipsa itaque modi nisi, odit optio perspiciatis quos recusandae reiciendis tempore vel voluptatem, voluptates.
+    </div>
+
+    <script>
+        const trigger = document.querySelector('#trigger');
+        const popup = document.querySelector('#popup');
+        let mask = document.createElement('div');
+        mask.classList.add('mask');
+
+        document.body.addEventListener('click', (e) => {
+            if (e.target == trigger) {
+                popup.hidden = !popup.hidden;
+                document.body.appendChild(mask);
+            }
+
+            if (e.target == mask) {
+                popup.hidden = true;
+                document.body.removeChild(mask);
+            }
+        })
+    </script>
+</body>

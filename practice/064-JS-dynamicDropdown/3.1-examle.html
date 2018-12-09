@@ -1,0 +1,63 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  .dropdown {
+    min-width: 5em;
+    display: inline-block;
+    border: 2px solid;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: 5px;
+  }
+</style>
+
+<body>
+  <div id="dropdown" class="dropdown"></div>
+
+  <script>
+    let list = [{
+        text: 'a',
+        herf: 'http://acfun.cn',
+      },
+      {
+        text: 'b',
+        herf: 'http://biaoyansu.com',
+      },
+      {
+        text: 'c',
+        herf: 'http://chaoshi.tmall',
+      },
+      {
+        text: 'd',
+        herf: 'http://douban.com',
+      },
+    ]
+
+    boot();
+
+    function boot() {
+      render();
+      setInterval(() => {
+        list.push({
+          text: 'e',
+          href: 'http://ebay.com',
+        })
+        render();
+      }, 1000);
+    }
+
+    function render() {
+      dropdown.innerHTML = '';
+      list.forEach(it => {
+        let a = document.createElement('a');
+        a.innerText = it.text;
+        a.href = it.herf;
+        dropdown.appendChild(a);
+      });
+    }
+  </script>
+</body>

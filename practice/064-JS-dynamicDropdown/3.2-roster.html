@@ -1,0 +1,87 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: .5em;
+  }
+</style>
+
+<body>
+  <h1>背背山中学花名册</h1>
+  <table>
+    <thead>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>分数</th>
+      <th>操作</th>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+  </table>
+
+  <script>
+    ;
+    (function () {
+
+      let users = [{
+          name: '王花花',
+          gender: '男',
+          score: 60,
+        },
+        {
+          name: '李拴蛋',
+          gender: '女',
+          score: 65,
+        },
+        {
+          name: '赵可爽',
+          gender: '男',
+          score: 80,
+        },
+      ];
+
+      let tbody = document.getElementById('tbody');
+      boot();
+
+      function boot() {
+        render();
+      };
+
+
+      function render() {
+        tbody.innerHTML = ''; // 清空数据，防止界面上信息的删除与实际数据不一致
+        users.forEach((user, index) => {
+          let tr = document.createElement('tr');
+
+          tr.innerHTML =
+            `
+      <td>${user.name}</td>
+      <td>${user.gender}</td>
+      <td>${user.score}</td>
+      <td><button class="delbtn">删除</button></td>
+      `;
+
+          let delbtn = tr.querySelector('.delbtn'); // !!! 这里不可以用document.querySelector，这样无法得到delbtn对应tr
+          tbody.appendChild(tr);
+          delbtn.addEventListener('click', () => {
+            users.splice(index, 1);
+            tr.remove();
+          });
+        });
+      }
+
+
+
+    })()
+  </script>
+</body>

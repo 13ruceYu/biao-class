@@ -1,0 +1,83 @@
+<style>
+  :root {
+    font-size: 16px;
+  }
+
+  input,
+  button {
+    font-size: inherit;
+    padding: .2em .3em;
+    margin: .2em auto;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: auto;
+  }
+</style>
+
+<body>
+  <form id="a">
+    <input type="text" name="name" placeholder="姓名" value="1">
+    <input type="text" name="age" placeholder="年龄" value="2">
+    <input type="text" name="gender" placeholder="性别" value="3">
+    <input type="text" name="height" placeholder="身高" value="4">
+    <button type="submit">提交</button>
+  </form>
+  <form id="b">
+    <input type="text" name="name" placeholder="姓名" value="1">
+    <input type="text" name="age" placeholder="年龄" value="2">
+    <input type="text" name="gender" placeholder="性别" value="3">
+    <input type="text" name="height" placeholder="身高" value="4">
+    <button type="submit">提交</button>
+  </form>
+  <form id="c">
+    <input type="text" name="name" placeholder="姓名" value="1">
+    <input type="text" name="age" placeholder="年龄" value="2">
+    <input type="text" name="gender" placeholder="性别" value="3">
+    <input type="text" name="height" placeholder="身高" value="4">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    /**
+     * @msg: 解析表单，拿到数据
+     * @param {HTMLFormElement} form 选择想要解析的表单 
+     * @return: {Object}
+     */
+    function getData(formSelector) {
+      let data = {};
+      let inputs = formSelector.querySelectorAll('input');
+      inputs.forEach(input => {
+        data[input.name] = input.value;
+      });
+      return data;
+    }
+    console.log(getData(document.querySelector('#a')));
+
+    /**
+     * @msg: 使用数据，填充表单
+     * @param {Object} data 已存在的数据 
+     * @param {HTMLFormElement} form 目标表单 
+     */
+    function setData(data, form) {
+      for (let key in data) {
+        let input = form.querySelector(`[name = ${key}]`);
+        input.value = data[key];
+      }
+    }
+
+    let data = {
+      name: '王花花',
+      age: 12,
+      gender: 'male',
+      height: 156,
+    }
+
+    setData(data, (document.querySelector('#c')));
+  </script>
+</body>

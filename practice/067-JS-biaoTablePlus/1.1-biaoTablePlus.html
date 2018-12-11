@@ -1,0 +1,85 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: .5em;
+  }
+
+  .toolbar {
+    margin: .5em 0;
+  }
+
+  tr.active {
+    background: lightblue;
+  }
+</style>
+
+<body>
+  <table id="order-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="./1.1-biaoTablePlus.js"></script>
+  <script>
+    let orderStruct = {
+      oid: '订单号',
+      product: '产品',
+      totalCost: '总花费',
+    };
+
+    let orders = [{
+        oid: '001',
+        product: '拖鞋',
+        totalCost: 20,
+      },
+      {
+        oid: '002',
+        product: '毛裤',
+        totalCost: 65,
+      },
+      {
+        oid: '003',
+        product: '枸杞',
+        totalCost: 81,
+      },
+    ]
+
+    biaoTable.boot(
+      '#order-table',
+      orderStruct,
+      orders, {
+        Delete(tr, index) {
+          orders[index] = null;
+          tr.remove();
+          console.log(tr, index);
+        },
+
+        Highlight(tr) {
+          let klass = tr.classList;
+          let active = 'active';
+
+          if (klass.contains(active))
+            klass.remove(active);
+          else
+            klass.add(active);
+        },
+
+        Discounted(tr, i) {
+          let it = orders[i];
+          tr.cells[2].innerText = it.totalCost * .8;
+        },
+      }
+    );
+  </script>
+</body>

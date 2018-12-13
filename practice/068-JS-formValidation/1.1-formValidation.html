@@ -1,0 +1,168 @@
+<style>
+  :root {
+    font-family: sans-serif;
+    font-size: 15px;
+  }
+
+  input, button {
+    border: 1px solid;
+    width: 100%;
+    padding: .5em;
+    font-size: inherit;
+    margin-bottom: .5em;
+  }
+
+  button {
+    background: #000;
+    color: #fff;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  main {
+    padding: .5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+  }
+
+  .error-container {
+    font-size: 90%;
+    padding: .5em;
+    background: pink;
+    color: #c10;
+    margin-bottom: .5em;
+  }
+
+  input.error {
+    border: 2px solid #c10;
+    outline: 0;
+  }
+
+  [hidden] {
+    display: none;
+  }
+</style>
+
+<body>
+  <main>
+    <form novalidate>
+      <h1>注册</h1>
+      <input type="text" name="username" placeholder="username" value="whhh">
+      <input type="email" name="email" placeholder="email" value="whh@gmail.com">
+      <input type="text" name="phone" placeholder="phone" value="18899990000">
+      <input type="password" name="password" placeholder="password" value="121212">
+      <div class="error-container" hidden></div>
+      <button>提交</button>
+    </form>
+  </main>
+
+  <script src="./JS/validateUtils.js"></script>
+  <script>
+    let form = document.querySelector('form');
+    let errorContainer = form.querySelector('.error-container');
+    let data = {};
+    let error = {
+      username: [],
+      email: [],
+      phone: [],
+      password: [],
+    }
+
+    boot();
+
+    function boot() {
+      bindEvents();
+    }
+
+    function bindEvents() {
+      bindSubmit();
+      bindKeyup();
+    }
+
+    function bindSubmit() {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        data.username = form.querySelector('[name=username]').value;
+        data.email = form.querySelector('[name=email]').value;
+        data.phone = form.querySelector('[name=phone]').value;
+        data.password = form.querySelector('[name=password]').value;
+
+        if (!validate(data))
+          showError();
+        else hideError();
+      });
+    }
+
+    function bindKeyup() {
+      form.addEventListener('keyup', (e) => {
+        if (e.key != 'Enter')
+          resetErrorInput();
+      })
+    }
+
+    function hideError() {
+      errorContainer.hidden = true;
+      resetErrorInput();
+    }
+
+    function resetErrorInput() {
+      form.querySelectorAll('.error').forEach(it => {
+        it.classList.remove('error');
+      })
+    }
+
+    function showError() {
+      errorContainer.hidden = false;
+      // 配合疑罪从无使用
+      errorContainer.innerHTML = '';
+      for (let key in error) {
+        let it = error[key];
+        let klass = form.querySelector(`[name=${key}]`).classList;
+        if (it.length)
+          klass.add('error');
+        it.forEach(str => {
+          let errorItem = document.createElement('div');
+          errorItem.innerText = str;
+          errorContainer.appendChild(errorItem);
+        });
+      }
+    }
+
+    function validate(data) {
+      let valid = true;
+      // 疑罪从无，不然罪名会叠加
+      error = {
+        username: [],
+        email: [],
+        phone: [],
+        password: [],
+      };
+      // username
+      if (!vali.isUsername(data.username)) {
+        valid = false;
+        error.username.push('用户名有误，用户名应介于4至12之间');
+      }
+
+      if (!vali.isEmail(data.email)) {
+        valid = false;
+        error.email.push('邮箱格式有误');
+      }
+
+      if (!vali.isPhone(data.phone)) {
+        valid = false;
+        error.phone.push('电话格式有误');
+      }
+
+      if (!vali.isPassword(data.password)) {
+        valid = false;
+        error.password.push('密码格式有误，应介于4至12之间');
+      }
+
+      return valid;
+    }
+  </script>
+</body>

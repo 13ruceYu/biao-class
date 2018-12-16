@@ -1,0 +1,101 @@
+<style>
+  :root {
+    font-size: 16px;
+  }
+
+  input,
+  button {
+    font-size: inherit;
+    padding: .2em .3em;
+    margin: .2em auto;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: auto;
+  }
+</style>
+
+<body>
+  <form id="a">
+    <input type="text" name="name" placeholder="姓名" value="王花花">
+    <input type="number" name="age" placeholder="年龄" value="18">
+    <input type="email" name="email" placeholder="邮箱" value="biaoyansu@gmail.com">
+    <input type="date" name="birthday" placeholder="生日" value="2018-01-02">
+    <input type="week" name="yo" value="1988-W20">
+    <div>
+      性别
+      <label>
+        男 <input type="radio" name="gender" value="male">
+      </label>
+      <label>
+        女 <input type="radio" name="gender" value="female" checked>
+      </label>
+    </div>
+    <div>
+      取向
+      <label>
+        男 <input type="checkbox" name="orientation" value="male" checked>
+      </label>
+      <label>
+        女 <input type="checkbox" name="orientation" value="female" checked>
+      </label>
+      <label>
+        车 <input type="checkbox" name="orientation" value="car" checked>
+      </label>
+    </div>
+    <input type="number" name="balance" placeholder="余额" value="10">
+    <input type="number" name="height" placeholder="身高" value="1">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    /**
+     * @msg: 解析表单，拿到表单数据
+     * @param {HTMLFormElement} 选择要解析的表单 
+     * @return: data
+     */
+    function getData(formSelector) {
+      // 准备一个空对象存放解析后的数据，初始化纯数据
+      let data = {};
+      // 拿到表单里所有填值的地方input，输入组件
+      let inputs = formSelector.querySelectorAll('[name]');
+
+      // 循环输入组件
+      inputs.forEach(it => {
+        switch (it.type) {
+          case 'number':
+            data[it.name] = parseFloat(it.value);
+            break;
+          case 'radio':
+            if (!it.checked)
+              return;
+            data[it.name] = it.value;
+            break;
+          case 'checkbox':
+            if (!Array.isArray(data[it.name]))
+              data[it.name] = [];
+            if (it.checked)
+              data[it.name].push(it.value);
+            break;
+          case 'date':
+          case 'time':
+          case 'week':
+          case 'month':
+          case 'datetime':
+          case 'datetime-local':
+            data[it.name] = it.valueAsDate;
+          default:
+            data[it.name] = it.value;
+            break;
+        }
+      });
+      return data;
+    }
+    console.log(getData(a));
+  </script>
+</body>

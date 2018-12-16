@@ -1,0 +1,101 @@
+<style>
+  :root {
+    font-size: 16px;
+  }
+
+  input,
+  button {
+    font-size: inherit;
+    padding: .2em .3em;
+    margin: .2em auto;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: auto;
+  }
+</style>
+
+<body>
+  <form id="b">
+    <input type="text" name="name" placeholder="姓名">
+    <input type="number" name="age" placeholder="年龄">
+    <input type="email" name="email" placeholder="邮箱">
+    <input type="date" name="birthday" placeholder="生日">
+    <div>
+      性别
+      <label>
+        男<input type="radio" name="gender" value="male">
+      </label>
+      <label>
+        女<input type="radio" name="gender" value="female">
+      </label>
+    </div>
+    <div>
+      取向
+      <label>
+        男 <input type="checkbox" name="orientation" value="male">
+      </label>
+      <label>
+        女 <input type="checkbox" name="orientation" value="female">
+      </label>
+      <label>
+        车 <input type="checkbox" name="orientation" value="car">
+      </label>
+    </div>
+    <input type="number" name="balance" placeholder="余额">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    let user = {
+      name: '王花花',
+      age: 18,
+      email: 'biaoyansu@gmail.com',
+      birthday: '1998-01-01',
+      gender: 'female',
+      orientation: ['car', 'male'],
+      balance: 10,
+    };
+
+    /**
+     * @msg: 通过纯数据填充表单
+     * @param {Object} 填充表单的数据
+     * @param {HTMLFormElement} 目标表单
+     */
+    function setData(data, formSelector) {
+      // 循环数据中的每一项
+      for (let key in data) {
+        // 取到与数据类型对应input
+        let input = formSelector.querySelector(`[name=${key}]`);
+        // 取到数据的值，方便之后调用
+        let val = data[key];
+        
+        // 检查input的类型
+        switch (input.type) {
+          case 'radio':
+            // 如果radio满足check的所条件，那么他的check则为true
+            let radio = formSelector.querySelector(`[name=${key}][value=${val}]`)
+            if (radio)
+              radio.checked = true;
+            break;
+          case 'checkbox':
+            val.forEach(it => {
+              let checkbox = formSelector.querySelector(`[name=${key}][value=${it}]`)
+              checkbox && (checkbox.checked = true);
+            });
+            break;
+          default:
+            input.value = val;
+        }
+      }
+    };
+
+    let form = document.querySelector('#b');
+    setData(user, form);
+  </script>
+</body>

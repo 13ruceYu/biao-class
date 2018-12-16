@@ -1,0 +1,56 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: .5em;
+  }
+
+  .toolbar {
+    margin: .5em 0;
+  }
+</style>
+
+<body>
+  <table id="user-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="./biaoTable.js"></script>
+  <script>
+    let orderStruct = {
+      oid: '订单号',
+      product: '产品',
+      totalCost: '总费用',
+    };
+
+    let orders = [{
+        oid: '001',
+        product: '拖鞋',
+        totalCost: 70,
+      },
+      {
+        oid: '002',
+        product: '毛裤',
+        totalCost: 80,
+      },
+      {
+        oid: '003',
+        product: '枸杞',
+        totalCost: 90,
+      },
+    ];
+    
+    biaoTable.boot('#user-table', orderStruct, orders);
+  </script>
+</body>

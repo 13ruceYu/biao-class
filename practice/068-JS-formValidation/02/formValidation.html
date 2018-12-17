@@ -1,0 +1,197 @@
+<style>
+  :root {
+    font-family: sans-serif, 'Microsoft YaHei';
+    font-size: 15px;
+  }
+
+  input,
+  button {
+    border: 1px solid;
+    width: 100%;
+    padding: .5em;
+    font-size: inherit;
+    margin-bottom: .5em;
+  }
+
+  button {
+    background: #000;
+    color: #fff;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  main {
+    padding: .5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+  }
+
+  .error-container {
+    font-size: 90%;
+    padding: .5em;
+    background: pink;
+    color: #c10;
+    margin-bottom: .5em;
+  }
+
+  input.error {
+    border: 2px solid #c10;
+    outline: 0;
+  }
+
+  [hidden] {
+    display: none;
+  }
+</style>
+
+<body>
+  <main>
+    <form novalidate>
+      <h1>注册</h1>
+      <input type="text" name="username" placeholder="username" value="whhh">
+      <input type="email" name="email" placeholder="email" value="whh@gmail.com">
+      <input type="text" name="phone" placeholder="phone" value="18899990000">
+      <input type="password" name="password" placeholder="password" value="121212">
+      <div class="error-container" hidden></div>
+      <button>提交</button>
+    </form>
+  </main>
+
+  <script src="./js/validateUtils.js"></script>
+  <script>
+
+    // 公用元素
+    let form = document.querySelector('form');
+    let errorContainer = form.querySelector('.error-container');
+
+    // 公用数据
+    // data取到所有表单数据(getter)
+    let data = {};
+    // 将所有存在的错误，存入error，方便之后调用
+    let error = {
+      username: [],
+      email: [],
+      phone: [],
+      password: [],
+    };
+
+    boot();
+
+    function boot() {
+      bindEvents();
+    }
+
+    function bindEvents() {
+      bindSubmit();
+      bindKeyup();
+    }
+
+    /**
+     * @msg: 用户修改错误时，让input外面的红框不可以见
+     */
+    function bindKeyup() {
+      form.addEventListener('keyup', (e) => {
+        if (e.key != 'Enter')
+          resetErrorInput();
+      })
+    }
+
+    /**
+     * @msg: 绑定表单提交事件
+     */
+    function bindSubmit() {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        // 取到每一项input的值
+        data.username = form.querySelector('[name=username]').value;
+        data.email = form.querySelector('[name=email]').value;
+        data.phone = form.querySelector('[name=phone]').value;
+        data.password = form.querySelector('[name=password]').value;
+
+        // 取到的值是否合法
+        if (!validate(data))
+          // 否就显示错误
+          showError();
+        else
+          // 是就隐藏错误
+          hideError();
+      })
+    }
+
+    /**
+     * @msg: 隐藏错误
+     */
+    function showError() {
+      // 由于给了errorContainer初始样式，有padding，所以无论hide还是show都要对其进行判断
+      errorContainer.hidden = false;
+      errorContainer.innerHTML = '';
+
+      // 循环之前已存好的错误
+      for (let key in error) {
+        // 给存在错误的input添加红框
+        let it = error[key];
+        let klass = form.querySelector(`[name=${key}]`).classList;
+        if (it.length) {
+          klass.add('error');
+        }
+
+        // 将错误显示在指定位置
+        it.forEach(str => {
+          let errorItem = document.createElement('div');
+          errorItem.innerText = str;
+          errorContainer.appendChild(errorItem);
+        });
+      }
+    }
+
+    function hideError() {
+      errorContainer.hidden = true;
+      resetErrorInput();
+    }
+
+    function resetErrorInput() {
+      form.querySelectorAll('.error').forEach(it => {
+        it.classList.remove('error');
+      });
+    }
+
+    /**
+     * @msg: 验证之前已经得到的数据，并将错误信息推入error中
+     * return：{Boolean} 返回布尔值，给显示错误还是隐藏错误提供依据
+     */
+    function validate(data) {
+      let valid = true;
+      error = {
+        username: [],
+        email: [],
+        phone: [],
+        password: [],
+      };
+      if (!vali.isUsername(data.username)) {
+        valid = false;
+        error.username.push('用户名有误，应介于4至12位之间');
+      }
+
+      if (!vali.isEmail(data.email)) {
+        valid = false;
+        error.email.push('邮箱格式有误');
+      }
+
+      if (!vali.isPhone(data.phone)) {
+        valid = false;
+        error.phone.push('电话格式有误');
+      }
+
+      if (!vali.isPassword(data.password)) {
+        valid = false;
+        error.password.push('密码格式有误，应介于6至64位之间');
+      }
+
+      return valid;
+    }
+  </script>
+</body>

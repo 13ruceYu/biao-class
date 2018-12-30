@@ -11,10 +11,10 @@
   <main>
     <form id="user-form">
       <h2>添加用户</h2>
-      <input type="number" name="index">
-      <input type="text" name="username" placeholder="用户名">
-      <input type="text" name="email" placeholder="邮箱">
-      <input type="number" name="balance" placeholder="余额">
+      <input type="number" name="index" hidden>
+      <input data-rule="username" type="text" name="username" placeholder="用户名">
+      <input data-rule="email" type="text" name="email" placeholder="邮箱">
+      <input data-rule="numeric" type="number" name="balance" placeholder="余额">
       <button type="submit">提交</button>
     </form>
 
@@ -30,6 +30,7 @@
 
   <script src="./lib/biaoForm.js"></script>
   <script src="./lib/biaoTablePlus.js"></script>
+  <script src="./lib/biaoVali.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>

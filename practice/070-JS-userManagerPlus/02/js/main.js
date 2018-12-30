@@ -26,6 +26,7 @@
   boot();
 
   let form = document.querySelector('form');
+  valee.boot('form');
 
   function boot() {
     prepareForm();

@@ -1,0 +1,50 @@
+<h1>Yo</h1>
+
+<!-- they all send serve request -->
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+
+<script>
+  // 使用XMLHttpRequest取数据，不仅仅是XML数据
+  // let http = new XMLHttpRequest();
+  // http.open('get', 'https://api.github.com/search/users?q=yo');
+  // http.send();
+
+  // http.addEventListener('load', () => {
+  //   let data = JSON.parse(http.responseText);
+  //   console.log(data);
+  // })
+
+
+  // 使用ES6 Fetch
+  // fetch('https://api.github.com/search/users?q=yo')
+  //   .then(Response => {
+  //     return Response.json();
+  //   })
+  //   .then (data => {
+  //     console.log(data);
+  //   });
+
+  // jQuery get(this is a shortcut way, call from ajax)
+  // $.get('https://api.github.com/search/users?q=yo')
+  //   .then(data => {
+  //     console.log(data);
+  //   })
+
+  // jQuery ajax
+  // $.ajax({
+  //   method: 'get',
+  //   url: 'https://api.github.com/search/users?q=yo',
+  // })
+  // .then(data => {
+  //   console.log(data);
+  // })
+
+  // Axios
+  axios.get('https://api.github.com/search/users?q=yo')
+  .then(r => {
+    console.log(r);
+  })
+
+</script>

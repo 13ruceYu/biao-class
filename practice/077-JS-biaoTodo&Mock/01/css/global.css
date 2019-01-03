@@ -1,0 +1,53 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: sans-serif;
+  color: #444;
+}
+
+body {
+  margin: 0;
+}
+
+input,
+button,
+textarea {
+  color: inherit;
+}
+
+form input,
+form button {
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #ccc;
+  outline: 0;
+}
+
+form {
+  margin: 0;
+}
+
+form input:focus,
+form button:focus {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0 3px #c1a7ff;
+  -moz-box-shadow: 0 0 0 3px #c1a7ff;
+  box-shadow: 0 0 0 3px #c1a7ff;
+}
+
+.container,
+.container-sm {
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.container-sm {
+  max-width: 30em;
+}

@@ -1,0 +1,178 @@
+* {
+  -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+}
+
+:root {
+  font-family: sans-serif, 'Microsoft YaHei';
+  color: #444;
+}
+
+body {
+  margin: 0;
+}
+
+input, button, textarea {
+  color: inherit;
+  font-family: inherit;
+}
+
+form input, form button {
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #ccc;
+  outline: 0;
+}
+
+form {
+  margin: 0;
+}
+
+form input:focus, form button:focus {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0 3px #c1a7ff;-moz-box-shadow: 0 0 0 3px #c1a7ff;box-shadow: 0 0 0 3px #c1a7ff;
+}
+
+button.primary {
+  background: #c1a7ff;
+  color: #fff;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.container,
+.container-sm {
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.container-sm {
+  max-width: 30em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+:root {
+  background: #eee;
+}
+
+input, button, .todo-item, .sidebar-section > * {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#todo-form, .todo-item {
+  margin-bottom: .5rem;
+}
+
+.container-sm > * {
+  float: left;
+}
+
+.container-sm > .left {
+  width: 30%;
+}
+
+.container-sm > .right {
+  width: 70%;
+}
+
+.sidebar-section {
+  padding: 0 .5em;
+  font-size: .8em;
+  text-align: left;
+  color: #666;
+}
+
+.sidebar-section > * {
+  width: 100%;
+  cursor: pointer;
+  padding: .3em .5em;
+  margin-bottom: .2em;
+}
+
+.sidebar-section > *:hover {
+  background: rgba(0, 0, 0, .1);
+}
+
+.sidebar-section > .active {
+  color: #fff;
+  background: #c1a7ff;
+}
+
+#cat-list .item {
+  position: relative;
+}
+
+#cat-list .operations {
+  right: 0;
+  display: none;
+  font-size: .5rem;
+  position: absolute;
+}
+
+#cat-list .operations button {
+  border: 0;
+  background: transparent;
+  padding: .1em;
+  color: #aaa;
+}
+
+#cat-list .operations button:hover {
+  color: #222;
+}
+
+#cat-list > .item:hover .operations {
+  display: inline-block;
+}
+
+#cat-list button {
+  font-size: inherit;
+}
+
+#cat-form button {
+  width: 50%;
+  float: left;
+}
+
+.todo-item {
+  background: #fff;
+  font-size: 0;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .2);-moz-box-shadow: 0 0 2px rgba(0, 0, 0, .2);box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+}
+
+.todo-item > * {
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+  padding: .5em;
+}
+
+.todo-item > .checkbox {
+  width: 10%;
+}
+
+.todo-item > .title {
+  width: 60%;
+  text-align: left;
+}
+
+.todo-item > .operations {
+  width: 30%;
+  text-align: right;
+}

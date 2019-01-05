@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="./biaoAlert.css" />
+
+<body>
+  <script src="./biaoAlert.js"></script>
+  <script>
+
+    new Alert('余额不足，请充值', {
+      desc: "biu biu biu...",
+      type: "info",
+      timeout: false,
+      onClick(config) {
+        document.body.appendChild(config.el);
+      },
+      onOpen(config) {
+        console.log("open");
+      },
+      onClose(config) {
+        console.log('close');
+      }
+    })
+
+    new Alert('yo.')
+
+  </script>
+</body>

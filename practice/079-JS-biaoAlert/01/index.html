@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="./biaoAlert.css" />
+
+<body>
+  <script src="./biaoAlert.js"></script>
+  <script>
+    biaoAlert("Yo.", {
+      desc: "biu biu biu...",
+      type: "info",
+      timeout: false,
+      onClick(config) {
+        document.body.appendChild(config.el);
+      },
+      onOpen(config) {
+        console.log("open");
+      },
+      onClose(config) {
+        let alert = document.querySelector(".biao-alert");
+        alert.remove();
+      }
+    });
+
+    biaoAlert("余额不足", {
+      desc: "没钱，你，打钱。",
+      type: "warn"
+    });
+  </script>
+</body>

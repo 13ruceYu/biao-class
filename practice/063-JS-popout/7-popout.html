@@ -1,0 +1,73 @@
+<style>
+  .popout {
+    padding: 10px;
+    display: inline-block;
+    position: fixed;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    background: #fff;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <button data-popout="Yo yo yo...">Yo</button>
+  <button data-popout="Ha ha ha...">Ha</button>
+  <button data-popout="1 ha ha...">1</button>
+  <button data-popout="2 ha ha...">2</button>
+  <button data-popout="3 ha ha...">3</button>
+
+  <script>
+    let lastPopout;
+
+    boot();
+
+    function boot() {
+      bindEvents();
+    }
+
+    function bindEvents() {
+      document.addEventListener('click', e => {
+        let el = e.target;
+        if (el.nodeName == 'BUTTON') {
+          if (!lastPopout) {
+            show(el);
+          }
+          hide(lastPopout);
+          show(el);
+        }
+
+        if (el.nodeName != 'BUTTON' && lastPopout) {
+          hide(lastPopout);
+        }
+      })
+    }
+
+    function show(popout) {
+      let popoutBox = document.createElement('div');
+      popoutBox.innerText = popout.dataset.popout;
+      popoutBox.classList.add('popout');
+      document.body.appendChild(popoutBox);
+      lastPopout = popoutBox;
+      reposition(popout, popoutBox);
+    }
+
+    function hide(lastPopout) {
+      lastPopout.remove();
+    }
+
+    function reposition(button, popoutBox) {
+      let buttonPosition = button.getBoundingClientRect();
+
+      popoutBox.style.left = buttonPosition.left + 'px';
+      popoutBox.style.top = button.offsetHeight + 10 + 'px';
+    }
+  </script>
+</body>

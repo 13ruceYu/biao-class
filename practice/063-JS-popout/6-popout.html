@@ -23,15 +23,17 @@
   <script>
     let lastPopout;
     let popout = document.createElement('div');
-    
+
     boot();
-    
+
     function boot() {
       document.addEventListener('click', e => {
         el = e.target;
+        // 如果点击的是按钮外的区域 并且 存在上一次点击，就隐藏上一次点击
         if (el.nodeName != 'BUTTON' && lastPopout)
-        hide(lastPopout);
-        
+          hide(lastPopout);
+
+        // 如果点击的是按钮
         if (el.nodeName == 'BUTTON') {
 
           // if (popout == lastPopout) {
@@ -39,11 +41,13 @@
           //   lastPopout = null;
           //   return;
           // }
-          
+
+          // 如果不存在上一次点击（不存在popout）
           if (!lastPopout) {
+            // 就直接显示popout
             show(el);
-            lastPopout = popout;
           } else {
+            // 如果有lastpopout，就先隐藏
             hide(lastPopout);
             show(el);
           }
@@ -57,6 +61,7 @@
       popout.innerText = el.dataset.popout;
       popout.classList.add('popout');
       document.body.appendChild(popout);
+      lastPopout = popout;
     }
 
     function hide(lastPopout) {

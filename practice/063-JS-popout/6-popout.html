@@ -1,0 +1,73 @@
+<style>
+  .popout {
+    padding: 10px;
+    display: inline-block;
+    position: fixed;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    background: #fff;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<body>
+  <button data-popout="Yo yo yo...">Yo</button>
+  <button data-popout="Ha ha ha...">Ha</button>
+  <button data-popout="1 ha ha...">1</button>
+  <button data-popout="2 ha ha...">2</button>
+  <button data-popout="3 ha ha...">3</button>
+
+  <script>
+    let lastPopout;
+    let popout = document.createElement('div');
+    
+    boot();
+    
+    function boot() {
+      document.addEventListener('click', e => {
+        el = e.target;
+        if (el.nodeName != 'BUTTON' && lastPopout)
+        hide(lastPopout);
+        
+        if (el.nodeName == 'BUTTON') {
+
+          // if (popout == lastPopout) {
+          //   hide(lastPopout);
+          //   lastPopout = null;
+          //   return;
+          // }
+          
+          if (!lastPopout) {
+            show(el);
+            lastPopout = popout;
+          } else {
+            hide(lastPopout);
+            show(el);
+          }
+          
+          repositionPopuot(el);
+        }
+      })
+    }
+    
+    function show(el) {
+      popout.innerText = el.dataset.popout;
+      popout.classList.add('popout');
+      document.body.appendChild(popout);
+    }
+
+    function hide(lastPopout) {
+      lastPopout.remove();
+    }
+
+    function repositionPopuot(target) {
+      let buttonPosition = target.getBoundingClientRect();
+
+      popout.style.left = buttonPosition.left + 'px';
+      popout.style.top = target.offsetHeight + 10 + 'px';
+    }
+  </script>
+</body>

@@ -1,0 +1,80 @@
+<style>
+  :root {
+    font-family: sans-serif, 'Microsoft YaHei';
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: .5em;
+  }
+
+  .toolbar {
+    margin: .5em 0;
+  }
+</style>
+
+<body>
+  <h1>背背山中学花名册</h1>
+  <table>
+    <thead>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>分数</th>
+      <th>操作</th>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+  </table>
+
+  <script>
+    let users = [{
+        name: '王花花',
+        gender: '男',
+        score: 60,
+      },
+      {
+        name: '李拴蛋',
+        gender: '女',
+        score: 65,
+      },
+      {
+        name: '赵可爽',
+        gender: '男',
+        score: 80,
+      },
+    ];
+
+    boot();
+
+    function boot() {
+      render();
+    }
+
+    function render() {
+      users.forEach((user, index) => {
+        let tr = document.createElement('tr');
+        tr.innerHTML =
+          `
+        <td>${user.name}</td>
+        <td>${user.gender}</td>
+        <td>${user.score}</td>
+        <td><button>删除</button></td>
+        `;
+        tbody.appendChild(tr);
+        tr.addEventListener('click', e => {
+          if (e.target.nodeName == 'BUTTON')
+            tr.remove();
+          users[index] = null;
+          console.log(users);
+        })
+      });
+    }
+  </script>
+</body>

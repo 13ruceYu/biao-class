@@ -1,0 +1,168 @@
+<style>
+  :root {
+    font-family: sans-serif, "Microsoft YaHei";
+    font-size: 15px;
+  }
+
+  input,
+  button {
+    border: 1px solid;
+    width: 100%;
+    padding: 0.5em;
+    font-size: inherit;
+    margin-bottom: 0.5em;
+  }
+
+  button {
+    background: #000;
+    color: #fff;
+  }
+
+  main {
+    padding: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+  }
+
+  .error-container {
+    font-size: 90%;
+    background: pink;
+    color: #c10;
+    margin-bottom: 0.5em;
+  }
+
+  input.error {
+    border: 2px solid #c10;
+    outline: 0;
+  }
+
+  [hidden] {
+    display: none;
+  }
+</style>
+
+<body>
+  <main>
+    <form novalidate>
+      <h1>注册</h1>
+      <input type="text" name="username" placeholder="username" value="whhh" />
+      <input type="email" name="email" placeholder="email" value="whh@gmail.com" />
+      <input type="text" name="phone" placeholder="phone" value="18899990000" />
+      <input type="password" name="password" placeholder="password" value="123456" />
+      <div class="error-container"></div>
+      <button>提交</button>
+    </form>
+  </main>
+
+  <!-- 基础结构和样式 -->
+  <!-- 组织核心数据流 -->
+  <!-- 验证并收集错误 -->
+  <!-- 显示错误信息 -->
+
+  <script src="./formVali.js"></script>
+  <script>
+    // 选中所要验证的表单
+    let form = document.querySelector("form");
+    // 选中显示错误的容器
+    let errorContainer = document.querySelector(".error-container");
+    // 创建数据容器 
+    let data = {};
+    // 创建错误容器
+    let error = {
+      username: [],
+      email: [],
+      phone: [],
+      password: []
+    };
+
+    boot();
+
+    function boot() {
+      bindEvents();
+    }
+
+    function bindEvents() {
+      bindSubmit();
+    }
+
+    function bindSubmit() {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        // 拿到数据存入数据容器
+        getData();
+
+        // 验证表单，如果为false则显示错误，并绑定修改时间，为true，则隐藏错误
+        if (!valid(data)) {
+          showError();
+          bindModify();
+        } else hideError();
+      });
+    }
+
+    function getData() {
+      data.username = form.querySelector("[name=username]").value;
+      data.email = form.querySelector("[name=email]").value;
+      data.phone = form.querySelector("[name=phone]").value;
+      data.password = form.querySelector("[name=password]").value;
+      return data;
+    }
+
+    function valid(data) {
+      // 每次验证都清空之前的错误信息
+      error = {
+        username: [],
+        email: [],
+        phone: [],
+        password: []
+      };
+
+      // 将默认验证结果设为true，如验证结果有任意一项为false，则为false
+      let result = true;
+
+      if (!vali.isUsername(data.username)) {
+        error.username.push("用户名格式有误，长度介于4至6位");
+        result = false;
+      }
+
+      if (!vali.isEmail(data.email)) {
+        error.email.push("邮箱格式有误");
+        result = false;
+      }
+
+      if (!vali.isPhone(data.phone)) {
+        error.phone.push("手机号码格式有误");
+        return (result = false);
+      }
+
+      if (!vali.isPassword(data.password)) {
+        error.password.push("密码格式有误，长度介于6至64位");
+        return (result = false);
+      }
+
+      return result;
+    }
+
+    function showError() {
+      errorContainer.hidden = false;
+      let html = "";
+      for (let key in error) {
+        error[key].forEach(item => {
+          html += `<div>${item}</div>`;
+        });
+      }
+      errorContainer.innerHTML = html;
+    }
+
+    function hideError() {
+      errorContainer.hidden = true;
+    }
+
+    function bindModify() {
+      form.addEventListener('keydown', e => {
+        if (e.target != 'Enter')
+          errorContainer.hidden = true;
+      })
+    }
+  </script>
+</body>

@@ -1,0 +1,83 @@
+<style>
+  :root {
+    font-size: 16px;
+  }
+
+  input,
+  button {
+    font-size: inherit;
+    padding: 0.2em 0.3em;
+    margin: 0.2em auto;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: auto;
+  }
+</style>
+
+<body>
+  <form id="b">
+    <input type="text" name="name" placeholder="姓名">
+    <input type="number" name="age" placeholder="年龄">
+    <input type="email" name="email" placeholder="邮箱">
+    <input type="date" name="birthday" placeholder="生日">
+    <div>
+      性别 <label> 男<input type="radio" name="gender" value="male"> </label>
+      <label> 女<input type="radio" name="gender" value="female"> </label>
+    </div>
+    <div>
+      取向
+      <label>
+        男 <input type="checkbox" name="orientation" value="male">
+      </label>
+      <label>
+        女 <input type="checkbox" name="orientation" value="female">
+      </label>
+      <label>
+        车 <input type="checkbox" name="orientation" value="car">
+      </label>
+    </div>
+    <input type="number" name="balance" placeholder="余额">
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    let user = {
+      name: "王花花",
+      age: 18,
+      email: "biaoyansu@gmail.com",
+      birthday: "1998-01-01",
+      gender: "female",
+      orientation: ["car", "male"],
+      balance: 10
+    };
+
+    setData(b, user)
+
+    function setData(form, data) {
+      for (let key in data) {
+        let input = document.querySelector(`[name=${key}]`);
+
+        switch (input.type) {
+          case 'radio':
+            let radio = document.querySelector(`[type=radio][name=${key}][value=${data[key]}]`);
+            radio && (radio.checked = true);
+            break;
+          case 'checkbox':
+            data[key].forEach(val => {
+              let checkbox = document.querySelector(`[type=checkbox][name=${key}][value=${val}]`);
+              checkbox && (checkbox.checked = true);
+            });
+            break;
+          default:
+            input.value = data[key];
+        }
+      }
+    }
+  </script>
+</body>

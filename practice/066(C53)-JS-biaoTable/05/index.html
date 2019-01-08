@@ -1,0 +1,60 @@
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: .5em;
+  }
+
+  .toolbar {
+    margin: .5em 0;
+  }
+</style>
+
+<body>
+  <table id="user-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="./biaoTable.js"></script>
+  <script>
+    let struct = {
+      name: '姓名',
+      score: '分数',
+      gender: '性别',
+      balance: '余额',
+    };
+
+    let users = [{
+        name: '王花花',
+        gender: '男',
+        score: 20,
+        balance: 80,
+      },
+      {
+        name: '李拴蛋',
+        gender: '女',
+        score: 65,
+      },
+      {
+        name: '赵可爽',
+        gender: '男',
+        score: 81,
+      },
+    ];
+
+    let table = document.querySelector('#user-table')
+
+    biaoTable.boot(table, struct, users);
+  </script>
+</body>

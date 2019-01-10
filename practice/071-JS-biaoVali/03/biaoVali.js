@@ -2,6 +2,7 @@
 (function () {
   "use strict";
 
+  // 基础核心验证规则
   let is = {
     numeric(value) {
       if (!/^\d+$/.test(value.toString()))
@@ -100,6 +101,7 @@
 
   };
 
+  // 暴露接口
   window.biaoVali = {
     is,
     validate,
@@ -107,47 +109,99 @@
     boot,
   }
 
+  /**
+   * 选择验证 form or input
+   * @param {String} selector 
+   */
   function boot(selector) {
     let el = document.querySelector(selector)
     if (el.nodeName == 'FORM') {
       bindSubmit(el);
+      bindFormKeyup(el);
     } else {
-
+      bindInputKeyup(el);
     }
+  }
+
+  /**
+   * 绑定input键盘事件
+   * @param {HTMLElement} input 
+   */
+  function bindInputKeyup(input) {
+    input.addEventListener('keyup', e => {
+      let errors = validateInput(input);
+      showInputErrors(input, errors);
+    })
+  }
+
+  /**
+   * 绑定form键盘事件
+   * @param {HTMLFormElement} form 
+   */
+  function bindFormKeyup(form) {
+    form.addEventListener('keyup', e => {
+      validateForm(form);
+    })
   }
 
   function bindSubmit(form) {
     let values = [];
     form.addEventListener('submit', e => {
       e.preventDefault();
-      let inputs = document.querySelectorAll('[data-rule]');
-      inputs.forEach(input => {
-        let rules = input.dataset.rule;
-        let value = input.value;
-        values.push(value);
-        let errors = validate(value, rules);
-
-        if (!errors.length) {
-          input.$errorContainer.hidden = true;
-          return;
-        }
-
-        if (!input.nextElementSibling.classList.contains('error')) {
-          let ec = input.$errorContainer = document.createElement('div');
-          ec.classList.add('error');
-          input.insertAdjacentElement('afterend', ec);
-        }
-        let html = '';
-        errors.forEach(error => {
-          html += `<div>${error}</div>`;
-        });
-        input.$errorContainer.innerHTML = html;
-        input.$errorContainer.hidden = false;
-      });
+      validateForm(form);
     })
-
   }
 
+  function validateInput(input) {
+    let rules = input.dataset.rule;
+    let value = input.value;
+    let errors = validate(value, rules);
+    return errors;
+  }
+
+  function validateForm(form) {
+    let submit = form.querySelector('[type=submit]');
+    console.log(submit);
+    let inputs = form.querySelectorAll('[data-rule]');
+    let errorsExist = [];
+    inputs.forEach(input => {
+      let errors = validateInput(input);
+      errorsExist.push(errors)
+
+      showInputErrors(input, errors);
+    });
+    if (!errorsExist.length) {
+      submit.disabled = false;
+    } else {
+      submit.disabled = true;
+    }
+  }
+
+  function showInputErrors(input, errors) {
+    if (!errors.length) {
+      if (input.$errorContainer)
+        input.$errorContainer.hidden = true;
+      return;
+    }
+
+    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error')) {
+      let ec = input.$errorContainer = document.createElement('div');
+      ec.classList.add('error');
+      input.insertAdjacentElement('afterend', ec);
+    }
+    let html = '';
+    errors.forEach(error => {
+      html += `<div>${error}</div>`;
+    });
+    input.$errorContainer.innerHTML = html;
+    input.$errorContainer.hidden = false;
+  }
+
+  /**
+   * 将最原始的字符串规则转化为规则对象
+   * @param {String} str ruleString
+   * @returns {Object} ruleObject
+   */
   function parseRules(str) {
     let rules = {};
     let rulesArr = str.split('|');
@@ -166,6 +220,12 @@
     return rules;
   }
 
+  /**
+   * 
+   * @param {*} value 从form or input里取到的值
+   * @param {*} str 原始的规则字符串
+   * @returns {Object} errors 验证产生的错误
+   */
   function applyRules(value, str) {
     let rules = parseRules(str);
     let errors = [];

@@ -1,0 +1,48 @@
+<h1>yo</h1>
+
+<script src="http://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+<script>
+  // 使用 XMLHttpRequest请求 *******************************************
+  // let http = new XMLHttpRequest();
+  // http.open('get', 'https://api.github.com/search/users?q=yo');
+  // http.send();
+  // http.addEventListener('load', e => {
+  //   let data = JSON.parse(http.responseText);
+  //   console.log(data);
+  // })
+
+  // 使用 ES6 fetch 请求 ***************************************************
+  // fetch('https://api.github.com/search/users?q=yo')
+  //   .then(response => {
+  //     console.log(1);
+  //     console.log(response);
+  //     return response.json();
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //   })
+  //   .then(data => {
+  //     console.log(2);
+  //   });
+
+  // 使用 jQuery get 请求 **********************************************
+  // $.get('https://api.github.com/search/users?q=yo')
+  //   .then(data => {
+  //     console.log(data);
+  //   });
+  // 使用jQuery ajax 请求
+  // $.ajax({
+  //     method: 'get',
+  //     url: 'https://api.github.com/search/users?q=yo',
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //   })
+
+  // 使用 axios 请求 ****************************************************
+  axios.get('https://api.github.com/search/users?q=yo')
+    .then(data => {
+      console.log(data);
+    })
+</script>

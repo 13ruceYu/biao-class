@@ -40,8 +40,8 @@ form button {
 }
 
 button {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
 }
 
 main {
@@ -141,6 +141,7 @@ th {
 }
 
 .biao-page button.active {
-  background: #fff;
-  color: #000;
+  background: #000;
+  color: #fff;
 }
+

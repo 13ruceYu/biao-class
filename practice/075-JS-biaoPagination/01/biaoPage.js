@@ -12,6 +12,7 @@
   const DEFAULT_CONFIG = {
     limit: 10,
     currentPage: 1,
+    range: 5,
   };
 
   /**
@@ -103,10 +104,35 @@
     // 清空上次渲染的内容
     list.innerHTML = '';
 
+    let conf = state.config;
+    let range = conf.range;
+
+    let radius = Math.floor(range / 2);
+    let diameter = radius * 2;
+    
+    let current = state.currentPage;
+    let start = current - radius;
+    let end = current + radius;
+
+    if (start < 1){
+      start = 1;
+      end = start + diameter;
+    }
+
+    if (end > pageAmount){
+      end = pageAmount;
+      start = end - diameter;
+    }
+
+    if (pageAmount <= range) {
+      start = 1;
+      end = pageAmount;
+    }
+
     // 基于页码总数创造按钮
-    for (let i = 0; i < pageAmount; i++) {
+    for (let i = start; i <= end; i++) {
       // 从0开始，所以加1
-      let page = i + 1;
+      let page = i;
 
       // 创造按钮
       let button = document.createElement('button');
@@ -177,14 +203,15 @@
     let onChange = state.config.onChange;
     onChange && onChange(page, state);
 
-    state.buttons.forEach(it => {
-      if (it.$page != page) {
-        it.classList.remove('active');
-        return;
-      }
+    render(state);
+    // state.buttons.forEach(it => {
+    //   if (it.$page != page) {
+    //     it.classList.remove('active');
+    //     return;
+    //   }
 
-      it.classList.add('active');
-    });
+    //   it.classList.add('active');
+    // });
   }
 
 

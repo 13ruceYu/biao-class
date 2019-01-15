@@ -15,8 +15,9 @@
   // 全文数据
   let $todoList;
   let $catList;
-  let currentTodoId;
-  let currentCatId;
+  let updatingTodoId;
+  let updatingCatId;
+  let $currentCatId = null;
 
   boot();
 
@@ -61,8 +62,8 @@
 
       let name = catInput.value;
 
-      if (currentCatId)
-        updateCat(currentCatId, {
+      if (updatingCatId)
+        updateCat(updatingCatId, {
           name
         });
       else
@@ -83,7 +84,7 @@
 
   function readCat() {
     api('cat/read', null, r => {
-      $catList = r.data;
+      $catList = r.data || [];
       // console.log($list);
       renderCat();
     })
@@ -93,6 +94,7 @@
     catList.innerHTML = '';
     $catList.forEach(it => {
       let item = document.createElement('div');
+      item.$id = it.id;
       item.classList.add('item');
       // item.innerText = it.name;
       item.innerHTML = `
@@ -110,11 +112,15 @@
           removeCat(it.id);
         if (klass.contains('fill')) {
           addCat.hidden = !(catForm.hidden = false);
-          currentCatId = it.id;
+          updatingCatId = it.id;
           catInput.value = it.name;
         }
         if (klass.contains('name')) {
+          $currentCatId = it.id;
           
+
+          readTodo();
+          highlightCurrentCat();
         }
       })
     });
@@ -134,11 +140,26 @@
       ...row
     }, r => {
       if (r.success) {
-        currentCatId = null;
+        updatingCatId = null;
         readCat();
         catForm.reset();
       }
     })
+  }
+
+  function highlightCurrentCat() {
+    let items = catList.children;
+    for (let i = 0; i < items.length; i++) {
+      let it = items[i];
+      if (it.$id == $currentCatId)
+        it.classList.add('active');
+      else
+        it.classList.remove('active');
+
+    }
+    // catList.forEach(it => {
+
+    // });
   }
 
   // ----------------------------------------------------------------
@@ -155,8 +176,8 @@
       let title = todoInput.value;
 
       // 通过id判断是新增 or 更新
-      if (currentTodoId)
-        updateTodo(currentTodoId, {
+      if (updatingTodoId)
+        updateTodo(updatingTodoId, {
           title
         });
       else
@@ -171,6 +192,7 @@
    * @param row 
    */
   function createTodo(row) {
+    row.cat_id = $currentCatId;
     api('todo/create', row, r => {
       if (r.success) {
         readTodo();
@@ -190,7 +212,7 @@
       ...row
     }, r => {
       if (r.success) {
-        currentTodoId = null;
+        updatingTodoId = null;
         readTodo();
         todoForm.reset();
       }
@@ -200,9 +222,15 @@
   /**
    * 从服务器读取数据
    */
-  function readTodo() {
-    api('todo/read', null, r => {
-      $todoList = r.data;
+  function readTodo(params) {
+    params = params || {};
+    params.where = {
+      and: {
+        cat_id: $currentCatId,
+      },
+    };
+    api('todo/read', params, r => {
+      $todoList = r.data || [];
       // console.log($list);
       renderTodo();
     })
@@ -267,10 +295,10 @@
           removeTodo(it.id);
 
         if (target.classList.contains('fill')) {
-          currentTodoId = it.id;
+          updatingTodoId = it.id;
           todoInput.value = it.title;
           console.log(it);
-          console.log(currentTodoId);
+          console.log(updatingTodoId);
         }
       })
 

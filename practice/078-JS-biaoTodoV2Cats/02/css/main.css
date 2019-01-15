@@ -105,4 +105,5 @@ button:hover {
 
 #cat-list .operations > button {
   font-size: .6rem;
+  color: #333;
 }

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="./biaoAlert.css">
+<body>
+
+
+  <script src="./biaoAlert.js"></script>
+  <script>
+    biaoAlert('成功', {
+      desc: '你，打钱，成功',
+      type: 'success',
+      onClick(config) {
+        console.log(config);
+        document.body.appendChild(config.el);
+      },
+      onOpen() {
+        console.log('打开');
+      }
+
+    });
+
+    biaoAlert('余额不足', {
+      desc: '请前往我的余额充值',
+      type: 'info',
+      timeout: 5000,
+    })
+  </script>
+
+</body>

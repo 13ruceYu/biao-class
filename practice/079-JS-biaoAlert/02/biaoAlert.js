@@ -75,8 +75,6 @@
     config.el.remove();
   }
 
-
-
   function bindClick(config) {
     config.el.addEventListener('click', e => {
       if (config.clickToClose)

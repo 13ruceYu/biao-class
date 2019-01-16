@@ -1,24 +1,26 @@
-<link rel="stylesheet" href="./biaoAlert.css" />
+<link rel="stylesheet" href="./biaoAlert.css">
 
 <body>
+
+
   <script src="./biaoAlert.js"></script>
   <script>
+    new Alert('Yo...');
+
     new Alert('余额不足，请充值', {
       desc: "biu biu biu...",
       type: "info",
       timeout: false,
-      onClick(config) {
-        document.body.appendChild(config.el);
+      onClick() {
+        document.body.appendChild(this.el);
       },
-      onOpen(config) {
+      onOpen() {
         console.log("open");
       },
-      onClose(config) {
+      onClose() {
         console.log('close');
       }
     })
-
-    new Alert('yo.')
-
   </script>
+
 </body>

@@ -1,0 +1,109 @@
+:root {
+  background: #eee;
+  font-family: sans-serif, 'Microsoft YaHei';
+}
+
+input,
+button,
+.todo-item,
+.sidebar-section>* {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+input[type="checkbox"] {
+  padding-left: 40px;
+}
+
+button {
+  background: #fff;
+  border: 1px solid #777;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#todo-form,
+.todo-item {
+  margin-bottom: .5rem;
+}
+
+.todo-item {
+  background: #fff;
+  font-size: 0;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+}
+
+.todo-item>* {
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+  padding: .5em;
+}
+
+.todo-item>.checkbox {
+  width: 10%;
+}
+
+.todo-item>.title {
+  width: 60%;
+}
+
+.todo-item>.operations {
+  width: 30%;
+  text-align: right;
+}
+
+.container-sm>* {
+  float: left;
+}
+
+.container-sm>.right {
+  width: 30%;
+  padding: 0 .5em;
+}
+
+.container-sm>.left {
+  width: 70%;
+}
+
+.sidebar-section {
+  /* text-align: center; */
+  color: #666;
+  font-size: .9em;
+}
+
+.sidebar-section>* {
+  cursor: pointer;
+  padding: .2em .8em;
+  margin-bottom: .2em;
+  width: 100%;
+}
+
+.cat>*:hover {
+  background: rgba(0, 0, 0, .1);
+}
+
+.sidebar-section>.active {
+  color: #fff;
+  background: #c1a7ff;
+}
+
+#cat-list .operations {
+  display: none;
+  float: right;
+}
+
+#cat-list > .item:hover .operations {
+  display: inline-block;
+}
+
+#cat-list .operations > button {
+  font-size: .6rem;
+  color: #333;
+}

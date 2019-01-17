@@ -1,5 +1,6 @@
-import c from './c';
+import cc from './c'
 
-let b = 1 + c;
+let msg = 'Yo.';
+let b = 100 + cc;
 
-export default b; //导啥都行
+export default b;

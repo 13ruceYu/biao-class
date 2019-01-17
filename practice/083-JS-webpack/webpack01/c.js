@@ -1,3 +1,4 @@
-let c = 1111;
+let msg = 'Yo.';
+let c = 2;
 
-export default c; //导啥都行
+export default c;

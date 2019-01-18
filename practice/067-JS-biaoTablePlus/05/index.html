@@ -1,0 +1,108 @@
+<style>
+  :root {
+    font-family: sans-serif, 'Microsoft YaHei';
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: .5em;
+  }
+
+  button {
+    padding: .5em;
+    border: 1px solid #000;
+    border-left: 0;
+  }
+
+  button:first-child {
+    border-left: 1px solid #000;
+  }
+
+  button:hover {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  tr.active {
+    background: cornflowerblue;
+  }
+</style>
+
+<body>
+  <table id="order-table">
+    <thead>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="./biaoTablePlus.js"></script>
+  <script>
+    let orderStruct = {
+      product: '产品',
+      oid: '订单号',
+      totalCost: '总费用',
+    };
+
+    let orders = [{
+        oid: '001',
+        product: '拖鞋',
+        totalCost: 70,
+      },
+      {
+        oid: '002',
+        product: '毛裤',
+        totalCost: 80,
+      },
+      {
+        oid: '003',
+        product: '枸杞',
+        totalCost: 90,
+      },
+    ];
+
+    biaoTable.boot(
+      '#order-table',
+      orderStruct,
+      orders, {
+        delete(tr, index) {
+          tr.remove();
+          orders[index] = null;
+        },
+        highlight(tr, index) {
+          let klass = tr.classList;
+          klass.contains('active') ?
+            klass.remove('active') :
+            klass.add('active');
+        },
+        up(tr, index) {
+          if (index === 0)
+            return;
+
+          let temp = orders[index - 1];
+          orders[index - 1] = orders[index];
+          orders[index] = temp;
+          biaoTable.render();
+        },
+        down(tr, index) {
+          if (index == orders.length - 1)
+            return;
+
+          let temp = orders[index + 1];
+          orders[index + 1] = orders[index];
+          orders[index] = temp;
+          biaoTable.render();
+        },
+        modify(tr, index) {
+          
+        }
+      });
+  </script>
+</body>

@@ -1,0 +1,136 @@
+<style>
+  :root {
+    font-family: sans-serif, "Microsoft YaHei";
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    border: 1px solid;
+    padding: 0.5em;
+  }
+
+  button {
+    padding: 0.5em;
+    border: 1px solid #000;
+    border-left: 0;
+    font-family: inherit;
+  }
+
+  button:first-child {
+    border-left: 1px solid #000;
+  }
+
+  button:hover {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  tr.active {
+    background: cornflowerblue;
+  }
+</style>
+
+<body>
+  <table id="order-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="./biaoTablePlus.js"></script>
+  <script>
+    let orderStruct = {
+      oid: "订单号",
+      product: "产品",
+      totalCost: "总费用"
+    };
+
+    let orders = [{
+        oid: "001",
+        product: "拖鞋",
+        totalCost: 70
+      },
+      {
+        oid: "002",
+        product: "毛裤",
+        totalCost: 80
+      },
+      {
+        oid: "003",
+        product: "枸杞",
+        totalCost: 90
+      }
+    ];
+
+    biaoTable.boot("#order-table", orderStruct, orders, [{
+        name: "删除",
+        class: "delete",
+        function: function (tr, index) {
+          tr.remove();
+          orders[index] = null;
+        }
+      },
+      {
+        name: "上移",
+        class: "up",
+        function: function (tr, index) {
+          if (index == 0) return;
+          let temp = orders[index - 1];
+          orders[index - 1] = orders[index];
+          orders[index] = temp;
+          biaoTable.render();
+        }
+      },
+      {
+        name: "下移",
+        class: "down",
+        function: function (tr, index) {
+          if (index == orders.length - 1) return;
+          let temp = orders[index + 1];
+          orders[index + 1] = orders[index];
+          orders[index] = temp;
+          biaoTable.render();
+        }
+      },
+      {
+        name: "更新",
+        class: "update",
+        function: function (tr, index) {
+          // 拿到当前 tr下所有的 td
+          let tds = tr.children;
+          // 拿到当前 tr里所有的数据
+          let vals = orders[index];
+          // 设定初始值
+          let i = 0;
+          for (let key in vals) {
+            // 拿到与数据相对应的 td
+            let td = tds[i];
+            // 在 td中插入输入组件，并设置input的默认值
+            td.innerHTML = `<input value="${vals[key]}">`;
+            let input = td.querySelector('input');
+            // 给当前 td添加事件
+            td.addEventListener('keyup', e => {
+              // 非提交验证
+              if (e.key != 'Enter')
+                return;
+              // 拿到更新后的值
+              let newVal = input.value;
+              // 将更新后的值写入源数据
+              vals[key] = newVal;
+              // 将 td 里的数据通过源数据重新渲染
+              td.innerText = `${newVal}`;
+              console.log(orders);
+            })
+            i++;
+          }
+        }
+      }
+    ]);
+  </script>
+</body>

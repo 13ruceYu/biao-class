@@ -1,0 +1,86 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: sans-serif, 'Microsoft YaHei';
+  font-size: 15px;
+}
+
+form input,
+form button,
+table button {
+  border: 1px solid;
+  padding: .5em;
+  font-size: inherit;
+  margin-bottom: .5em;
+  font-family: inherit;
+}
+
+form input,
+form button {
+  width: 100%;
+}
+
+button {
+  background: #fff;
+  color: #000;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+}
+
+main {
+  padding: .5em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40em;
+}
+
+.error-container {
+  font-size: 90%;
+  padding: .5em;
+  background: pink;
+  color: #c10;
+  margin-bottom: .5em;
+}
+
+input.error {
+  border: 2px solid #c10;
+  outline: 0;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: .5em;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+th {
+  border-width: 2px;
+  border-color: #888;
+}
+
+.text-right {
+  text-align: right;
+}
+
+:disabled {
+  background: rgba(0, 0, 0, .3);
+}
+
+table input {
+  width: 90%;
+  margin: 0;
+}

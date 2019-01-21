@@ -217,6 +217,7 @@
       rules[itArr[0]] = itArr[1];
     });
 
+    console.log(rules);
     return rules;
   }
 

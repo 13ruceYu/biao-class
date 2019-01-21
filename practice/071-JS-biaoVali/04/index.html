@@ -1,0 +1,72 @@
+<style>
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  :root {
+    font-family: sans-serif, 'Microsoft YaHei';
+    font-size: 15px;
+  }
+
+  input,
+  button {
+    border: 1px solid;
+    padding: 0.5em;
+    font-size: inherit;
+    margin-bottom: 0.5em;
+  }
+
+  form input,
+  form button {
+    width: 100%;
+    font-family: inherit;
+  }
+
+  button {
+    background: #000;
+    color: #fff;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  main {
+    padding: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+  }
+
+  .error {
+    margin: 0.2em 0;
+    color: #c10;
+  }
+</style>
+
+<body>
+  <main>
+    <nav><input id="search" type="search" data-rule="min:3|max:6"></nav>
+
+    <form>
+      <h2>Yo表单</h2>
+      <input data-rule="numeric|min:1|max:12" type="text" name="month" placeholder="month" value="13">
+      <input data-rule="numeric|min:1|max:7" type="text" name="week" placeholder="week" value="8">
+      <input data-rule="numeric" type="text" name="balance" placeholder="balance" value="a">
+      <input data-rule="numeric|min:0" type="text" name="age" placeholder="age" value="-1">
+      <input data-rule="username" type="text" name="username" placeholder="username" value="wh">
+      <input data-rule="phone" type="text" name="phone" placeholder="phone" value="5656">
+      <input data-rule="email" type="text" name="email" placeholder="email" value="yo@com">
+      <input data-rule="in:male,female" type="text" name="gender" placeholder="gender" value="homo">
+      <button type="submit">提交</button>
+    </form>
+  </main>
+
+  <script src="./biaoVali.js"></script>
+  <script src="./main.js"></script>
+  <script>
+    biaoVali.boot('form');
+  </script>
+</body>

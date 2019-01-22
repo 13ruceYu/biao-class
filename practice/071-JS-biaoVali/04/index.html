@@ -48,7 +48,9 @@
 
 <body>
   <main>
-    <nav><input id="search" type="search" data-rule="min:3|max:6"></nav>
+    <nav>
+      <input id="search" type="search" data-rule="min:3|max:6|numeric">
+    </nav>
 
     <form>
       <h2>Yo表单</h2>
@@ -68,5 +70,6 @@
   <script src="./main.js"></script>
   <script>
     biaoVali.boot('form');
+    biaoVali.boot('#search');
   </script>
 </body>

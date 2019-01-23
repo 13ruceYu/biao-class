@@ -1,0 +1,44 @@
+<h1>Yo</h1>
+
+<!-- <script src="http://unpkg.com/jquery"></script> -->
+<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+<script>
+  // 使用XMLHttpRequest
+  // let http = new XMLHttpRequest();
+  // http.open('get', 'https://api.github.com/search/users?q=biaoyansu');
+  // http.send();
+  // http.addEventListener('load', () => {
+  //   let data = JSON.parse(http.responseText);
+  //   console.log(data);
+  // })
+
+  // 使用 ES6 fetch promise
+  // fetch('https://api.github.com/search/users?q=biaoyansu')
+  //   .then(Response => {
+  //     return Response.json();
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //   });
+
+  // jQuery get
+  // $.get('https://api.github.com/search/users?q=biaoyansu')
+  //   .then(data => {
+  //     console.log(data);
+  //   });
+
+  // jQuery ajax
+  // $.ajax({
+  //   method: "get",
+  //   url: "https://api.github.com/search/users?q=biaoyansu"
+  // }).then(data => {
+  //   console.log(data);
+  // });
+
+  // axios
+  axios
+    .get("https://api.github.com/search/users?q=biaoyansu")
+    .then(data => {
+      console.log(data);
+    });
+</script>

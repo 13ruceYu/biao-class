@@ -1,0 +1,128 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: sans-serif, 'Microsofy YaHei';
+  font-size: 15px;
+  color: #333;
+}
+
+input,
+button {
+  border: 1px solid;
+  padding: .5em;
+  font-size: inherit;
+  margin-bottom: .5em;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+form input,
+form button {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+
+
+main {
+  padding: .5em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40em;
+}
+
+.error-container {
+  font-size: 90%;
+  padding: .5em;
+  background: pink;
+  color: #c10;
+  margin-bottom: .5em;
+}
+
+input.error {
+  border: 2px solid #c10;
+  outline: 0;
+}
+
+button {
+  background: #fff;
+  border: 1px solid #000;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: .5em;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+th {
+  border-width: 2px;
+  border-color: #888;
+}
+
+[hidden] {
+  display: none;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.item {
+  font-size: 0;
+  /* border: .5px solid #666; */
+  margin-bottom: 1rem;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+}
+
+.item>* {
+  display: inline-block;
+  font-size: 1rem;
+  vertical-align: top;
+}
+
+.item .avatar {
+  width: 12%;
+}
+
+.item .detail {
+  width: 88%;
+  padding-left: 1em;
+  color: #333;
+  padding: .5em 1em 0 1em;
+}
+
+.item a {
+  color: inherit;
+}
+
+.item .detail>* {
+  margin: .5em 0;
+  color: inherit;
+}
+
+.active {
+  background: #000000;
+  color: #fff;
+}
+
+.biao-page .page-list > button{
+  border-left-width: 0;
+}
+
+.biao-page .page-list > button:first-child {
+  border-left-width: 1px;
+}

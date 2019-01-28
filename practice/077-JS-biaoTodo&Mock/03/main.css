@@ -1,0 +1,24 @@
+:root {
+  background: #eee;
+  font-family: sans-serif, 'Microsoft YaHei';
+  color: #333;
+}
+
+button {
+  font-family: inherit;
+  background: #fff;
+  border: 1px solid #999;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.todo-item {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin-top: .8em;
+  padding: .5em;
+  box-shadow: 0 0 2px 2px #ddd;
+}

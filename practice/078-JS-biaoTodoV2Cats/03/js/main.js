@@ -1,0 +1,212 @@
+;
+(function () {
+
+  'use strict';
+
+  let todoForm = document.querySelector('.todo-form');
+  let todoInput = todoForm.querySelector('input');
+  let todoList = document.querySelector('.todo-list');
+
+  let catForm = document.querySelector('.cat-form');
+  let catInput = catForm.querySelector('input');
+  let catList = document.querySelector('.cat-list');
+  let addCat = document.getElementById('add-cat');
+
+  let currentTodoId = null;
+  let currentCatId = null;
+
+  boot();
+
+  function boot() {
+    readTodo();
+    readCat();
+    bindEvents();
+  };
+
+  function readTodo() {
+    api('todo/read', null, r => {
+      let data = r.data;
+      renderTodo(data);
+    })
+  }
+
+  function readCat() {
+    api('cat/read', null, r => {
+      let data = r.data;
+      renderCat(data);
+    })
+  }
+
+  function renderTodo(data) {
+    todoList.innerHTML = '';
+    data.forEach(it => {
+      let item = document.createElement('div');
+      item.classList.add('todo-item');
+      item.innerHTML = `
+      <div class="checkbox">
+        <input type="checkbox" ${it.completed ? 'checked' : ''}>
+      </div>
+      <div class="todo-title">
+        <span>${it.title}</span>
+      </div>
+      <div class="operations">
+        <button class="fill">更新</button>
+        <button class="delete">删除</button>
+      </div>
+      `;
+      todoList.appendChild(item);
+
+      let checkbox = item.querySelector('[type=checkbox]');
+      checkbox.addEventListener('change', e => {
+        api('todo/update', {
+          id: it.id,
+          completed: checkbox.checked,
+        })
+      })
+
+      let deleteBtn = item.querySelector('.delete');
+      deleteBtn.addEventListener('click', e => {
+        api('todo/delete', {
+          id: it.id
+        }, r => {
+          readTodo();
+        })
+      })
+
+      let fillBtn = item.querySelector('.fill');
+      fillBtn.addEventListener('click', e => {
+        todoInput.value = it.title;
+        currentTodoId = it.id;
+      })
+    });
+  }
+
+  function renderCat(data) {
+    catList.innerHTML = '';
+    data.forEach(it => {
+      let item = document.createElement('div');
+      item.classList.add('cat-item');
+      item.innerHTML = `
+      <span>${it.name}</span>
+      <span class="operations">
+        <button class="fill">更新</button>
+        <button class="delete">删除</button>
+      </span>
+      `;
+      catList.appendChild(item);
+
+      let deleteBtn = item.querySelector('.delete');
+      deleteBtn.addEventListener('click', e => {
+        api('cat/delete', {
+          id: it.id
+        }, r => {
+          readCat();
+        })
+      })
+
+      let fillBtn = item.querySelector('.fill');
+      fillBtn.addEventListener('click', e => {
+        setCatFormVisible(true);
+        catInput.value = it.name;
+        currentCatId = it.id;
+      })
+    });
+  }
+
+  function bindEvents() {
+    bindTodoSubmit();
+    bindToggleCatForm();
+    bindCatFormClick();
+    bindCatSubmit();
+  };
+
+  function bindTodoSubmit() {
+    todoForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      let title = todoInput.value;
+      if (currentTodoId) {
+        updateTodo(currentTodoId);
+      } else
+        createTodo({
+          title
+        });
+    })
+  }
+
+  function bindToggleCatForm() {
+    addCat.addEventListener('click', e => {
+      setCatFormVisible(true);
+    })
+  };
+
+  function bindCatFormClick() {
+    catForm.addEventListener('click', e => {
+      if (e.target.classList.contains('cancel')) {
+        setCatFormVisible(false);
+      }
+    })
+  }
+
+  function setCatFormVisible(visible) {
+    catForm.hidden = !visible;
+    addCat.hidden = visible;
+
+    if (!catForm.hidden)
+      catInput.focus();
+  }
+
+  function bindCatSubmit() {
+    catForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      let name = catInput.value;
+      if (currentCatId) {
+        updateCat(currentCatId);
+      } else
+        createCat({
+          name
+        });
+
+    })
+  };
+
+  function updateTodo(id) {
+    api('todo/update', {
+      id,
+      title: todoInput.value,
+    }, r => {
+      readTodo();
+      currentTodoId = null;
+      todoForm.reset();
+    })
+  }
+
+  function updateCat(id) {
+    api('cat/update', {
+      id,
+      name: catInput.value,
+    }, r => {
+      readCat();
+      currentCatId = null;
+      catForm.reset();
+      setCatFormVisible(false);
+    })
+  }
+
+  function createTodo(row) {
+    api('todo/create', row, r => {
+      if (r.success)
+        readTodo();
+    })
+  }
+
+  function createCat(row) {
+    api('cat/create', row, r => {
+      if (r.success)
+        readCat();
+      catForm.reset();
+    })
+  }
+
+})();

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>biaoTodo</title>
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <div class="container-sm">
+    <h1>BiaoTodo</h1>
+    <div class="todo-container">
+      <div class="todo-left">
+        <div class="cat-list">
+
+        </div>
+        <div>
+          <button type="button" id="add-cat">+</button>
+          <form class="cat-form" hidden>
+            <input type="search">
+            <div class="btn-group">
+              <button type="submit">确定</button>
+              <button class="cancel" type="button">取消</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="todo-right">
+        <form class="todo-form">
+          <input type="text" name="todo-item">
+          <button type="submit" hidden></button>
+        </form>
+    
+        <div class="todo-list">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/main.js"></script>
+  
+</body>
+</html>

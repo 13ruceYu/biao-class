@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif, 'Microsoft YaHei';
+}
+
+:root {
+  color: #333;
+}
+
+body {
+  margin: 0;
+}
+
+form button,
+form input {
+  width: 100%;
+  padding: .5em;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.container,
+.container-sm {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: .5em 1em;
+}
+
+.container-sm {
+  max-width: 40em;
+}
+
+
+

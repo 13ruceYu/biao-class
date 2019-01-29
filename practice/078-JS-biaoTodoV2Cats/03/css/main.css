@@ -1,0 +1,69 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: .5em;
+  margin-top: 1em;
+  box-shadow: 0 0 4px #999;
+}
+
+.checkbox input {
+  margin-top: .35em;
+}
+
+button {
+  background: #fff;
+  border: 1px solid #555;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.todo-left {
+  margin-right: 1em;
+}
+
+.todo-right {
+  flex-grow: 2;
+}
+
+.todo-left {
+  width: 24%;
+}
+
+.cat-list > * {
+  padding: .2em;
+}
+
+.cat-form input,
+.cat-form button,
+#add-cat {
+  padding: .3em;
+  margin-bottom: .3em;
+}
+
+.active {
+  background: #999;
+  color: #fff;
+}
+
+#add-cat {
+  width: 100%;
+}
+
+.cat-item {
+  position: relative;
+}
+
+.cat-item .operations {
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+.cat-item:hover .operations {
+  display: inline-block;
+}
+

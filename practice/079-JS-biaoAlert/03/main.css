@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif, 'Microsoft YaHei';
+}
+
+body {
+  margin: 0;
+}
+
+.alert-container {
+  position: absolute;
+  right: 0;
+}
+
+.biao-alert {
+  margin-bottom: .5em;
+}
+
+.inner {
+  background: #aaa;
+  padding: .5em .6em;
+  margin: .5em;
+  border-radius: .2em;
+}
+
+.inner:hover {
+  cursor: pointer;
+}
+
+.inner .title {
+  font-weight: bold;
+  margin-bottom: .2em;
+}
+
+.info {
+  background: royalblue;
+  color: #fff;
+}
+
+.warn {
+  color: #fff;
+  background: orange;
+}
+
+.danger {
+  color: #fff;
+  background: darkred;
+}
+
+.success {
+  color: #fff;
+  background: green;
+}

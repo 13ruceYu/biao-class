@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>biaoAlert</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+
+  <script src="./biaoAlert.js"></script>
+  <script>
+    biaoAlert({
+      title: 'yo.',
+      desc: 'have a good day',
+      type: 'success',
+      timeout: false,
+    })
+
+    biaoAlert({
+      title: '余额不足',
+      desc: '冲冲冲',
+      type: 'info',
+      timeout: false,
+      onClick(config) {
+        document.body.appendChild(config.el);
+      }
+    })
+  </script>
+</body>
+
+</html>

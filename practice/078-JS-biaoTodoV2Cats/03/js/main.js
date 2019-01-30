@@ -33,7 +33,6 @@
     }
     api('todo/read', params, r => {
       let data = r.data || [];
-      console.log(data);
       renderTodo(data);
     })
   }

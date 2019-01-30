@@ -12,7 +12,8 @@
   let catList = document.querySelector('.cat-list');
   let addCat = document.getElementById('add-cat');
 
-  let currentTodoId = null;
+  let updatingTodoId = null;
+  let updatingCatId = null;
   let currentCatId = null;
 
   boot();
@@ -23,16 +24,23 @@
     bindEvents();
   };
 
-  function readTodo() {
-    api('todo/read', null, r => {
-      let data = r.data;
+  function readTodo(params) {
+    params = params || {};
+    params.where = {
+      and: {
+        cat_id: currentCatId,
+      }
+    }
+    api('todo/read', params, r => {
+      let data = r.data || [];
+      console.log(data);
       renderTodo(data);
     })
   }
 
   function readCat() {
     api('cat/read', null, r => {
-      let data = r.data;
+      let data = r.data || [];
       renderCat(data);
     })
   }
@@ -76,7 +84,7 @@
       let fillBtn = item.querySelector('.fill');
       fillBtn.addEventListener('click', e => {
         todoInput.value = it.title;
-        currentTodoId = it.id;
+        updatingTodoId = it.id;
       })
     });
   }
@@ -87,13 +95,14 @@
       let item = document.createElement('div');
       item.classList.add('cat-item');
       item.innerHTML = `
-      <span>${it.name}</span>
+      <span class="name">${it.name}</span>
       <span class="operations">
         <button class="fill">更新</button>
         <button class="delete">删除</button>
       </span>
       `;
       catList.appendChild(item);
+      item.id = it.id;
 
       let deleteBtn = item.querySelector('.delete');
       deleteBtn.addEventListener('click', e => {
@@ -108,8 +117,31 @@
       fillBtn.addEventListener('click', e => {
         setCatFormVisible(true);
         catInput.value = it.name;
-        currentCatId = it.id;
+        updatingCatId = it.id;
       })
+
+      let nameBtn = item.querySelector('.name');
+      nameBtn.addEventListener('click', e => {
+        highlightCurrentCat(item.id);
+        currentCatId = it.id;
+        let where = {
+          and: {
+            cat_id: it.id,
+          }
+        }
+        readTodo({
+          where
+        });
+      })
+    });
+  }
+
+  function highlightCurrentCat(currentCatId) {
+    let catItems = catList.querySelectorAll('.cat-item');
+    catItems.forEach(it => {
+      if (it.id == currentCatId)
+        it.classList.add('active');
+      else it.classList.remove('active');
     });
   }
 
@@ -125,8 +157,8 @@
       e.preventDefault();
 
       let title = todoInput.value;
-      if (currentTodoId) {
-        updateTodo(currentTodoId);
+      if (updatingTodoId) {
+        updateTodo(updatingTodoId);
       } else
         createTodo({
           title
@@ -161,8 +193,8 @@
       e.preventDefault();
 
       let name = catInput.value;
-      if (currentCatId) {
-        updateCat(currentCatId);
+      if (updatingCatId) {
+        updateCat(updatingCatId);
       } else
         createCat({
           name
@@ -177,7 +209,7 @@
       title: todoInput.value,
     }, r => {
       readTodo();
-      currentTodoId = null;
+      updatingTodoId = null;
       todoForm.reset();
     })
   }
@@ -188,16 +220,20 @@
       name: catInput.value,
     }, r => {
       readCat();
-      currentCatId = null;
+      updatingCatId = null;
       catForm.reset();
       setCatFormVisible(false);
     })
   }
 
   function createTodo(row) {
+    if (currentCatId)
+      row.cat_id = currentCatId;
     api('todo/create', row, r => {
-      if (r.success)
+      if (r.success) {
         readTodo();
+        todoForm.reset();
+      }
     })
   }
 
@@ -206,6 +242,7 @@
       if (r.success)
         readCat();
       catForm.reset();
+      setCatFormVisible(false);
     })
   }
 

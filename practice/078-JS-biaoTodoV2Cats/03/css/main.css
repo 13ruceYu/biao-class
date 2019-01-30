@@ -44,11 +44,6 @@ button {
   margin-bottom: .3em;
 }
 
-.active {
-  background: #999;
-  color: #fff;
-}
-
 #add-cat {
   width: 100%;
 }
@@ -63,7 +58,16 @@ button {
   display: none;
 }
 
+.cat-item:hover {
+  cursor: default;
+  background: #ccc;
+}
+
 .cat-item:hover .operations {
   display: inline-block;
 }
 
+.active {
+  background: #999;
+  color: #fff;
+}

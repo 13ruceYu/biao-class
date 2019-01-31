@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>biaoAlertOOP</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+  <script src="./biaoAlertOOP.js"></script>
+  <script>
+
+    new Alert({
+      title: 'yo.',
+      desc: 'have a nice day.',
+      type: 'warn',
+      timeout: false,
+      onClick(config) {
+        document.body.appendChild(config.alert);
+      },
+      onOpen(config) {
+        console.log('opened');
+      },
+      onClose(config) {
+        console.log('closed');
+      }
+    })
+
+    new Alert({
+      title: 'biu',
+    })
+  </script>
+</body>
+
+</html>

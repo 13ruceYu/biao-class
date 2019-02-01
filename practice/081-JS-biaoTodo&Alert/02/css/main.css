@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif, 'Microsoft YaHei';
+  color: #222222;
+}
+
+body {
+  margin: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input[type="text"],
+textarea,
+.cat button {
+  width: 100%;
+  margin-bottom: .5em;
+}
+
+textarea {
+  margin-top: .5em;
+}
+
+input[type="text"] {
+  padding: 0.4em;
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}
+
+.container,
+.container-sm {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: .5em;
+}
+
+.container-sm {
+  max-width: 40em;
+}
+
+.cat-todo {
+  display: flex;
+}
+
+.cat {
+  width: 20%;
+  padding: 0 .5em 0 0;
+}
+
+.cat-list {
+  margin-bottom: .3em;
+}
+
+.cat-item {
+  padding: .3em;
+  position: relative;
+}
+
+.cat-operation {
+  position: absolute;
+  top: .35em;
+  right: 0;
+  display: none;
+}
+
+.cat-item:hover .cat-operation {
+  display: block;
+}
+
+.cat-operation button {
+  width: auto;
+  font-size: .7em;
+  margin: 0;
+  padding: 0;
+}
+
+.cat-item:hover {
+  background: #bbb;
+  cursor: default;
+}
+
+.todo {
+  width: 80%;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 2px #999;
+  padding: 0.5em;
+  margin-top: .8em;
+}
+
+.todo-form {
+  position: relative;
+}
+
+#more-trigger {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border-left: 1px solid #999;
+  padding-left: .4em;
+  font-size: .9em;
+  cursor: pointer;
+  color: #666;
+}
+
+.active {
+  background: #999;
+}
+
+
+
+

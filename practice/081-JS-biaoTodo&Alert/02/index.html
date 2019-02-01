@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BiaoTodo</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <div class="container-sm">
+    <h1>biaoTodo</h1>
+    <div class="cat-todo">
+      <div class="left cat">
+
+        <div class="cat-list">
+        </div>
+
+        <div>
+          <button class="add-cat">+</button>
+          <form class="cat-form" hidden>
+            <input type="text" name="name">
+            <button type="submit">确定</button>
+            <button type="button" class="cancel-cat">取消</button>
+          </form>
+        </div>
+
+      </div>
+      <div class="right todo">
+
+        <div>
+          <form class="todo-form">
+            <input type="text" name="title">
+            <div id="more-trigger">展开</div>
+            <div id="more" hidden>
+              <label>
+                <span class="title">提醒时间：</span>
+                <span class="control">
+                  <input type="date" name="notifyDate">
+                  <input type="time" name="notifyTime">
+                </span>
+              </label>
+              <label>
+                <br>
+                <span class="title">描述：</span>
+                <textarea name="todoDesc"></textarea>
+              </label>
+            </div>
+            <button type="submit" hidden>提交</button>
+          </form>
+        </div>
+
+        <div class="todo-list">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./js/api.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

@@ -12,6 +12,7 @@
   let more = document.getElementById('more');
   let moreTrigger = document.getElementById('more-trigger');
   let updatingTodoId = null;
+  let $todoList;
 
   let catForm = document.querySelector('.cat-form');
   let catInput = catForm.querySelector('[name=name]');
@@ -20,6 +21,8 @@
   let cancelCat = document.querySelector('.cancel-cat');
   let currentCatId = null;
   let updatingCatId = null;
+
+  let sound = document.getElementById('sound');
 
   boot();
 
@@ -32,8 +35,9 @@
   function readTodo(filter) {
     filter = filter || {};
     api('todo/read', filter, r => {
-      let data = r.data || [];
-      renderTodo(data);
+      $todoList = r.data || [];
+      renderTodo($todoList);
+      notify();
       todoForm.reset();
     })
   }
@@ -69,6 +73,8 @@
       catItem.addEventListener('click', e => {
         let klass = e.target.classList;
         if (klass.contains('delete')) {
+          if (!confirm('确认删除'))
+            return;
           api('cat/delete', {
             id: it.id
           }, r => {
@@ -136,6 +142,8 @@
 
       let deleteBtn = todoItem.querySelector('.delete');
       deleteBtn.addEventListener('click', e => {
+        if (!confirm('确认删除'))
+          return;
         api('todo/delete', {
           id: it.id
         }, r => {
@@ -147,6 +155,14 @@
       fillBtn.addEventListener('click', e => {
         updatingTodoId = it.id;
         todoInput.value = it.title;
+        if (it.notified_at == null)
+          it.notified_at = "2019-02-02 00:30:00";
+        let dateArr = it.notified_at.split(' ');
+        notifyDate.value = dateArr[0];
+        notifyTime.value = dateArr[1];
+        todoDesc.value = it.desc;
+
+        setMoreVisible(true);
       })
     });
   }
@@ -156,6 +172,51 @@
     bindCatSubmit();
     bindCatFormOpen();
     bindCatFormClose();
+    bindClickTodoForm();
+  }
+
+  function prepare() {
+    let d = new Date;
+    let arr = toLocalIsoString(d).split('T');
+    let time = arr[1].split('.')[0];
+    let timeArr = time.split(':');
+    notifyDate.value = arr[0];
+    notifyTime.value = timeArr[0] + ':' + timeArr[1];
+  }
+
+  function toLocalIsoString(date) {
+    let d = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return d.toISOString();
+  }
+
+  function cancelCurrentTime() {
+    notifyDate.value = '';
+    notifyTime.value = '';
+  }
+
+  function bindClickTodoForm() {
+    todoForm.addEventListener('click', e => {
+      let target = e.target;
+
+      if (target == moreTrigger) {
+        toggleMore();
+      }
+    })
+  }
+
+  function toggleMore() {
+    setMoreVisible(more.hidden);
+  }
+
+  function setMoreVisible(visible) {
+    more.hidden = !visible;
+    if (more.hidden) {
+      moreTrigger.innerText = '展开';
+      cancelCurrentTime();
+    } else {
+      moreTrigger.innerText = '收起';
+      prepare();
+    }
   }
 
   function bindCatFormClose() {
@@ -202,22 +263,36 @@
     todoForm.addEventListener('submit', e => {
       e.preventDefault();
 
-      let title = todoInput.value;
+      let row = {
+        title: todoInput.value,
+        notified_at: notifyDate.value + ' ' + normalizeTime(notifyTime.value),
+        desc: todoDesc.value,
+      }
+
+      if (!row.title)
+        return;
+
 
       if (updatingTodoId) {
-        api('todo/update', {
-          id: updatingTodoId,
-          title: todoInput.value,
-        }, r => {
-          readTodo();
-          updatingTodoId = null;
-          setCatFormVisible(false);
-        })
+        row.id = updatingTodoId;
+        api('todo/update',
+          row, r => {
+            readTodo();
+            updatingTodoId = null;
+            setCatFormVisible(false);
+            setMoreVisible(false);
+          })
       } else
-        createTodo({
-          title
-        });
+        createTodo(row);
     })
+  }
+
+  function normalizeTime(time) {
+    if (time.length <= 0)
+      return time = '';
+    if (time.length <= 5)
+      return time += ':00';
+    return time;
   }
 
   function createTodo(row) {
@@ -225,6 +300,7 @@
       row.cat_id = currentCatId;
     api('todo/create', row, r => {
       readTodo();
+      setMoreVisible(false);
     })
   }
 
@@ -232,6 +308,34 @@
     api('cat/create', row, r => {
       readCat();
     })
+  }
+
+  function notify() {
+    let now = Date.now();
+
+    setInterval(() => {
+      $todoList.forEach(it => {
+        let d = new Date(it.notified_at);
+        let then = d.getTime();
+        if (!then || it.completed || it.notified)
+          return;
+        if (then - now >= 10 * 60 * 1000)
+          return;
+
+        new Alert(it.title);
+        playSound();
+        it.notified = true;
+        api('todo/update', {
+          id: it.id,
+          notified: it.notified
+        })
+      });
+    }, 1000);
+
+  }
+
+  function playSound() {
+    sound.play();
   }
 
 })();

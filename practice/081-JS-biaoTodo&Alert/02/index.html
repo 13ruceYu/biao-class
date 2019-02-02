@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>BiaoTodo</title>
+  <link rel="stylesheet" href="./css/biaoAlert.css">
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -47,8 +48,8 @@
                 <span class="title">描述：</span>
                 <textarea name="todoDesc"></textarea>
               </label>
+              <button type="submit" class="todo-submit">提交</button>
             </div>
-            <button type="submit" hidden>提交</button>
           </form>
         </div>
 
@@ -58,9 +59,11 @@
       </div>
     </div>
   </div>
+  <audio id="sound" src="./audio/notify.mp3" hidden></audio>
 
 
   <script src="./js/api.js"></script>
+  <script src="./js/biaoAlert.js"></script>
   <script src="./js/main.js"></script>
 </body>
 

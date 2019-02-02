@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: sans-serif, 'Microsoft YaHei';
-  color: #222222;
+  /* color: #222222; */
 }
 
 body {
@@ -113,8 +113,10 @@ input[type="checkbox"] {
 
 .active {
   background: #999;
+  color: #fff;
 }
 
-
-
-
+.todo-submit {
+  width: 100%;
+  padding: 0.3em;
+}

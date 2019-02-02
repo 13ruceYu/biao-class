@@ -7,8 +7,8 @@
     constructor({
       title,
       desc,
-      type,
-      timeout,
+      type = 'info',
+      timeout = 3000,
       onClick,
       onOpen,
       onClose
@@ -20,12 +20,13 @@
       this.onClick = onClick;
       this.onOpen = onOpen;
       this.onClose = onClose;
-
+      
       this.alertContainer = null;
-
+      
       this.prepareEnv();
       this.render();
       this.show();
+      this.alertClose();
       this.bindAlertClick();
     }
 
@@ -59,7 +60,7 @@
       if (!this.timeout)
         return;
       setTimeout(() => {
-        alertClose(this);
+        this.alertClose(this);
       }, this.timeout);
     }
 

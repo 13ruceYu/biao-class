@@ -311,15 +311,15 @@
   }
 
   function notify() {
-    let now = Date.now();
-
+    
     setInterval(() => {
+      let now = Date.now();
       $todoList.forEach(it => {
         let d = new Date(it.notified_at);
         let then = d.getTime();
         if (!then || it.completed || it.notified)
           return;
-        if (then - now >= 10 * 60 * 1000)
+        if (now < then - 10 * 60 * 1000)
           return;
 
         new Alert(it.title);

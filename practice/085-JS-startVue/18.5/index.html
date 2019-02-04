@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>18.5</title>
+  <style>
+    * {
+      font-family: sans-serif, 'Microsoft YaHei';
+      font-size: 1.2em;
+    }
+
+    .active {
+      background: tomato;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="name">
+    <pre>{{name}}</pre>
+
+    <!-- v-model指令及其修饰符（就系说 v-model 指令有他自己的小功能，通过修饰符来使用） -->
+    <input type="text" v-model.lazy="name2">
+    <pre>{{name2}}</pre>
+
+    <input type="text" v-model.trim="name3">
+    <pre>{{name3}}</pre>
+
+    <input type="text" v-model.number="price">
+    <pre>{{price}}</pre>
+  </div>
+
+
+
+  <script src="../lib/vue.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

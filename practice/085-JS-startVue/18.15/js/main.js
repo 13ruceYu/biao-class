@@ -11,7 +11,7 @@ new Vue({
   el: '#app',
   data: {
     card1: {
-      pinned:false,
+      pinned:true,
     },
     card2: {
       pinned:false,

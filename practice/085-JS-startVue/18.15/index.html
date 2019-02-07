@@ -31,11 +31,11 @@
 
 <body>
   <div id="app">
-    <div v-pin="pinned" class="card">
+    <div v-pin="card1.pinned=!card1.pinned" class="card">
       <button @click="">钉住/取消</button>
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </div>
-    <div v-pin="false" class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+    <div v-pin="card2.pinned" class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, obcaecati velit harum quam et beatae, sunt,
       doloribus maxime molestias cumque cupiditate. Saepe quos magnam ad tempora, praesentium nesciunt consequatur

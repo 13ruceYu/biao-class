@@ -1,0 +1,11 @@
+form {
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
+form input,
+form button[type=submit],
+form textarea {
+  width: 100%;
+}

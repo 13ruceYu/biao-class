@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import './css/global.css';
+
 import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
@@ -22,4 +24,7 @@ export default {
 </script>
 
 <style>
+  nav>* {
+    padding: .2em;
+  }
 </style>

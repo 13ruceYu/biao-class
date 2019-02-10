@@ -1,4 +1,5 @@
-form {
+form,
+table {
   max-width: 600px;
   display: block;
   margin: 0 auto;
@@ -6,6 +7,19 @@ form {
 
 form input,
 form button[type=submit],
-form textarea {
+form textarea{
   width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td:last-of-type,
+th:last-of-type {
+  text-align: right;
 }

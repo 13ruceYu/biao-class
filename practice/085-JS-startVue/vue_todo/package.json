@@ -1,5 +1,5 @@
 {
-  "name": "vue_crash_todolist",
+  "name": "vue_todo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "uuid": "^3.3.2",
     "vue": "^2.5.22",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",

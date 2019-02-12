@@ -1,51 +1,34 @@
 <template>
   <div id="app">
-    <Todos v-bind:todos="todos" />
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
-  import Todos from './components/Todos';
-
-  export default {
-    name: "app",
-    components: {
-      Todos,
-    },
-    data() {
-      return {
-        todos: [
-          {
-            id:1,
-            title: 'Todo One',
-            completed: false,
-          },
-          {
-            id:2,
-            title: 'Todo Two',
-            completed: true,
-          },
-          {
-            id:3,
-            title: 'Todo Three',
-            completed: false,
-          },
-        ]
-      }
-    },
-  };
-</script>
-
 <style>
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
-  body {
-    font-family: Arial, Helvetica, sans-serif, 'Microsoft YaHei';
-  }
+body {
+  font-family: Arial, Helvetica, sans-serif, "Microsoft YaHei";
+}
 
+.btn {
+  display: inline-block;
+  background: #555;
+  border: none;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+}
 
+.btn:hover {
+  background: #666;
+}
 </style>

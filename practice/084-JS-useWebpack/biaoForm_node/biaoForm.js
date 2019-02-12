@@ -1,21 +1,17 @@
-'use strict';
-
 let form;
 
 // 将biaoForm暴露出去，否则别的文件访问不到
 function boot(selector, onSubmit) {
   form = document.querySelector(selector);
-
+  return {
+    getData, // 相当于 getData: getData
+    setData, // 相当于 setData: setData
+  };
   form.addEventListener('submit', e => {
     e.preventDefault();
     onSubmit(getData());
     form.reset();
   });
-
-  return {
-    getData, // 相当于 getData: getData
-    setData, // 相当于 setData: setData
-  };
 };
 
 /**

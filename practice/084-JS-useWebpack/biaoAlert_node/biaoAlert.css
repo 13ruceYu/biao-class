@@ -1,0 +1,50 @@
+.biao-alert-container {
+  position: fixed;
+  font-family: sans-serif, 'Microsoft YaHei';
+  right: 1em;
+  top: 1em;
+}
+
+.biao-alert {
+  margin-bottom: .2em;
+}
+
+.biao-alert .inner {
+  background: #555;
+  color: #fff;
+  padding: .4em .5em;
+  border-radius: .3em;
+
+}
+
+.biao-alert .info {
+  background: royalblue;
+}
+
+.biao-alert .warn {
+  background: orange;
+}
+
+.biao-alert .danger {
+  background: darkred;
+}
+
+.biao-alert .success {
+  background: green;
+}
+
+.biao-alert .title {
+  font-weight: bold;
+}
+
+.biao-alert .desc {
+  font-size: .9em;
+}
+
+.biao-alert .inner > * {
+  margin: .2em;
+}
+
+.biao-alert .inner {
+  cursor: pointer;
+}

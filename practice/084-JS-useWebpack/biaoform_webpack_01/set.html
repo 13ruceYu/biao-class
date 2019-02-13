@@ -1,0 +1,42 @@
+<style>
+  input {
+    width: 100%;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: auto;
+  }
+</style>
+
+<form id="main-form">
+  <input type="text" name="name" placeholder="姓名">
+  <input type="number" name="age" placeholder="年龄">
+  <input type="email" name="email" placeholder="邮箱">
+  <input type="date" name="birthday" placeholder="生日">
+  <div>
+    性别
+    <label>
+      男<input type="radio" name="gender" value="male">
+    </label>
+    <label>
+      女<input type="radio" name="gender" value="female">
+    </label>
+  </div>
+  <div>
+    取向
+    <label>
+      男 <input type="checkbox" name="orientation" value="male">
+    </label>
+    <label>
+      女 <input type="checkbox" name="orientation" value="female">
+    </label>
+    <label>
+      车 <input type="checkbox" name="orientation" value="car">
+    </label>
+  </div>
+  <input type="number" name="balance" placeholder="余额">
+  <button type="submit">提交</button>
+</form>
+
+<script src="./dist/set.bundle.js"></script>

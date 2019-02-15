@@ -1,16 +1,12 @@
 const Html = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 
-module.exports = {
+module.exports = merge(require('./webpack.common.js'), {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: './index.js',
-  output: {
-    filename: 'bundle.js',
-    path: __dirname + '/dist',
-  },
   plugins: [
     new Html({
       template: './tpl.html',
     }),
   ]
-}
+})

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <label>
+      male <input v-model="gender" value="male" type="radio">
+    </label>
+    <label>
+      female <input v-model="gender" value="female" type="radio">
+    </label>
+    <br>
+    {{ gender }}
+  </div>
+
+  <div id="app2">
+    <label>
+      male <input type="checkbox" v-model="sex" value="male">
+    </label>
+    <label>
+      female <input type="checkbox" v-model="sex" value="female">
+    </label>
+    {{ sex }}
+  </div>
+
+  <div id="app3">
+    <textarea v-model="something"></textarea><br>
+    {{something}}
+  </div>
+
+  <div id="app4">
+    <h4>你来自哪里？</h4>
+    <select name="" id="" v-model="from">
+      <option value="1">王家沟</option>
+      <option value="2">李家沟</option>
+      <option value="3">徐家沟</option>
+    </select>
+    {{ from }}
+
+    <h4>你要去哪里？</h4>
+    <select name="" id="" multiple v-model="dest">
+      <option value="1">王家沟</option>
+      <option value="2">钱家沟</option>
+      <option value="3">孙家沟</option>
+      <option value="4">李家沟</option>
+    </select>
+    {{ dest }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        gender: 'male',
+      }
+    })
+
+    var app2 = new Vue({
+      el: '#app2',
+      data: {
+        sex: []
+      }
+    })
+
+    var app3 = new Vue({
+      el: '#app3',
+      data: {
+        something: 'lorem asdfjlfskjdfsldfc sdflsdkjfi fsdfskldj fsdfksjd fsdfksjdi safsldjfsjlk sdkjfkjkjs sdfksjdkfalseis sdfasidfej asfkaljlsdkjf '
+      }
+    })
+
+    var app4 = new Vue({
+      el: '#app4',
+      data: {
+        from: '3',
+        dest: []
+      }
+    })
+  </script>
+</body>
+
+</html>

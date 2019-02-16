@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button v-on:click="onClick" v-on="{mouseenter: onEnter, mouseleave: onLeave}">touch me</button>
+    <form v-on:submit.prevent="onSubmit">
+      <input type="text">
+      <button>submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      methods: {
+        onClick() {
+          console.log('clicked');
+        },
+        onEnter() {
+          console.log('entered');
+        },
+        onLeave() {
+          console.log('leaved');
+        },
+        onSubmit() {
+          console.log('submitted');
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

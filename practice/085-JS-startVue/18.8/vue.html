@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Compute Props</title>
+</head>
+
+<body>
+  <div id="app1">
+    <table border="1px">
+      <thead>
+        <th>subject</th>
+        <th>score</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Math</td>
+          <td><input type="text" v-model.number="math"></td>
+        </tr>
+        <tr>
+          <td>English</td>
+          <td><input type="text" v-model.number="english"></td>
+        </tr>
+        <tr>
+          <td>Physical</td>
+          <td><input type="text" v-model.number="physical"></td>
+        </tr>
+        <tr>
+          <td>Sum</td>
+          <td>{{ sum }}</td>
+        </tr>
+        <tr>
+          <td>GPA</td>
+          <td>{{ gpa }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        math: 59,
+        english: 59.5,
+        physical: 59.99,
+      },
+      computed: {
+        sum() {
+          return this.math + this.english + this.physical;
+        },
+        gpa() {
+          return Math.round(this.sum / 3);
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

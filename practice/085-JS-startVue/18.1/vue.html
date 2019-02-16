@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <input type="text" v-model="name">
+      <span v-show="name">你的名字是：{{name}}</span>
+    </div>
+    <div>
+      <input type="text" v-model="age">
+      <span v-show="age">你的年龄是：{{age}}</span>
+    </div>
+    <div>
+      <input type="text" v-model="sex">
+      <span v-show="sex">你的性别是：{{sex}}</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: 'whh',
+        age: null,
+        sex: null,
+      }
+    })
+  </script>
+</body>
+
+</html>

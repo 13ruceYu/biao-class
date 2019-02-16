@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app1">
+    <input type="text" v-model="something">
+    {{something}}
+  </div>
+
+  <div id="app2">
+    <label>
+      male<input type="radio" v-model="gender" id="" value="male">
+    </label>
+    <label>
+      female<input type="radio" v-model="gender" id="" value="female">
+    </label>
+    {{gender}}
+  </div>
+
+  <div id="app3">
+    <label>
+      male<input type="checkbox" v-model="sex" value="male">
+    </label>
+    <label>
+      female<input type="checkbox" v-model="sex" value="female">
+    </label>
+    <label>
+      others <input type="checkbox" v-model="sex" value="others">
+    </label>
+    {{sex}}
+  </div>
+
+  <div id="app4">
+    <textarea v-model="artile">
+      loewm
+    </textarea>
+    {{artile}}
+  </div>
+
+  <div id="app5">
+    <select v-model="opts">
+      <option value="1">虾米村</option>
+      <option value="2">小鱼村</option>
+      <option value="3">大鱼村</option>
+    </select>
+    {{opts}}
+  </div>
+
+  <div id="app6">
+    <select multiple v-model="opts">
+      <option value="1">虾米村</option>
+      <option value="2">小鱼村</option>
+      <option value="3">大鱼村</option>
+    </select>
+    {{opts}}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        something: null,
+      }
+    })
+
+    var app2 = new Vue({
+      el: '#app2',
+      data: {
+        gender: null,
+      }
+    })
+
+    var app3 = new Vue({
+      el: '#app3',
+      data: {
+        sex: []
+      }
+    })
+
+    var app4 = new Vue({
+      el: '#app4',
+      data: {
+        artile: 'nll',
+      }
+    })
+
+    var app5 = new Vue({
+      el: '#app5',
+      data: {
+        opts: []
+      }
+    })
+
+    var app6 = new Vue({
+      el: '#app6',
+      data: {
+        opts: []
+      }
+    })
+  </script>
+</body>
+
+</html>

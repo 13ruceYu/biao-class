@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Component</title>
+</head>
+
+<body>
+  <div id="app1">
+    <alert></alert>
+    <local-component></local-component>
+  </div>
+
+  <div id="app2">
+    <local-component2></local-component2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('alert', {
+      template: '<button @click="on_click">alert</button>',
+      methods: {
+        on_click() {
+          alert('global component')
+        }
+      },
+    })
+
+    var app1 = new Vue({
+      el: '#app1',
+      components: {
+        'local-component': {
+          template: '<button @click="on_click">local</button>',
+          methods: {
+            on_click() {
+              alert('local component')
+            }
+          },
+        }
+      }
+    })
+
+    var local2 = {
+      template: '<button @click="on_click">local2</button>',
+      methods: {
+        on_click() {
+          alert('component2');
+        }
+      },
+    }
+
+    var app2 = new Vue({
+      el: '#app2',
+      components: {
+        'local-component2': local2,
+      }
+    })
+  </script>
+</body>
+
+</html>

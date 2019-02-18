@@ -10,16 +10,40 @@
 
 <body>
   <div id="app">
-
+    <div>
+      <input type="text" v-model="length">
+      {{ length | meter }}
+    </div>
+    <hr>
+    <div>
+      <input type="text" v-model="price">
+      {{ price | currency('$') }}
+    </div>
   </div>
-  
-  
+
+
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    Vue.filter('meter', (val, unit) => {
+      val = val || 0;
+      unit = unit || 'mm'
+      return val + unit;
+    })
     
+    Vue.filter('currency', (val, unit) => {
+      val = val || 0;
+      unit = unit || '￥';
+      return val + unit;
+    })
     
     let app = new Vue({
       el: '#app',
+      data() {
+        return {
+          price: 10,
+          length: 20,
+        }
+      },
     })
   </script>
 </body>

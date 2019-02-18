@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mixins</title>
+  <style>
+    * {
+      font-family: 'Microsoft YaHei UI';
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <popup></popup>
+    <tooltip></tooltip>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let share = {
+      data() {
+        return {
+          visible: false,
+        }
+      },
+      methods: {
+        toggle() {
+          this.visible = !this.visible;
+        },
+        hide() {
+          this.visible = false;
+        },
+        show() {
+          this.visible = true;
+        },
+      },
+    }
+
+    Vue.component('popup', {
+      template: `
+      <div>
+        <button @click="toggle">显示/隐藏</button>
+        <div v-if="visible">
+          <h2>article</h2>
+          <span @click="hide" style="color:red; font-weight:bold">X</span><br>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+        </div>
+      </div>
+      `,
+      mixins: [share]
+    })
+
+    Vue.component('tooltip', {
+      template: `
+      <div>
+        <span @mouseenter="show" @mouseleave="hide" style="background: #ddd">yhb</span>
+        <div v-if="visible">
+          俞鸿波
+        </div>
+      </div>
+      `,
+      mixins: [share]
+
+    })
+
+    let app = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>

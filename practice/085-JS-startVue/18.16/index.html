@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义指令-配置传参及修饰符</title>
+  <style>
+    *{
+      font-family: 'Microsoft YaHei UI';
+    }
+    .card {
+      background: tomato;
+      width: 20em;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="card" v-pin:true.bottom.left="pinned">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores odit quasi beatae esse dolorum ipsum odio
+      dolorem doloribus animi sint.
+      <button @click="pinned = !pinned">钉住/取消</button>
+    </div>
+    <div class="card" v-pin="">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores odit quasi beatae esse dolorum ipsum odio
+      dolorem doloribus animi sint.
+    </div>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione facilis nisi repellat ex ipsam reprehenderit ipsum sapiente sunt voluptatibus. Qui, perferendis voluptatum! Enim facere id voluptatem cumque explicabo quae corporis!
+      Nobis voluptatum architecto labore explicabo. Praesentium porro in, alias sequi ullam repudiandae modi laudantium quas suscipit, officia nobis nostrum nihil aliquid, error tenetur pariatur distinctio eligendi nulla quisquam. Dolor, ratione?
+      Incidunt magnam id nihil autem provident quia impedit dolorum temporibus voluptates molestias, doloribus ut similique natus doloremque iure nam repellat vitae necessitatibus eos ducimus, deserunt eaque obcaecati. Autem, odio amet!
+      Molestiae laborum neque iste totam delectus officia et, dolore quas illo consequatur mollitia exercitationem ad earum at iusto est adipisci facilis voluptate tenetur, laboriosam corporis! Nihil accusamus nemo totam aperiam.
+      Ea libero esse quae veniam, tenetur dolores odio sapiente! Natus nulla reprehenderit accusantium deleniti magni rem, mollitia voluptates itaque ad totam quibusdam dolores aliquid quasi libero tempore vero temporibus nostrum?
+      Odit soluta, adipisci impedit porro quae dicta! A voluptatem perferendis doloremque rerum iusto totam omnis id velit eaque laudantium illo quia aut cum expedita nihil mollitia, facilis illum eos dolores.
+      Minima officia dicta a, nulla doloremque facilis exercitationem officiis, at fugiat facere repudiandae beatae repellendus tempore voluptatem quo consequatur totam sed nemo illum rerum. Iste, dignissimos autem. Dolores, praesentium dicta.
+      Commodi eius, repudiandae quam odit, ad aspernatur voluptatem quasi provident expedita non aliquam ullam exercitationem quod? Assumenda nemo vitae dolore ipsum, mollitia dolor, adipisci quisquam enim ipsa voluptatem quae omnis.
+      Soluta officiis, assumenda ratione modi similique nostrum, temporibus tempore facilis voluptate sequi esse. Corporis ad deserunt expedita rerum ut, nisi consectetur consequatur, a perferendis eius impedit soluta, accusamus quae eligendi.
+      Voluptas quas modi doloremque qui aperiam blanditiis dolore, unde adipisci ipsum laborum veritatis eaque eos, minus similique et! Iusto accusantium quidem exercitationem quibusdam praesentium vero dignissimos magnam quam velit labore.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus accusamus, perspiciatis libero enim natus doloribus ipsum, maiores quibusdam voluptate rem eveniet eaque nesciunt voluptatem voluptatibus dolores dolor. Exercitationem, quia totam.
+      Nisi, velit praesentium labore molestiae officia nam facere alias sint quasi. Impedit omnis, consequuntur itaque blanditiis voluptatibus quam velit dolorem officiis? Aspernatur officia eveniet, fugiat aliquam nisi tempora possimus. Soluta.
+      Dolor totam ex mollitia inventore nisi. Ex dignissimos obcaecati nisi sapiente possimus minus tempore, animi quisquam. Alias molestiae, magni velit beatae hic iste cupiditate, earum nihil dicta repellendus nam aspernatur.
+      Illum non veniam sit minus quod illo voluptas quisquam qui atque? Earum porro beatae cum non consectetur debitis repellat a minus! Obcaecati quas deserunt repellendus quidem maiores neque totam alias?
+      Dolorem odit aliquid distinctio provident est eveniet, magni ad consequuntur saepe fugit rerum ratione commodi tempora soluta. Possimus unde excepturi dolorem dolores, ab, culpa nesciunt nihil perspiciatis asperiores, corporis enim.
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat labore molestias sit sunt dolorem, enim numquam. Nisi similique impedit quisquam eos rem animi reprehenderit, sit culpa. Architecto possimus cum nam?
+      Repellendus rem sapiente molestiae voluptatibus. Animi neque quis consequuntur omnis dolore commodi, quam, tenetur explicabo, provident perspiciatis ipsam voluptatibus vel eum nihil in! Beatae a eaque quam dignissimos architecto accusantium.
+      Aperiam fugiat cumque nihil, sunt aut cum necessitatibus magnam tenetur eligendi iure reiciendis consequatur quasi! Aliquam ullam necessitatibus quia, et quidem facilis, cupiditate optio quibusdam, molestias beatae iure labore quisquam.
+      Illum voluptates magni possimus! Vel explicabo doloremque atque mollitia amet fugit, enim provident id inventore magnam temporibus consequatur! Rem voluptatibus dolorem doloremque sequi deleniti dolores aspernatur reiciendis iste blanditiis cumque.
+      Illum sed deleniti atque hic rerum, modi alias excepturi, fugiat a voluptate laudantium porro. Et cumque inventore distinctio quidem, reiciendis, iste beatae praesentium impedit eaque rem delectus repudiandae expedita aliquam.
+      Beatae delectus incidunt ducimus ex ratione velit repellat perferendis reprehenderit dolorem saepe, porro asperiores quibusdam fugit, commodi minima! Dolore sequi dolor officia vitae. Nemo sit ipsam quas, consequuntur molestias vel.
+      Corporis aliquid fugiat delectus ea, laborum eaque dolorem quaerat officia tempora accusamus! Tenetur accusantium inventore hic quidem amet cupiditate dolores nisi voluptatem? Repellat a, illum excepturi quidem commodi necessitatibus maxime?
+      Itaque pariatur recusandae eveniet neque dolore iste laudantium eum inventore quas consectetur eaque, mollitia, cum doloribus quidem harum sapiente nostrum totam veniam ea facilis deserunt ullam consequatur animi exercitationem! Quasi.
+      Recusandae officiis veniam nostrum sequi vitae alias corporis incidunt illo. Qui recusandae, sequi alias quasi facilis nemo est modi, architecto excepturi ex nostrum impedit tempora quod minima aliquam eum voluptas?
+      Illo consequuntur culpa officia sit sint minus, quod rem ut quae commodi aspernatur accusamus. Odio molestiae consequuntur consequatur perferendis officia? Qui voluptatem id, pariatur necessitatibus aliquid ratione quasi fugiat excepturi.
+      Libero atque hic similique natus repudiandae? Ipsum tenetur libero nesciunt, architecto, natus corporis aut quasi aperiam maiores veniam error animi laborum eius rem laboriosam quos fugit impedit, vel at. Illo?
+      Cum praesentium labore, non voluptas corrupti, dignissimos amet quos harum, rerum totam ex consequatur ipsam est. Esse voluptatibus illum inventore, architecto aspernatur a iste doloribus? Alias sequi quibusdam ipsam ab.
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.directive('pin', (el, binding) => {
+      console.log(binding.arg);
+      let pinned = binding.value;
+      let position = binding.modifiers;
+      if (pinned) {
+        el.style.position = 'fixed';
+        for(let key in position) {
+          if (position[key])
+          el.style[key] = '10px';
+        }
+        if (binding.arg === 'true'){
+          el.style.background = 'orange';
+        }
+      }else {
+        el.style.position = 'static';
+      }
+    })
+    
+    let app = new Vue({
+      el: '#app',
+      data: {
+        pinned:false
+      }
+    })
+  </script>
+</body>
+
+</html>

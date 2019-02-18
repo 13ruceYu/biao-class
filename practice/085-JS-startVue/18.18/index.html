@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>slot</title>
+  <style>
+    * {
+      font-family: 'Microsoft YaHei UI';
+    }
+
+    .panel {
+      border: 1px solid #222;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+
+    .panel>* {
+      padding: 10px;
+    }
+
+    .panel .content {
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+
+    .panel .title {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <panel>
+      <div slot="title">title</div>
+      <div slot="content">hi bro</div>
+      <div slot="footer">footer</div>
+    </panel>
+    <panel></panel>
+  </div>
+  <template id="yo-slot">
+    <div class="panel">
+      <div class="title">
+        <slot name="title">标题</slot>
+      </div>
+      <div class="content">
+        <slot name="content">内容</slot>
+      </div>
+      <div class="footer">
+        <slot name="footer">更多信息</slot>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('panel', {
+      template: '#yo-slot'
+    })
+
+
+    let app = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+
+</html>

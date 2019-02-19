@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>19.2</title>
+  <style>
+    * {
+      font-family: 'Microsoft YaHei UI';
+    }
+
+    a {
+      color: #333333;
+    }
+
+    .router-link-exact-active {
+      color: tomato;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <router-link to="/">首页</router-link>
+      <router-link to="/about">关于我们</router-link>
+      <router-link to="/user/王花花">王花花</router-link>
+      <router-link to="/user/李拴蛋">李拴蛋</router-link>
+    </div>
+    <div>
+      <router-view></router-view>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+  <script>
+    var routes = [{
+        path: '/',
+        component: {
+          template: `<div><h1>首页</h1></div>`
+        }
+      },
+      {
+        path: '/about',
+        component: {
+          template: `<div><h1>关于我们</h1></div>`
+        }
+      },
+      {
+        path: '/user/:name',
+        component: {
+          template: `
+          <div>
+            <h1>这是{{$route.params.name}}的页面</h1>
+            <div>欢迎第{{$route.query.age}}位来访者</div>
+          </div>`
+        }
+      },
+    ]
+
+    const router = new VueRouter({
+      routes
+    })
+
+    new Vue({
+      el: '#app',
+      router
+    })
+  </script>
+</body>
+
+</html>

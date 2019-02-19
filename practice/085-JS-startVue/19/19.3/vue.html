@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>19.3</title>
+  <style>
+    * {
+      font-family: 'Microsoft YaHei UI';
+    }
+
+    a {
+      color: #222222;
+    }
+
+    .router-link-exact-active {
+      color: tomato;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+      <router-link to="/user/王花花">王花花</router-link>
+      <router-link to="/user/李拴蛋">李拴蛋</router-link>
+    </div>
+    <div>
+      <router-view></router-view>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+  <script>
+    var routes = [{
+        path: '/',
+        component: {
+          template: `
+          <div>
+            <h1>Home Page, yo</h1>
+          </div>
+          `
+        }
+      },
+      {
+        path: '/about',
+        component: {
+          template: `
+          <div>
+            <h1>About Page, ha</h1>
+          </div>
+          `
+        }
+      },
+      {
+        path: '/user/:name',
+        component: {
+          template: `
+          <div>
+            <h1>{{$route.params.name}} Page, yo</h1>
+            <router-link to="more" append>更多</router-link>
+            <router-view></router-view>
+          </div>
+          `
+        },
+        children: [{
+            path: 'more',
+            component: {
+              template: `
+            <div>
+              {{$route.params.name}}的详细信息
+            </div>
+            `
+            }
+          }
+
+        ]
+      },
+    ]
+
+    var router = new VueRouter({
+      routes
+    })
+
+    new Vue({
+      el: '#app',
+      router
+    })
+  </script>
+</body>
+
+</html>

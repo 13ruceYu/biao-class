@@ -1,14 +1,14 @@
 <template>
-  <div class="main container">
+  <div class="container">
     <form @submit.prevent="onSubmit">
       <h2>添加/更新文章</h2>
       <div class="input-control">
-        <label>标题</label>
+        <label>标题:</label>
         <input type="text" v-model="current.title">
       </div>
       <div class="input-control">
-        <label>内容</label>
-        <textarea v-model="current.content"></textarea>
+        <label>内容:</label>
+        <textarea rows="6" v-model="current.content"></textarea>
       </div>
       <div class="input-control">
         <button type="submit">提交</button>
@@ -24,11 +24,11 @@
       <tbody>
         <tr v-for="it in list" v-bind:key="it.id">
           <td>{{it.title}}</td>
-          <td>{{it.content}}</td>
+          <td :title="it.content">{{it.content | cut}}</td>
           <td>{{it.id}}</td>
           <td>
-            <button>删除</button>
-            <button>更新</button>
+            <button @click="remove(it.id)">删除</button>
+            <button @click="current = it">更新</button>
           </td>
         </tr>
       </tbody>
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import "../css/admin.css";
 import api from "../lib/api";
 
 export default {
@@ -47,9 +46,17 @@ export default {
       list: []
     };
   },
+
+  filters: {
+    cut(val) {
+      return val.length < 12 ? val : val.substring(0, 12) + "...";
+    }
+  },
+
   mounted() {
     this.read();
   },
+
   methods: {
     onSubmit() {
       this.createOrUpdate();
@@ -66,7 +73,10 @@ export default {
       });
     },
 
-    remove() {},
+    remove(id) {
+      if (!confirm("Sure?")) return;
+      api("post/delete", { id }).then(this.read());
+    },
 
     read() {
       api("post/read").then(r => {
@@ -80,6 +90,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

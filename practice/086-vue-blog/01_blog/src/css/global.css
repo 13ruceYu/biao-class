@@ -3,27 +3,11 @@
 }
 
 :root {
-  font-family: sans-serif, 'Microsoft YaHei';
+  font-family: sans-serif, 'Microsoft YaHei UI';
 }
 
 body {
   margin: 0;
 }
 
-form input, form button {
-  width: 100%;
-  padding: .5em;
-  font-family: inherit;
-}
-
-.container,
-.container-sm {
-  max-width: 50em;
-  margin: 0 auto;
-  padding: 0 1em;
-}
-
-.container-sm {
-  max-width: 40em;
-}
 

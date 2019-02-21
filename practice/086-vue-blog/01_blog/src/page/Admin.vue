@@ -5,5 +5,7 @@
 </template>
 
 <script>
-  export default {};
+import "../css/admin.css";
+export default {};
 </script>
+

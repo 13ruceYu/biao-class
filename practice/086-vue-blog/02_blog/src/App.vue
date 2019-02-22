@@ -22,26 +22,39 @@ export default {
 </script>
 
 <style>
-  * {
-    font-family: "Microsoft YaHei UI";
-    box-sizing: border-box;
-  }
+* {
+  font-family: "Microsoft YaHei UI";
+  box-sizing: border-box;
+}
 
-  body {
-    margin: 0;
-    padding: 0;
-  }
+body {
+  margin: 0;
+  padding: 0;
+}
 
-  nav a {
-    padding: 5px;
-  }
+nav a {
+  padding: 5px;
+}
 
-  .container {
-    max-width: 500px;
-    margin: 0 auto;
-  }
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
 
-  button:hover {
-    cursor: pointer;
-  }
+form input,
+form button,
+form textarea,
+table {
+  width: 100%;
+}
+
+button {
+  background: #fff;
+  border: 1px solid #222;
+  padding: .1em .3em .2em .3em;
+}
+
+button:hover {
+  cursor: pointer;
+}
 </style>

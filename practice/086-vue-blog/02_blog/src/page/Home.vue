@@ -3,9 +3,9 @@
     <h1>近期文章</h1>
     <div class="post-list">
       <div class="post" v-for="it in postList" :key="it.id">
-        <a href="#">
+        <router-link :to="'/post/'+ it.id">
           <h2>{{it.title}}</h2>
-        </a>
+        </router-link>
         <div class="preview">{{it.content}}</div>
       </div>
     </div>

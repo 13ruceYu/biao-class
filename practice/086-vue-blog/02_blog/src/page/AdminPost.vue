@@ -25,11 +25,11 @@
       <tbody>
         <tr v-for="it in list" :key="it.id">
           <td>{{it.title}}</td>
-          <td>{{it.content}}</td>
+          <td :title="it.content">{{it.content | cut}}</td>
           <td>{{it.id}}</td>
           <td>
-            <button>删除</button>
-            <button>更新</button>
+            <button @click="remove(it.id)">删除</button>
+            <button @click="current = it">更新</button>
           </td>
         </tr>
       </tbody>
@@ -50,6 +50,11 @@ export default {
   mounted() {
     this.read();
   },
+  filters: {
+    cut(val) {
+      return val.length < 12 ? val : val.substring(0, 12) + '...';
+    }
+  },
   methods: {
     onSubmit() {
       this.createOrUpdate();
@@ -65,8 +70,9 @@ export default {
       });
     },
 
-    remove() {
-      api('post/')
+    remove(id) {
+      api('post/delete', {id})
+      .then(this.read())
     },
 
     read() {
@@ -84,15 +90,6 @@ export default {
 </script>
 
 <style scoped>
-form input,
-form button,
-form textarea {
-  width: 100%;
-}
-
-table {
-  width: 100%;
-}
 
 th {
   text-align: left;
@@ -101,5 +98,9 @@ th {
 td:last-of-type,
 th:last-of-type {
   text-align: right;
+}
+
+td button:last-of-type {
+  border-left: none;
 }
 </style>

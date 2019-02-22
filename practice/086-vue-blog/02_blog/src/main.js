@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Home from './page/Home'
 import Admin from './page/Admin'
 import AdminPost from './page/AdminPost'
+import Post from './page/Post'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -13,6 +14,10 @@ const routeConfig = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/post/:id',
+    component: Post
   },
   {
     path: '/admin',

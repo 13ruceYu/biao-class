@@ -4,9 +4,7 @@
     <div class="post-list" v-for="post in postList" :key="post.id">
       <div class="post">
         <div class="title">
-          <a href="#">
-            <h3>{{post.title}}</h3>
-          </a>
+          <router-link :to="'/post/' + post.id"><h3>{{post.title}}</h3></router-link>
         </div>
         <div class="preview">
           {{post.content}}

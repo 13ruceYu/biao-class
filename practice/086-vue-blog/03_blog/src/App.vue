@@ -26,12 +26,21 @@ export default {
 <style>
 * {
   box-sizing: border-box;
+  font-family: "Microsoft YaHei UI";
 }
 
-#app {
-  font-family: "Microsoft YaHei UI", "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+form input,
+form textarea,
+form button {
+  width: 100%;
+}
+
+form button {
+  margin: .5em 0;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 nav a {

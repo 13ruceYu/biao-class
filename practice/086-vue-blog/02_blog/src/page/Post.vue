@@ -3,6 +3,11 @@
     <div class="title">
       <h1>{{row.title}}</h1>
     </div>
+    <div class="cat">
+      分类：
+      {{row.$cat ? row.$cat.name : ''}}
+      <hr/>
+    </div>
     <div class="content">{{row.content}}</div>
     <div class="comment-area">
       <button type="button" @click="setCommentFormVisible">评论</button>
@@ -47,7 +52,14 @@ export default {
   },
   methods: {
     findPost(id) {
-      api("post/find", { id }).then(r => {
+      let params = {
+        id,
+        with: [{
+          model: 'cat',
+          relation: 'belongs_to'
+        }]
+      }
+      api("post/find", params).then(r => {
         this.row = r.data;
       });
     },

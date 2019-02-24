@@ -4,14 +4,16 @@ import VueRouter from 'vue-router'
 
 import Home from './page/Home'
 import Admin from './page/Admin'
-import AdminPost from './page/AdminPost'
 import Post from './page/Post'
+import AdminPost from './page/AdminPost'
+import AdminCat from './page/AdminCat'
+import AdminComment from './page/AdminComment'
+
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
-const routeConfig = [
-  {
+const routeConfig = [{
     path: '/',
     component: Home
   },
@@ -22,10 +24,17 @@ const routeConfig = [
   {
     path: '/admin',
     component: Admin,
-    children: [
-      {
+    children: [{
         path: 'post',
         component: AdminPost
+      },
+      {
+        path: 'cat',
+        component: AdminCat
+      },
+      {
+        path: 'comment',
+        component: AdminComment
       }
     ]
   },

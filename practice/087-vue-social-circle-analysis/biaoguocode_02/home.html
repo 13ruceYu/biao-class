@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/nav.css">
+
+<div class="nav">
+  <div class="row container">
+    <div class="col-8">
+      <div class="logo">
+        <img src="image/500x500.png" alt="">
+      </div>
+    </div>
+    <div class="col-16 text-right">
+      <div class="search">
+        <input type="search">
+      </div>
+      <span id="tourist">
+        <a href="./login.html" class="nav-item">登录</a>
+        <a href="./signup.html" class="nav-item">注册</a>
+      </span>
+      <span id="loggedIn">
+        <a href="#" class="nav-item" id="navUsername">王花花</a>
+        <a href="#" onclick="logout()">登出</a>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="row container">
+    <div class="col-16">
+      <div class="timeline">
+        <div class="row timeline-item">
+          <div class="col-4">
+            <img src="image/500x500.png">
+          </div>
+          <div class="col-18 middle">
+            <a href="#" class="title">被 Bmob 这个 BAAS 坑了</a>
+            <div class="others">
+              <a class="cat" href="#">程序员</a>
+              <a class="publisher" href="#">王花花</a>
+              <span class="created-at">几秒前</span>
+            </div>
+          </div>
+          <div class="col-4 right">
+            <div class="pill">200</div>
+          </div>
+        </div>
+        <div class="row timeline-item">
+          <div class="col-4">
+            <img src="image/500x500.png">
+          </div>
+          <div class="col-18 middle">
+            <a href="#" class="title">被 Bmob 这个 BAAS 坑了</a>
+            <div class="others">
+              <a class="cat" href="#">程序员</a>
+              <a class="publisher" href="#">王花花</a>
+              <span class="created-at">几秒前</span>
+            </div>
+          </div>
+          <div class="col-4 right">
+            <div class="pill">200</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="card">
+        <div class="title">板块</div>
+        <div class="content">
+          <div class="vertical-nav">
+            <a href="#" class="cat-item">两性</a>
+            <a href="#" class="cat-item">程序员</a>
+            <a href="#" class="cat-item">IT</a>
+            <a href="#" class="cat-item">招聘</a>
+            <a href="#" class="cat-item">Item</a>
+            <a href="#" class="cat-item">Item</a>
+            <a href="#" class="cat-item">Item</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <a href="#">
+            <img src="image/500x500.png">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer">
+  <div class="container"></div>
+</div>
+
+<script src="./js/api.js"></script>
+<script src="./js/session.js"></script>

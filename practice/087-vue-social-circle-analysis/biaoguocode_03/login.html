@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/auth.css">
+<title>Login03</title>
+
+<div class="nav">
+  <div class="row container">
+    <div class="col-8">
+      <div class="logo">
+        <img src="image/500x500.png" alt="">
+      </div>
+    </div>
+    <div class="col-16 text-right">
+      <div class="search">
+        <input type="search">
+      </div>
+      <span id="tourist">
+        <a href="#" class="nav-item">登录</a>
+        <a href="#" class="nav-item">注册</a>
+      </span>
+      <span id="loggedIn">
+        <a href="#" class="nav-item" id="navItemName"></a>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <h1 style="text-align: center">登录</h1>
+  <form id="loginForm">
+    <label>
+      <div class="field">用户名</div>
+      <input type="text" id="username">
+    </label>
+    <label>
+      <div class="field">密码</div>
+      <input type="password" id="password">
+    </label>
+    <label>
+      <button type="submit">提交</button>
+    </label>
+  </form>
+</div>
+<div class="row footer">
+  <div class="container"></div>
+</div>
+
+<script src="./js/api.js"></script>
+<script src="./js/session.js"></script>
+<script>
+  boot();
+
+  function boot() {
+    loginForm.addEventListener('submit', e => {
+      e.preventDefault();
+      let row = {
+        username: username.value,
+        password: password.value,
+      }
+
+      if (!row.username || !row.password) {
+        alert('用户名或密码有误');
+        return;
+      }
+
+      login(row);
+    })
+  }
+
+  function login(user) {
+    let params = {
+      where: {
+        and: user,
+      }
+    }
+    api('user/first', params, r => {
+      let user = r.data;
+      if (!user) {
+        alert('用户名或格式有误');
+        return;
+      }
+
+      alert('登录成功');
+      onLoginSuccess(user);
+      location.href = './home.html'
+    })
+  }
+
+  function onLoginSuccess(user) {
+    localStorage.setItem('user',user.id)
+  }
+</script>

@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/auth.css">
+
+<div class="nav">
+  <div class="row container">
+    <div class="col-8">
+      <div class="logo">
+        <img src="image/500x500.png" alt="">
+      </div>
+    </div>
+    <div class="col-16 text-right">
+      <div class="search">
+        <input type="search">
+      </div>
+      <a href="#" class="nav-item">登录</a>
+      <a href="#" class="nav-item">注册</a>
+      <a href="#" class="nav-item"></a>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <form id="signupForm">
+    <label>
+      <div class="field">用户名</div>
+      <input type="text" id="username">
+    </label>
+    <label>
+      <div class="field">密码</div>
+      <input type="password" id="password">
+    </label>
+    <label>
+      <div class="field">重复密码</div>
+      <input type="password">
+    </label>
+    <label>
+      <button type="submit">提交</button>
+    </label>
+  </form>
+</div>
+<div class="row footer">
+  <div class="container"></div>
+</div>
+
+<script src="./js/api.js"></script>
+<script>
+  boot();
+
+  function boot() {
+    signupForm.addEventListener('submit', e => {
+      e.preventDefault();
+      let uname = username.value;
+      let row = {
+        username: uname,
+        password: password.value,
+      }
+
+      api('user/exists', {
+        where: {
+          and: {
+            username: uname
+          }
+        }
+      }, r => {
+        if (r.data)
+          alert('用户名已存在');
+        else {
+          if (!row.username || !row.password)
+            return;
+          signup(row);
+        }
+      })
+
+
+    })
+
+    function signup(user) {
+      api('user/create', user, r => {
+        if (r.success)
+          alert('Yo, 欢迎来到表圈子');
+          location.href = './home.html'
+      })
+    }
+  }
+</script>

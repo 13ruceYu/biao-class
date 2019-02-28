@@ -1,0 +1,14 @@
+.nav {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: .5rem;
+}
+
+.nav .logo {
+  width: 50px;
+}
+
+.nav .left > *,
+.nav .right > * {
+  display: inline-block;
+}

@@ -15,7 +15,7 @@
           <router-link to="/signup">注册</router-link>
         </span>
         <span id="loggedIn" v-else>
-          <a href="#" class="nav-item">{{session.user().username}} / </a>
+          <router-link to="/setting">{{session.user().username}} / </router-link>
           <a href="#" class="nav-item" @click="session.logout()">登出</a>
         </span>
       </div>

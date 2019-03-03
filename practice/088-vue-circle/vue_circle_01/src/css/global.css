@@ -10,15 +10,19 @@
   background: #f0f0f0;
 }
 
-body,
-form {
+body {
   margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: sans-serif;
   color: #444;
   line-height: 1.6;
+}
+
+form {
+  padding: 0 .5em;
 }
 
 h1 {
@@ -37,10 +41,13 @@ img {
   max-width: 100%;
 }
 
-input, button {
+input,
+button,
+textarea {
   font-size: 1em;
   padding: .5rem;
-  border: 1px solid rgba(0, 0, 0, 0.9)
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  background: #fff;
 }
 
 button:hover {
@@ -48,13 +55,20 @@ button:hover {
 }
 
 form input,
-form [type=submit] {
+form [type=submit],
+form textarea {
   width: 100%;
+  margin-bottom: .5em;
 }
 
 form label {
   display: block;
   margin: .2rem 0;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
 }
 
 .block {
@@ -244,6 +258,8 @@ form label {
 .card {
   background: #fff;
   margin-bottom: .5rem;
+  overflow: hidden;
+  padding: .5em;
 }
 
 .card .title {
@@ -252,7 +268,7 @@ form label {
 }
 
 .card .title,
-.card .content > * {
+.card .content>* {
   padding: .5rem;
 }
 
@@ -271,4 +287,18 @@ form label {
 
 .input-control .error {
   color: #b10;
+}
+
+.card dt,
+.card dd {
+  display: inline-block;
+}
+
+.card dd {
+  margin-left: 10px;
+}
+
+.card dd [readonly] {
+  border: 0px;
+  outline: 0px;
 }

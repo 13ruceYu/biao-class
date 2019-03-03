@@ -5,10 +5,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import Home from './page/Home'
+import Thread from './page/Thread'
 import About from './page/About'
 import Signup from './page/Signup'
 import Login from './page/Login'
 import Setting from './page/Setting'
+import SettingMe from './page/SettingMe'
+import SettingSecurity from './page/SettingSecurity'
 
 import './css/global.css'
 
@@ -18,6 +21,10 @@ const routes = [
   {
     path: '/',
     component: Home,
+  },
+  {
+    path: '/thread',
+    component: Thread,
   },
   {
     path: '/about',
@@ -34,6 +41,16 @@ const routes = [
   {
     path: '/setting',
     component: Setting,
+    children: [
+      {
+        path: 'me',
+        component: SettingMe
+      },
+      {
+        path: 'security',
+        component: SettingSecurity
+      },
+    ]
   }
 ]
 

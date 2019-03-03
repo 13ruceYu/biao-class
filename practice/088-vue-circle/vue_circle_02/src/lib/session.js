@@ -10,7 +10,8 @@ function login(sessionId, user) {
 function logout() {
   localStorage.removeItem('sessionId');
   localStorage.removeItem('user');
-  location.href = '/';
+  location.href = '/#/login';
+  location.reload();
 }
 
 function loggedIn() {

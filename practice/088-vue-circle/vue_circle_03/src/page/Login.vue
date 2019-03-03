@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import api from "../js/api.js";
-import session from "../js/session.js";
+import api from "../lib/api.js";
+import session from "../lib/session.js";
 export default {
   data() {
     return {
@@ -48,13 +48,15 @@ export default {
       }
 
       let params = {
-        where: {and: this.current}
-      }
+        where: { and: this.current }
+      };
       api("user/first", params).then(r => {
-        if (r.success) {
-          let user = r.data;
-          session.login('sessionId', user);
+        if (!r.data) {
+          this.error.invalidMatch = true;
+          return;
         }
+        let user = r.data;
+        session.login("sessionId", user);
       });
     }
   }

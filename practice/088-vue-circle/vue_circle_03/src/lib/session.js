@@ -1,6 +1,7 @@
 function login(key, user) {
   sessionStorage.setItem(key, user.id);
   sessionStorage.setItem('user', JSON.stringify(user));
+  alert('登录成功');
   location.href = '/';
 }
 

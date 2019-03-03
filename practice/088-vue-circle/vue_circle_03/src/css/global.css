@@ -41,7 +41,7 @@ input,
 button {
   font-size: 1em;
   padding: .5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1)
+  border: 1px solid rgba(0, 0, 0, 0.5)
 }
 
 button:hover {
@@ -104,8 +104,6 @@ form button {
 .col-1,
 .col {
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
   display: block;
   margin-inline-start: 0;
 }
@@ -212,6 +210,7 @@ form button {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 5px;
 }
 
 .form-container {

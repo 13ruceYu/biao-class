@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import api from "../js/api.js";
+import api from "../lib/api.js";
 export default {
   data() {
     return {

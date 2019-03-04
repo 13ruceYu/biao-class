@@ -9,19 +9,17 @@
       </form>
       <div class="timeline">
         <div class="activity" v-for="it in threadList" :key="it.id">
-          <div class="user row">
-            <strong>{{it.$user ? (it.$user.name || it.$user.username):'已注销'}}</strong>
-            <div class="right modify">
-              <span v-if="it.$user && (it.$user.id ===user.id)">
-                <button @click="threadForm = it">编辑</button>
-                <button @click="threadDelete(it.id)">删除</button>
-              </span>
-            </div>
-          </div>
-          <div class="title">{{it.title}}</div>
+          <router-link :to="'/thread/' + it.id">{{it.title}}</router-link>
           <div class="content">{{it.content}}</div>
+          <div class="modify">
+            <span v-if="it.$user && (it.$user.id ===user.id)">
+              <button @click="threadForm = it">编辑</button>
+              <button @click="threadDelete(it.id)">删除</button>
+            </span>
+          </div>
           <div class="others">
-            <span>发布于：{{it.created_at}}</span>
+            <span>{{it.$user ? (it.$user.username || it.$user.name):'已注销'}}</span>
+            <span class="muted small">发布于：{{it.created_at}}</span>
           </div>
         </div>
       </div>
@@ -51,6 +49,7 @@ export default {
   methods: {
     readThread() {
       api("thread/read", {
+        where: { and: { parent_id: null } },
         with: ["belongs_to:user"]
       }).then(r => {
         if (r.success) this.threadList = r.data;
@@ -79,13 +78,11 @@ export default {
     },
 
     threadDelete(id) {
-      api('thread/delete', {id})
-      .then (r => {
-        if(!r.success)
-        return;
+      api("thread/delete", { id }).then(r => {
+        if (!r.success) return;
 
         this.readThread();
-      })
+      });
     }
   }
 };
@@ -96,5 +93,9 @@ export default {
   border: 1px solid;
   padding: 0.2em;
   margin: 0.5em;
+}
+
+.modify button {
+  padding: 0.2em;
 }
 </style>

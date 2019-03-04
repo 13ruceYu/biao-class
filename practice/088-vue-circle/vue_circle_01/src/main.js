@@ -23,7 +23,7 @@ const routes = [
     component: Home,
   },
   {
-    path: '/thread',
+    path: '/thread/:id',
     component: Thread,
   },
   {

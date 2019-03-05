@@ -5,6 +5,7 @@ import App from './App.vue'
 Vue.use(VueRouter)
 
 import Home from './page/Home'
+import Thread from './page/Thread'
 import Signup from './page/Signup'
 import Login from './page/Login'
 import About from './page/About'
@@ -17,6 +18,10 @@ import './css/global.css'
 const routes = [{
     path: '/',
     component: Home,
+  },
+  {
+    path: '/thread/:id',
+    component: Thread,
   },
   {
     path: '/signup',

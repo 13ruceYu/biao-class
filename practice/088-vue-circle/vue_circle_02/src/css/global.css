@@ -250,7 +250,7 @@ form label {
   margin-bottom: .5rem;
 }
 
-.card .title {
+.title {
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -293,4 +293,8 @@ form label {
 
 fieldset:disabled {
   opacity: .5;
+}
+
+.content {
+  white-space: pre-line;
 }

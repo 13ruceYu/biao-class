@@ -9,9 +9,14 @@
       </form>
       <div class="timeline">
         <div class="activity" v-for="it in threadList" :key="it.id">
-          <div class="title">标题：{{it.title}}</div>
+          <div class="title">
+            <router-link :to="'/thread/' + it.id">标题：{{it.title}}</router-link>
+          </div>
           <div class="username">创建者：{{it.$user.username || '用户已注销'}}</div>
-          <div class="content">内容：{{it.content}}</div>
+          <div class="content">
+            内容：
+            {{it.content | cut}}
+          </div>
           <div class="others">创建时间：{{it.created_at}}</div>
           <div class="operation" v-if="it.$user && user">
             <span v-if="it.$user.id === user.id">
@@ -43,7 +48,10 @@ export default {
   },
   methods: {
     readThread() {
-      api("thread/read", { with: ["belongs_to:user"] }).then(r => {
+      api("thread/read", {
+        with: ["belongs_to:user"],
+        where: { and: { parent_id: null } }
+      }).then(r => {
         if (r.success) {
           this.threadList = r.data;
         }
@@ -79,6 +87,11 @@ export default {
           this.readThread();
         }
       });
+    }
+  },
+  filters: {
+    cut(val) {
+      return val.length < 60 ? val : val.substring(0, 60) + "...";
     }
   }
 };

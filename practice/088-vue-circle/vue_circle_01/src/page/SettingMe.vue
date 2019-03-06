@@ -50,10 +50,11 @@
 
 <script>
 import api from "../lib/api.js";
+import session from "../lib/session.js";
 import store from "../lib/store.js";
 export default {
   mounted() {
-    api("user/first", { id: store.get("user").id }).then(r => {
+    api("user/find", { id: store.get("user").id }).then(r => {
       let data = r.data;
       this.meSaved = data;
       this.me = { ...data };
@@ -88,6 +89,8 @@ export default {
           this.me = r.data;
           this.editMode = false;
           this.updatePedding = false;
+          alert('修改成功，请重新登录');
+          session.logout();
         });
       });
     }

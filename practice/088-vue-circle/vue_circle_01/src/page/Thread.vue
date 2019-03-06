@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="thread-container">
+      <div class="thread-container" v-if="current.title">
         <h1>{{current.title}}</h1>
         <div class="info">
           <span>作者：{{name(current)}}</span>
@@ -10,17 +10,21 @@
         <div class="sub-thread head">
           <div class="content">{{current.content}}</div>
         </div>
-        <div class="sub-thread" v-for="it in subList" :key="it.id">
-          <!-- <div class="user">{{name(it)}}</div> -->
-          <div class="content">{{it.content}}</div>
-          <div class="others">
-            <span>{{it.$user ? (it.$user.username || it.$user.name):'已注销'}}</span>
-            <span class="muted small">发布于：{{it.created_at}}</span>
+        <div v-if="subList.length">
+          <div class="sub-thread" v-for="it in subList" :key="it.id">
+            <!-- <div class="user">{{name(it)}}</div> -->
+            <div class="content">{{it.content}}</div>
+            <div class="others">
+              <span>{{it.$user ? (it.$user.username || it.$user.name):'已注销'}}</span>
+              <span class="muted small">发布于：{{it.created_at}}</span>
+            </div>
           </div>
         </div>
+        <div v-else>暂无评论</div>
       </div>
+      <div v-else>正在加载...</div>
       <form @submit.prevent="createSub">
-        <textarea rows="5" v-model="form.content"></textarea>
+        <textarea rows="5" v-model="form.content" placeholder="跟帖"></textarea>
         <button type="submit">提交</button>
       </form>
     </div>
@@ -70,16 +74,20 @@ export default {
       api("thread/read", {
         where: { and: { parent_id: this.id } },
         with: ["belongs_to:user"]
-      }).then(r => (this.subList = r.data));
+      }).then(r => (this.subList = r.data || []));
     }
   }
 };
 </script>
 
 <style scoped>
-.thread-container {
-  background: #fff;
+.thread-container,
+.container {
   padding: 0.5em;
+}
+
+.container {
+  background: #fff;
 }
 
 .sub-thread {

@@ -11,10 +11,10 @@
         <div class="activity" v-for="it in threadList" :key="it.id">
           <router-link :to="'/thread/' + it.id">{{it.title}}</router-link>
           <div class="content">{{it.content}}</div>
-          <div class="modify">
-            <span v-if="it.$user && (it.$user.id ===user.id)">
-              <button @click="threadForm = it">编辑</button>
-              <button @click="threadDelete(it.id)">删除</button>
+          <div class="operation">
+            <span v-if="user && it.$user && (it.$user.id === user.id)">
+              <button @click="threadForm=it">更新</button>
+              <button @click="deleteThread(it.id)">删除</button>
             </span>
           </div>
           <div class="others">
@@ -52,7 +52,9 @@ export default {
         where: { and: { parent_id: null } },
         with: ["belongs_to:user"]
       }).then(r => {
-        if (r.success) this.threadList = r.data;
+        if (r.success) {
+          this.threadList = r.data;
+        }
       });
     },
 
@@ -95,7 +97,7 @@ export default {
   margin: 0.5em;
 }
 
-.modify button {
+.operation button {
   padding: 0.2em;
 }
 </style>

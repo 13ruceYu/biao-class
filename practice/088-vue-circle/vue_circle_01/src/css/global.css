@@ -311,3 +311,33 @@ fieldset {
   border: 0px;
   outline: 0px;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+table th {
+  border-bottom: 2px solid #888;
+  padding: .5em 0;
+}
+
+table td {
+  border-bottom: 1px solid #888;
+  padding: .5em 0;
+}
+
+table td:last-of-type,
+table th:last-of-type {
+  text-align: right;
+}
+
+.btn-group > * {
+  border: 1px solid;
+  border-right-width: 0;
+}
+
+.btn-group > *:last-child {
+  border-right-width: 1px;
+}

@@ -3,4 +3,6 @@ test/
 dist/
 build/
 
+/test
+
 .vscode/*

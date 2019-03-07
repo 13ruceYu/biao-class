@@ -28,6 +28,7 @@
               <dt>用户名：</dt>
               <dd>
                 <input type="text" v-model="me.username" :readonly="!editMode">
+                <span class="error" v-if="error.username">用户名已存在</span>
               </dd>
             </dl>
             <button type="submit" v-if="editMode">提交</button>
@@ -55,11 +56,15 @@ export default {
       me: {},
       user: {},
       editMode: false,
-      pedding: false
+      pedding: false,
+      error: {
+        username:false,
+      }
     };
   },
   methods: {
     onSubmit() {
+      this.error.username = false;
       this.pedding = true;
       this.validateUsername();
     },
@@ -69,7 +74,7 @@ export default {
         where: { and: { username: this.me.username } }
       }).then(r => {
         if (r.data && usernameChanged) {
-          alert("用户名已存在");
+          this.error.username = true;
           this.pedding = false;
           return;
         }
@@ -134,5 +139,9 @@ dl dd {
 fieldset:disabled {
   background: orange;
   border: 3px solid;
+}
+
+dd .error {
+  float: left;
 }
 </style>

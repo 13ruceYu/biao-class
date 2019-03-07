@@ -49,8 +49,9 @@ export default {
   },
   methods: {
     signup() {
-      if (!this.validate()) return;
-
+      if (!this.validate()) {
+        return;
+      }
       api("user/create", this.current).then(r => {
         if (r.success) {
           this.$router.push("/login");
@@ -66,15 +67,14 @@ export default {
       let username = c.username;
       let password = c.password;
       let password2 = c.password2;
-
       let invalidUsername = !/^[a-zA-Z0-9]{4,12}$/.test(username);
-      invalidUsername ? (e.username = "用户名须在4-12之间") : "";
+      invalidUsername ? (e.username = "用户名须在4-12之间") : null;
 
       let invalidPassword = password.length < 6;
-      invalidPassword ? (e.password = "密码长度需大于6位") : "";
+      invalidPassword ? (e.password = "密码长度需大于6位") : null;
 
       let invalidPassword2 = password2 !== password;
-      invalidPassword2 ? (e.password2 = "两次密码输入不一致") : "";
+      invalidPassword2 ? (e.password2 = "两次密码输入不一致") : null;
 
       return !e.username && !e.password && !e.password2;
     }

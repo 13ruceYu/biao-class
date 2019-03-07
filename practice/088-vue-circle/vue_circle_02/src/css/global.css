@@ -2,7 +2,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: sans-serif, 'Microsoft YaHei UI';
+  font-family: 'Source Han Sans', 'Microsoft YaHei';
 }
 
 :root {
@@ -297,4 +297,30 @@ fieldset:disabled {
 
 .content {
   white-space: pre-line;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border-bottom: 1px solid;
+  padding: .2em 0;
+}
+
+table th:last-of-type,
+table td:last-of-type {
+  text-align: right;
+}
+
+.btn-group > * {
+  border: 1px solid;
+  border-right-width: 0;
+}
+
+.btn-group > *:last-of-type {
+  border-right-width: 1px;
 }

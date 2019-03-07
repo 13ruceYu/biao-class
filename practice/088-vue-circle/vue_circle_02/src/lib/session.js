@@ -1,10 +1,13 @@
 import store from './store';
 
 
-function login(sessionId, user) {
+function login(sessionId, user, redirect = '/') {
   localStorage.setItem('sessionId', sessionId);
-  store.set('user', user);
-  location.href = '/';
+  store.set('user', user); // 如果是 admin， 就给他一个admin标签
+
+  if (!redirect)
+    return;
+  location.href = redirect;
 }
 
 function logout() {
@@ -22,9 +25,14 @@ function user() {
   return store.get('user');
 }
 
+function isAdmin() {
+  return user().IS_ADMIN;
+}
+
 export default {
   login,
   logout,
   loggedIn,
   user,
+  isAdmin,
 };

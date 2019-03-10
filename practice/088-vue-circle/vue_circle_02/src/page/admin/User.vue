@@ -2,7 +2,7 @@
   <div>
     <h1>用户管理</h1>
     <div class="toolbar">
-      <button @click="ui.showForm = !ui.showForm">创建</button>
+      <button @click="toggleForm">创建</button>
     </div>
     <form v-if="ui.showForm" @submit.prevent="createOrUpdate">
       <h2>创建/更新用户</h2>
@@ -50,7 +50,7 @@
               class="error"
               v-for="(value, key, index) in errors.password"
               :key="index"
-              v-show="value"
+              v-if="value"
             >{{rules.password[key].msg}}</div>
           </div>
         </label>
@@ -80,17 +80,29 @@
         </tr>
       </tbody>
     </table>
+
+    <Pagination :limit="readParams.limit" :total="total" :onChange="flip" :radius="radius"/>
   </div>
 </template>
 
 <script>
 import api from "../../lib/api";
 import valee from "../../lib/valee";
+import Pagination from "../../component/Pagination";
 export default {
+  components: {
+    Pagination,
+  },
   data() {
     return {
       form: {},
       list: [],
+      total: 0,
+      radius: 1,
+      readParams: {
+        limit: 4,
+        page: 1,
+      },
       ui: {
         showForm: true
       },
@@ -192,11 +204,16 @@ export default {
       });
     },
     read() {
-      api("user/read").then(r => {
+      api("user/read", this.readParams).then(r => {
         if (r.success) {
           this.list = r.data;
+          this.total = r.total;
         }
       });
+    },
+    flip(page){
+      this.readParams.page = page;
+      this.read();
     },
     resetForm() {
       this.form = {};
@@ -211,6 +228,20 @@ export default {
           this.read();
         }
       });
+    },
+    toggleForm() {
+      if (this.ui.showForm) this.hideForm();
+      else {
+        this.errors = {};
+        this.form = {};
+        this.showForm();
+      }
+    },
+    hideForm() {
+      this.ui.showForm = false;
+    },
+    showForm() {
+      this.ui.showForm = true;
     }
   }
 };

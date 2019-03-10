@@ -318,9 +318,9 @@ table td:last-of-type {
 
 .btn-group > * {
   border: 1px solid;
-  border-right-width: 0;
+  border-left-width: 0;
 }
 
-.btn-group > *:last-of-type {
-  border-right-width: 1px;
+.btn-group > *:first-of-type {
+  border-left-width: 1px;
 }

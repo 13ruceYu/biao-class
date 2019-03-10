@@ -101,6 +101,7 @@ let is = {
    * @return {boolean}
    */
   minLength (value, comparison) {
+    value ? value : '';
     if (value.length < comparison)
       return false;
     return true;

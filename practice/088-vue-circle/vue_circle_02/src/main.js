@@ -16,6 +16,7 @@ import SettingSecurity from './page/SettingSecurity'
 import AdminBase from './page/admin/Base'
 import AdminUser from './page/admin/User'
 import AdminThread from './page/admin/Thread'
+import AdminCat from './page/admin/Cat'
 
 import './css/global.css'
 import session from './lib/session'
@@ -59,6 +60,10 @@ const routes = [{
       {
         path: 'thread',
         component: AdminThread,
+      },
+      {
+        path: 'cat',
+        component: AdminCat,
       },
     ]
   },

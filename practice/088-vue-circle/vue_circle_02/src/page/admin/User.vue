@@ -1,79 +1,82 @@
 <template>
-  <div>
+  <div class="panel">
     <h1>用户管理</h1>
     <div class="toolbar">
-      <button @click="toggleForm">创建</button>
+      <button @click="toggleForm()">
+        <span v-if="!ui.showForm">创建</span>
+        <span v-else>取消</span>
+      </button>
     </div>
-    <form v-if="ui.showForm" @submit.prevent="createOrUpdate">
-      <h2>创建/更新用户</h2>
+    <form @submit.prevent="createOrUpdate()" v-if="ui.showForm">
+      <h3>创建/更新</h3>
       <div class="input-control">
         <label>
-          <div class="title">用户名</div>
-          <input type="text" v-model="form.username" @keyup="debounceValidate('username')">
-          <div class="error-list">
-            <div
+          <span class="title">用户名</span>
+          <input @keydown="debounceValidate('username')" v-model="form.username">
+          <span class="error-list">
+            <!--{{errors.username}}-->
+            <span
+              v-if="invalid"
+              v-for="(invalid, e) in errors.username"
+              :key="e.id"
               class="error"
-              v-for="(value, key, index) in errors.username"
-              :key="index"
-              v-show="value"
-            >{{rules.username[key].msg}}</div>
-          </div>
+            >{{rules.username[e].msg}}</span>
+          </span>
         </label>
       </div>
       <div class="input-control">
         <label>
-          <div class="title">昵称</div>
-          <input type="text" v-model="form.name" @keyup="debounceValidate('name')">
-          <div class="error-list">
-            <div
+          <span class="title">密码</span>
+          <input @keydown="debounceValidate('password')" v-model="form.password">
+          <span class="error-list">
+            <span
+              v-if="invalid"
+              v-for="(invalid, e) in errors.password"
+              :key="e.id"
               class="error"
-              v-for="(value, key, index) in errors.name"
-              :key="index"
-              v-show="value"
-            >{{rules.name[key].msg}}</div>
-          </div>
+            >{{rules.password[e].msg}}</span>
+          </span>
         </label>
       </div>
       <div class="input-control">
         <label>
-          <div class="title">简介</div>
-          <input type="text" v-model="form.intro">
+          <span class="title">昵称</span>
+          <input @keydown="debounceValidate('name')" v-model="form.name">
+          <span class="error-list">
+            <!--<span v-if="invalid" v-for="(invalid, e) in errors.name" class="error">{{rules.name[e].msg}}</span>-->
+          </span>
+        </label>
+      </div>
+      <div class="input-control">
+        <label>
+          <span class="title">签名</span>
+          <input @keydown="debounceValidate('intro')" v-model="form.intro">
+          <span class="error-list">
+            <!--<span v-if="invalid" v-for="(invalid, e) in errors.intro" class="error">{{rules.intro[e].msg}}</span>-->
+          </span>
         </label>
       </div>
 
       <div class="input-control">
-        <label>
-          <div class="title">密码</div>
-          <input type="text" v-model="form.password" @keyup="debounceValidate('password')">
-          <div class="error-list">
-            <div
-              class="error"
-              v-for="(value, key, index) in errors.password"
-              :key="index"
-              v-if="value"
-            >{{rules.password[key].msg}}</div>
-          </div>
-        </label>
-      </div>
-      <div class="input-control">
         <button type="submit">提交</button>
       </div>
     </form>
+
     <table>
       <thead>
         <th>昵称</th>
-        <th>简介</th>
         <th>用户名</th>
+        <th>签名</th>
         <th>操作</th>
       </thead>
       <tbody>
         <tr v-for="it in list" :key="it.id">
           <td>{{it.name || '-'}}</td>
+          <td>{{it.username || '-'}}</td>
           <td>{{it.intro || '-'}}</td>
-          <td>{{it.username}}</td>
           <td>
             <div class="btn-group">
-              <button @click="fill(it)">跟新</button>
+              <button @click="fill(it)">更新</button>
               <button @click="remove(it.id)">删除</button>
             </div>
           </td>
@@ -81,175 +84,58 @@
       </tbody>
     </table>
 
-    <Pagination :limit="readParams.limit" :total="total" :onChange="flip" :radius="radius"/>
+    <Pagination :total="total" :limit="readParams.limit" :onChange="flip"/>
   </div>
 </template>
 
 <script>
-import api from "../../lib/api";
-import valee from "../../lib/valee";
-import Pagination from "../../component/Pagination";
+import adminMixin from "../../mixin/admin";
+
 export default {
-  components: {
-    Pagination,
-  },
+  mixins: [adminMixin],
   data() {
     return {
-      form: {},
-      list: [],
-      total: 0,
-      radius: 1,
-      readParams: {
-        limit: 4,
-        page: 1,
-      },
-      ui: {
-        showForm: true
-      },
+      model: "user",
       rules: {
         username: {
-          lengthBetween: {
-            params: [4, 12],
-            msg: "长度需在4-12位之间"
-          },
-          regex: {
-            params: [/^[a-zA-Z]+[0-9]*$/],
-            msg: "用户名格式不合法，需包含字母"
-          },
           unique: {
             params: ["user", "exists", "username"],
             msg: "用户名已存在"
-          }
-        },
-        name: {
+          },
+          required: {
+            msg: "此项为必填项"
+          },
           lengthBetween: {
             params: [4, 12],
-            msg: "长度需在3-12位之间"
+            msg: "最小长度需在4至12位之间"
+          },
+          regex: {
+            params: [/^[a-zA-Z]+[0-9]*$/],
+            msg: "用户名格式不和法，需包含字母"
           }
         },
         password: {
+          required: {
+            msg: "密码为必填项"
+          },
           lengthBetween: {
             params: [6, 24],
-            msg: "密码长度需在6-24位之间"
+            msg: "密码长度需在6位24位之间"
           },
           regex: {
             params: [/(?=[^0-9]*[0-9]+)(?=[^a-zA-Z]*[a-zA-Z]+)/],
             msg: "密码必须包含字母和数字"
           }
+        },
+        name: {
+          // required : {
+          //   msg : '此项为必填项',
+          // },
         }
-      },
-      errors: {},
-      timer: {}
+      }
     };
-  },
-  mounted() {
-    this.read();
-  },
-  methods: {
-    debounceValidate(field) {
-      if (this.timer) clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        this.validate(field);
-      }, 500);
-    },
-    validate(field) {
-      let rules = this.rules[field];
-      let fieldValid = true;
-
-      for (let key in rules) {
-        let rule = rules[key];
-
-        let valid = valee[key](this.form[field], ...rule.params);
-
-        if (typeof valid == "boolean") {
-          this.afterValidate(field, key, valid);
-          if (!valid) fieldValid = false;
-        } else {
-          valid.then(r => {
-            this.afterValidate(field, key, r);
-            // if (!valid) fieldValid = false;
-          });
-        }
-      }
-      return fieldValid;
-    },
-    validateForm() {
-      let rules = this.rules;
-
-      for (let field in rules) {
-        let r = this.validate(field);
-        if (!r) return false;
-      }
-
-      return true;
-    },
-    afterValidate(field, key, valid) {
-      let fieldObj = this.errors[field];
-
-      if (!fieldObj) fieldObj = this.$set(this.errors, field, {});
-
-      this.$set(fieldObj, key, !valid);
-      // fieldObj[key] = !valid;
-      // console.log(this.errors);
-    },
-    createOrUpdate() {
-      if (!this.validateForm()) return;
-      let url = "user/create";
-      if (this.form.id) url = "user/update";
-      api(url, this.form).then(r => {
-        if (r.success) {
-          this.read();
-          this.resetForm();
-        }
-      });
-    },
-    read() {
-      api("user/read", this.readParams).then(r => {
-        if (r.success) {
-          this.list = r.data;
-          this.total = r.total;
-        }
-      });
-    },
-    flip(page){
-      this.readParams.page = page;
-      this.read();
-    },
-    resetForm() {
-      this.form = {};
-    },
-    fill(it) {
-      this.form = it;
-    },
-    remove(id) {
-      if (!confirm("确定删除？")) return;
-      api("user/delete", { id }).then(r => {
-        if (r.success) {
-          this.read();
-        }
-      });
-    },
-    toggleForm() {
-      if (this.ui.showForm) this.hideForm();
-      else {
-        this.errors = {};
-        this.form = {};
-        this.showForm();
-      }
-    },
-    hideForm() {
-      this.ui.showForm = false;
-    },
-    showForm() {
-      this.ui.showForm = true;
-    }
   }
 };
 </script>
 
-<style scoped>
-h1 {
-  margin-top: 0;
-  text-align: left;
-}
-</style>
+<style></style>

@@ -206,7 +206,7 @@ form label {
 
 .form-container,
 .container {
-  overflow: auto;
+  /* overflow: auto; */
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;

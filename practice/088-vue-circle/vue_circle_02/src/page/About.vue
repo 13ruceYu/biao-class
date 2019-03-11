@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <Dropdown :list="userList" searchBy="username" displayBy="name" :onSelect="onSelect"/>
+    <Dropdown api="user/read" searchBy="username" displayBy="username" :onSelect="onSelect"/>
+    <Dropdown :list="userList" searchBy="username" displayBy="username" :onSelect="onSelect"/>
   </div>
 </template>
 

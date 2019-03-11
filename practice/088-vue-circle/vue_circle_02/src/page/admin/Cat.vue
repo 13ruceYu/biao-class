@@ -17,22 +17,9 @@
             <span
               v-if="invalid"
               v-for="(invalid, e) in errors.title"
+              :key="e.id"
               class="error"
             >{{rules.title[e].msg}}</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="input-control">
-        <label>
-          <span class="cat_id">分类ID</span>
-          <Dropdown :list="userList" searchBy="username" displayBy="name" :onSelect="onSelect"/>
-          <span class="error-list">
-            <span
-              v-if="invalid"
-              v-for="(invalid, e) in errors.cat_id"
-              class="error"
-            >{{rules.cat_id[e].msg}}</span>
           </span>
         </label>
       </div>
@@ -66,18 +53,12 @@
 
 <script>
 import adminMixin from "../../mixin/admin";
-import Dropdown from "../../component/Dropdown";
 
 export default {
-  components:{Dropdown},
   mixins: [adminMixin],
-  mounted() {
-    this.yo();
-  },
   data() {
     return {
       model: "cat",
-      userList:{},
       rules: {
         title: {
           required: {
@@ -92,10 +73,7 @@ export default {
     };
   },
   methods: {
-    yo() {
-      console.log("yo");
-    },
-    onSelect() {},
+
   }
 };
 </script>

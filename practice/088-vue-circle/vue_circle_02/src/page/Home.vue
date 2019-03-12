@@ -25,6 +25,9 @@
             </span>
           </div>
         </div>
+        <div class="more">
+          <ScrollLoad :page="1" :totalPage="totalThreadPage" @flip="onFlip"/>
+        </div>
       </div>
     </div>
   </div>
@@ -34,7 +37,11 @@
 import dateFormatter from "../lib/dateFormatter";
 import session from "../lib/session";
 import api from "../lib/api";
+import ScrollLoad from "../component/ScrollLoad";
 export default {
+  components: {
+    ScrollLoad
+  },
   mounted() {
     this.user = session.user();
     this.readThread();
@@ -43,17 +50,25 @@ export default {
     return {
       threadForm: {},
       threadList: [],
-      user: {}
+      user: {},
+      threadReadParams: {
+        with: ["belongs_to:user"],
+        where: { and: { parent_id: null } },
+        limit: 2
+      },
+      totalThreadPage:'',
     };
   },
   methods: {
+    onFlip(page) {
+      this.threadReadParams.page = page;
+      this.readThread();
+    },
     readThread() {
-      api("thread/read", {
-        with: ["belongs_to:user"],
-        where: { and: { parent_id: null } }
-      }).then(r => {
+      api("thread/read", this.threadReadParams).then(r => {
         if (r.success) {
-          this.threadList = r.data;
+          this.totalThreadPage = Math.ceil(r.total/this.threadReadParams.limit);
+          this.threadList = [...this.threadList, ...r.data||[]];
         }
       });
     },
@@ -91,6 +106,7 @@ export default {
   },
   filters: {
     cut(val) {
+      if (!val) return;
       return val.length < 60 ? val : val.substring(0, 60) + "...";
     }
   }

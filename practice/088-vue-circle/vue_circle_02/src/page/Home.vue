@@ -12,7 +12,7 @@
           <div class="title">
             <router-link :to="'/thread/' + it.id">标题：{{it.title}}</router-link>
           </div>
-          <div class="username">创建者：{{it.$user.username || '用户已注销'}}</div>
+          <div class="username">创建者：{{it.$user? it.$user.username : '用户已注销'}}</div>
           <div class="content">
             内容：
             {{it.content | cut}}

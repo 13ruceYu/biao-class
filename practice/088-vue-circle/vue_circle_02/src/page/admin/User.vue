@@ -15,12 +15,9 @@
           <input @keydown="debounceValidate('username')" v-model="form.username">
           <span class="error-list">
             <!--{{errors.username}}-->
-            <span
-              v-if="invalid"
-              v-for="(invalid, e) in errors.username"
-              :key="e.id"
-              class="error"
-            >{{rules.username[e].msg}}</span>
+            <div v-for="(invalid, e) in errors.username" :key="e.id" class="error">
+              <span v-if="invalid">{{rules.username[e].msg}}</span>
+            </div>
           </span>
         </label>
       </div>
@@ -29,12 +26,9 @@
           <span class="title">密码</span>
           <input @keydown="debounceValidate('password')" v-model="form.password">
           <span class="error-list">
-            <span
-              v-if="invalid"
-              v-for="(invalid, e) in errors.password"
-              :key="e.id"
-              class="error"
-            >{{rules.password[e].msg}}</span>
+            <div v-for="(invalid, e) in errors.password" :key="e.id" class="error">
+              <span v-if="invalid">{{rules.password[e].msg}}</span>
+            </div>
           </span>
         </label>
       </div>
@@ -76,7 +70,7 @@
           <td>{{it.intro || '-'}}</td>
           <td>
             <div class="btn-group">
-              <button @click="fill(it)">更新</button>
+              <button @click="fillAndShow(it)">更新</button>
               <button @click="remove(it.id)">删除</button>
             </div>
           </td>

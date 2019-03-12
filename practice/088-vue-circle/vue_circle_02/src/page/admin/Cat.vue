@@ -12,14 +12,11 @@
       <div class="input-control">
         <label>
           <span class="title">标题</span>
-          <input @keydown="debounceValidate('title')" v-model="form.title">
+          <input @keydown="debounceValidate('name')" v-model="form.name">
           <span class="error-list">
-            <span
-              v-if="invalid"
-              v-for="(invalid, e) in errors.title"
-              :key="e.id"
-              class="error"
-            >{{rules.title[e].msg}}</span>
+            <div v-for="(invalid, e) in errors.name" :key="e.id" class="error">
+              <span v-if="invalid">{{rules.name[e].msg}}</span>
+            </div>
           </span>
         </label>
       </div>
@@ -36,10 +33,10 @@
       </thead>
       <tbody>
         <tr v-for="it in list" :key="it.id">
-          <td>{{it.title || '-'}}</td>
+          <td>{{it.name || '-'}}</td>
           <td>
             <div class="btn-group">
-              <button @click="fill(it)">更新</button>
+              <button @click="fillAndShow(it)">更新</button>
               <button @click="remove(it.id)">删除</button>
             </div>
           </td>
@@ -60,7 +57,7 @@ export default {
     return {
       model: "cat",
       rules: {
-        title: {
+        name: {
           required: {
             msg: "此项为必填项"
           },
@@ -72,9 +69,7 @@ export default {
       }
     };
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 

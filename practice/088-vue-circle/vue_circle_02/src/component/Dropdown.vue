@@ -1,7 +1,12 @@
 <template>
   <div class="dropdown">
     <div class="filter">
-      <input type="search" v-model="keyword" @focus="visible=true" @blur="hideResult">
+      <input
+        type="search"
+        v-model="keyword"
+        @focus="visible=true;reset()"
+        @blur="hideResult(); $emit('blur')"
+      >
     </div>
     <div class="list" v-if="visible">
       <div
@@ -23,7 +28,7 @@ export default {
       keyword: "",
       result: [],
       visible: false,
-      timer:null,
+      timer: null
     };
   },
   mounted() {
@@ -36,7 +41,7 @@ export default {
   },
   watch: {
     // 监测 keyword 的变化
-    keyword(n, o) {
+    keyword() {
       if (this.api) this.debounceFilterAsync();
       else this.filter();
     }
@@ -48,9 +53,13 @@ export default {
       });
     },
     select(it) {
-      this.keyword = it[this.displayBy];
+      if (it) this.keyword = it[this.displayBy];
       if (!this.onSelect) return;
       this.onSelect(it);
+    },
+    reset() {
+      this.keyword = "";
+      this.select(null);
     },
     hideResult() {
       setTimeout(() => {

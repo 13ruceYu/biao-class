@@ -5,7 +5,7 @@
         <div class="main-thread">
           <div class="title">{{mainThread.title}}</div>
           <div class="info">
-            <span>{{mainUser.username}}</span>
+            <span>{{mainUser?mainUser.username:'已注销'}}</span>
             <span class="create-time">创建时间：{{mainThread.created_at}}</span>
           </div>
           <div class="content">{{mainThread.content}}</div>
@@ -19,7 +19,7 @@
           <div class="sub-thread" v-for="it in subList" :key="it.id">
             <div class="content">{{it.content}}</div>
             <div class="info">
-              <span>{{it.$user.username}}</span>
+              <span>{{it.$user?it.$user.username:'已注销'}}</span>
               <span class="create-time">{{it.created_at}}</span>
             </div>
             <div class="operation" v-if="it.$user && user">

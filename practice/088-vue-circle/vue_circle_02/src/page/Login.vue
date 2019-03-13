@@ -22,6 +22,19 @@
           <button type="submit">登录</button>
         </div>
       </form>
+      <div class="card form-container">
+        <div class="title">测试用户账号</div>
+        <div class="content">
+          <dl>
+            <dt>用户名</dt>
+            <dd>admin</dd>
+          </dl>
+          <dl>
+            <dt>密码</dt>
+            <dd>yoyoyo</dd>
+          </dl>
+        </div>
+      </div>
     </div>
   </div>
 </template>

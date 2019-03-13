@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  props: ["page", "totalPage"],
+  props: ["page", "totalPage", "pending"],
   mounted() {
     this.current = this.page || 1;
     this.bindScroll();
@@ -31,8 +31,12 @@ export default {
           this.noMore = true;
           return;
         }
-        if (this.calcRemain() < 20) {
-          if (this.getDocHeight() == this.docHeight) {
+        if (this.calcRemain() < 1) {
+          let wait;
+          if (this.pending === undefined)
+            wait = this.getDocHeight() == this.docHeight;
+          else wait = this.pending;
+          if (wait) {
             this.mainText = "加载中...";
             return;
           }

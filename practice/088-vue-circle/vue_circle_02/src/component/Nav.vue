@@ -10,7 +10,7 @@
       </div>
       <div class="col-16 text-right">
         <div class="search">
-          <input type="search">
+          <input type="search" placeholder="此功能尚未实现">
         </div>
         <span id="tourist" v-if="!session.loggedIn()">
           <router-link to="/login">登录 / </router-link>

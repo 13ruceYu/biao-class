@@ -2,13 +2,18 @@
   <div>
     <div class="container">
       <h1>Home</h1>
-      <form @submit.prevent="onSubmit">
+      <div class="action-bar">
+        <button @click="showThreadForm" class="primary">发帖</button>
+        <!-- <button v-if="session.loggedIn()" @click="ui.threadFormVisible = !ui.threadFormVisible">发帖</button>
+        <router-link v-else to="/login">发帖</router-link> -->
+      </div>
+      <form @submit.prevent="onSubmit" v-if="session.loggedIn() && ui.threadFormVisible">
         <input type="text" placeholder="标题" v-model="threadForm.title">
         <textarea rows="5" placeholder="内容" v-model="threadForm.content"></textarea>
         <button type="submit">提交</button>
       </form>
       <div class="timeline">
-        <div class="activity" v-for="it in threadList" :key="it.id">
+        <div class="activity card" v-for="it in threadList" :key="it.id">
           <div class="title">
             <router-link :to="'/thread/' + it.id">标题：{{it.title}}</router-link>
           </div>
@@ -19,14 +24,14 @@
           </div>
           <div class="others">创建时间：{{it.created_at}}</div>
           <div class="operation" v-if="it.$user && user">
-            <span v-if="it.$user.id === user.id">
+            <span v-if="it.$user.id === user.id" class="btn-group">
               <button @click="threadForm=it">更新</button>
               <button @click="deleteThread(it.id)">删除</button>
             </span>
           </div>
         </div>
         <div class="more">
-          <ScrollLoad :page="1" :totalPage="totalThreadPage" @flip="onFlip"/>
+          <ScrollLoad :page="1" :pending="threadReadingPending" :totalPage="totalThreadPage" @flip="onFlip"/>
         </div>
       </div>
     </div>
@@ -48,27 +53,42 @@ export default {
   },
   data() {
     return {
+      ui:{
+        threadFormVisible:false,
+      },
       threadForm: {},
       threadList: [],
       user: {},
+      session,
       threadReadParams: {
         with: ["belongs_to:user"],
         where: { and: { parent_id: null } },
-        limit: 2
+        limit: 3
       },
-      totalThreadPage:'',
+      totalThreadPage: "",
+      threadReadingPending: false,
     };
   },
   methods: {
+    showThreadForm(){
+      if(session.loggedIn())
+      this.ui.threadFormVisible = !this.ui.threadFormVisible
+      else
+      this.$router.push('/login');
+    },
     onFlip(page) {
       this.threadReadParams.page = page;
       this.readThread();
     },
     readThread() {
+      this.threadReadingPending = true;
       api("thread/read", this.threadReadParams).then(r => {
         if (r.success) {
-          this.totalThreadPage = Math.ceil(r.total/this.threadReadParams.limit);
-          this.threadList = [...this.threadList, ...r.data||[]];
+          this.totalThreadPage = Math.ceil(
+            r.total / this.threadReadParams.limit
+          );
+          this.threadList = [...this.threadList, ...(r.data || [])];
+          this.threadReadingPending = false;
         }
       });
     },
@@ -88,7 +108,7 @@ export default {
       api(url, this.threadForm).then(r => {
         if (r.success) {
           this.threadForm = {};
-          this.readThread();
+          this.threadList.unshift(r.data);
         }
       });
     },
@@ -115,8 +135,17 @@ export default {
 
 <style scoped>
 .activity {
-  border: 1px solid;
-  margin-bottom: 0.5em;
+  /* border: 1px solid; */
+  margin-bottom: 1em;
   padding: 0.5em;
+}
+
+.action-bar {
+  margin: .5em 0;
+}
+
+.card .title {
+  padding-left: 0;
+  padding-right: 0;
 }
 </style>

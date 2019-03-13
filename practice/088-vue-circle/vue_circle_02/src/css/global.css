@@ -6,7 +6,7 @@
 }
 
 :root {
-  font-size: 12px;
+  font-size: 16px;
   background: #f0f0f0;
 }
 
@@ -42,8 +42,20 @@ button,
 textarea {
   font-size: 1em;
   padding: .2rem .5rem;
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
   background: #fff;
+  font-family: inherit;
+}
+
+button {
+  transition: all .5s;
+}
+
+button.primary {
+  background: #2994f3;
+  color: #fff;
+  padding: .5em .8em;
 }
 
 button:hover {
@@ -210,7 +222,6 @@ form label {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
-  padding: .5em;
 }
 
 .form-container {
@@ -247,7 +258,9 @@ form label {
 
 .card {
   background: #fff;
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px #bbb;
+  border-radius: 3px;
 }
 
 .title {
@@ -280,6 +293,10 @@ form label {
 
 .error {
   color: #b10;
+}
+
+.card dl {
+  margin: 0;
 }
 
 .card dl dt,
@@ -317,10 +334,15 @@ table td:last-of-type {
 }
 
 .btn-group > * {
-  border: 1px solid;
+  border-width: 1px solid rgba(0,0,0,.2);
   border-left-width: 0;
 }
 
 .btn-group > *:first-of-type {
   border-left-width: 1px;
+  border-radius: 2px 0 0 2px;
+}
+
+.btn-group > *:last-of-type {
+  border-radius: 0 2px 2px 0;
 }

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <RegularNav/>
     <div class="container carousel">
       <el-carousel :interval="4000" type="card" height="200px">
         <el-carousel-item v-for="item in 3" :key="item">
@@ -16,7 +17,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -28,7 +29,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -40,7 +41,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -52,7 +53,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -66,7 +67,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -78,7 +79,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -90,7 +91,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -102,7 +103,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -117,7 +118,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -129,7 +130,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -141,7 +142,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -153,7 +154,7 @@
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
+                <time class="time"></time>
                 <el-button type="text" class="button">操作按钮</el-button>
               </div>
             </div>
@@ -165,7 +166,11 @@
 </template>
 
 <script>
+import RegularNav from "../components/RegularNav";
 export default {
+  components:{
+    RegularNav,
+  },
   data() {
     return {
       currentDate: ""
@@ -195,7 +200,4 @@ export default {
   background-color: #d3dce6;
 }
 
-.card-list {
-  margin-bottom: .5em;
-}
 </style>

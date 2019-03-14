@@ -20,6 +20,7 @@ img {
 
 .text-left {text-align: left;}
 .text-right {text-align: right;}
+.text-center {text-align: center;}
 
 .anchor {
   display: inline-block;
@@ -57,4 +58,12 @@ img {
 
 .cny::before {
   content: '￥';
+}
+
+.card-list {
+  margin-bottom: .5em;
+}
+
+.bar .price-limit .el-input__inner {
+  padding: 5px;
 }

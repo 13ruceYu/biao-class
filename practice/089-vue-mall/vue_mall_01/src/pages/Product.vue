@@ -1,5 +1,6 @@
 <template>
   <div>
+    <RegularNav/>
     <div class="container overview">
       <el-row class="" :gutter="10">
         <el-col :span="10" class="preview">
@@ -116,6 +117,15 @@
     </div>
   </div>
 </template>
+
+<script>
+import RegularNav from "../components/RegularNav";
+export default {
+  components: {
+    RegularNav
+  }
+}
+</script>
 
 <style scoped>
 .el-carousel__item h3 {

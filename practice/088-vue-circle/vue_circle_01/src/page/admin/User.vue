@@ -15,15 +15,12 @@
       <div class="input-control">
         <label>
           <span class="title">用户名</span>
-          <input @keyup="validate('username')" v-model="form.username">
-          <span class="error-list">
-            <div
-              v-for="(value,key,index) in errors.username"
-              :key="index"
-              class="error"
-              v-show="value"
-            >{{rules.username[key].msg}}</div>
-          </span>
+          <input v-model="form.username" @keyup="validate('username')">
+          <div class="error-list">
+            <div v-for="(value,key,index) in errors.username" :key="index" class="error">
+              <span v-if="value">{{rules.username[key].msg}}</span>
+            </div>
+          </div>
         </label>
       </div>
       <div class="input-control">
@@ -68,7 +65,7 @@
 </template>
 
 <script>
-import valee from "../../lib/valee";
+import { call as valee } from "../../lib/valee";
 import api from "../../lib/api";
 
 export default {
@@ -79,22 +76,8 @@ export default {
       },
       form: {},
       list: [],
-      // 定义主表单中所有验证规则
-      // {
-      //   属性名: {
-      //     规则1: {
-      //       params: [...], 给验证器函数的传参
-      //       msg: '...' 错误信息
-      //     },
-      //     规则2: ...
-      //   }
-      // }
       rules: {
         username: {
-          // unique  : {
-          //   params : [ 'user/exists' ],
-          //   msg    : '用户名已存在',
-          // },
           lengthBetween: {
             params: [4, 12],
             msg: "最小长度需在4至12位之间"
@@ -102,79 +85,42 @@ export default {
           regex: {
             params: [/^[a-zA-Z]+[0-9]*$/],
             msg: "用户名格式不和法，需包含字母"
+          },
+          required: {
+            msg: "此项为必填项"
           }
         },
+
         name: {
           required: {
             msg: "此项为必填项"
           }
         }
       },
-
-      // formStatus : {
-      //   username : 'pending',
-      // },
-
-      // 记录所有的主表单错误
-      // {
-      //   属性名: {
-      //     规则1: true, 不合法
-      //     规则2: false, 合法
-      //   }
-      // }
-      errors: {
-      }
+      errors: {}
     };
   },
   mounted() {
     this.read();
   },
+  watch: {},
+
   methods: {
-    /**
-     * 验证一个属性（如username）
-     * @param {string} field e.g. 'username'
-     */
     validate(field) {
-      // 先拿到所有的规则 rules
-      // {
-      //   lengthBetween : {
-      //     params : [ 4, 12 ],
-      //       msg    : '最小长度需在4至12位之间',
-      //   }
-      //   required : {
-      //       msg    : '此项为必填项',
-      //   }
-      // }
       let rules = this.rules[field];
 
-      // 检查每一条规则是否合法
       for (let key in rules) {
-        // 比如说是lengthBetween
-        // {
-        //   params : [ 4, 12 ],
-        //     msg    : '最小长度需在4至12位之间',
-        // }
         let rule = rules[key];
 
-        // 调用biao valee对应的验证函数
-        // 比如说valee.lengthBetween('whh', 4, 12)
-        let valid = valee[key](this.form[field], ...rule.params);
+        let valid = valee(key,...this.form[field], ...rule.params);
 
-        // 拿到对应的错误对象
-        let fieldObj = this.errors[field];
+        let fieldObj = this.errors[field]; // 初始化错误
 
-        // 如果不存在，就初始化一个空对象
-        // errors: {
-        //  username: {},
-        // }
         if (!fieldObj) fieldObj = this.$set(this.errors, field, {});
 
-        // 将对象中对应的验证规则设为valee返回的结果
-        // 如：fieldObj['lengthBetween'] = true;
-        fieldObj[key] = !valid;
+        this.$set(fieldObj, key, !valid);
       }
     },
-
     createOrUpdate() {
       let action = "create";
       let isUpdate = this.form.id;
@@ -213,20 +159,7 @@ export default {
     fill(it) {
       this.form = it;
     }
-  },
-  // computed: {
-  //   usernameErrors() {
-  //     let obj = {};
-  //     let uErrs = {};
-  //     uErrs = this.errors.username;
-  //     for(let key in uErrs) {
-  //       if (uErrs[key]){
-  //         obj[key] = uErrs[key];
-  //       }
-  //     }
-  //     console.log(obj);
-  //     return obj;
-  // }}
+  }
 };
 </script>
 

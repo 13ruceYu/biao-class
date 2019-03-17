@@ -7,15 +7,28 @@ import "normalize.css/normalize.css";
 import 'element-ui/lib/theme-chalk/index.css';
 import "./css/global.css";
 
+import api from "./lib/api";
+
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Search from "./pages/Search";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
+import My from "./pages/My";
+import Cart from "./pages/Cart";
+import Order from "./pages/Order";
+import Setting from "./pages/Setting";
+
+import Base from "./pages/admin/Base";
+import AdminUser from "./pages/admin/User";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 
-const routes = [
-  {
+window.api = api;
+
+const routes = [{
     path: '/',
     component: Home,
   },
@@ -27,13 +40,45 @@ const routes = [
     path: '/search',
     component: Search,
   },
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/signup',
+    component: Signup,
+  },
+  {
+    path: '/my',
+    component: My,
+    children: [{
+        path: 'cart',
+        component: Cart,
+      },
+      {
+        path: 'order',
+        component: Order,
+      }, {
+        path: 'setting',
+        component: Setting,
+      },
+    ]
+  },
+  {
+    path: '/admin',
+    component: Base,
+    children: [{
+      path: 'user',
+      component: AdminUser,
+    }, ]
+  },
 ]
 
 const router = new VueRouter({
   routes
 })
 
-// Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),

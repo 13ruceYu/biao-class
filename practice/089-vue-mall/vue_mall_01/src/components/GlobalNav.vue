@@ -11,8 +11,8 @@
         <el-col :span="12" class="text-right">
           <a href="#" class="anchor">item</a>
           <a href="#" class="anchor">item</a>
-          <a href="#" class="anchor">item</a>
-          <a href="#" class="anchor">item</a>
+          <router-link class="anchor" to="/login">登录</router-link>
+          <router-link class="anchor" to="/signup">注册</router-link>
         </el-col>
       </el-row>
     </div>

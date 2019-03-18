@@ -36,6 +36,10 @@ button:hover {
     max-width: 400px;
 }
 
+.error {
+    color: #b10;
+}
+
 .text-left {
     text-align: left;
 }

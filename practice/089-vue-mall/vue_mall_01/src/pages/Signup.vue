@@ -8,7 +8,7 @@
           <el-tab-pane label="手机注册" name="phone">
             <div class="input-field">
               <div class="title">手机号</div>
-              <el-input v-model="form.phone" placeholder="请输入手机号"></el-input>
+              <el-input @blur="uniqueExist" v-model="form.phone" placeholder="请输入手机号"></el-input>
             </div>
           </el-tab-pane>
           <el-tab-pane label="邮箱注册" name="mail">
@@ -20,12 +20,14 @@
         </el-tabs>
         <div class="input-field">
           <div class="title">验证码</div>
-          <el-input v-model="form.code" placeholder="请输入验证码">
-            <el-button slot="append" @click="sendCode" :disabled="!!sendCodeCountDown">
-              <span v-if="sendCodeCountDown">{{sendCodeCountDown}}s</span>
-              <span v-else>发送验证码</span>
-            </el-button>
-          </el-input>
+          <fieldset :disabled="!unique">
+            <el-input v-model="form.code" placeholder="请输入验证码" :disabled="!unique">
+              <el-button slot="append" @click="sendCode" :disabled="!!sendCodeCountDown">
+                <span v-if="sendCodeCountDown">{{sendCodeCountDown}}s</span>
+                <span v-else>发送验证码</span>
+              </el-button>
+            </el-input>
+          </fieldset>
         </div>
         <div class="input-field">
           <div class="title">密码</div>
@@ -61,7 +63,8 @@ export default {
       },
       sendCodeCountDown: 0,
       errors: [],
-      code: null
+      code: null,
+      unique: false
     };
   },
   methods: {
@@ -70,12 +73,12 @@ export default {
       let e = (this.errors = []);
       let signupBy = this.signupBy;
 
-      if(signupBy == 'phone' && !is.phone(f.phone)){
-        e.push('手机格式有误')
+      if (signupBy == "phone" && !is.phone(f.phone)) {
+        e.push("手机格式有误");
       }
 
-      if(signupBy == 'mail' && !is.mail(f.mail)){
-        e.push('邮箱格式有误')
+      if (signupBy == "mail" && !is.mail(f.mail)) {
+        e.push("邮箱格式有误");
       }
 
       if (f.password.length < 6) {
@@ -92,16 +95,47 @@ export default {
 
       return true;
     },
-    signup() {
-      if(!this.validate())
-      return;
+    uniqueExist() {
+      let f = this.form;
+      let key = this.signupBy;
+      let value = this.form[this.signupBy];
+      let e = this.errors = [];
 
-      api('user/create', this.form).then(r => {
-        if(r.success){
-          api('user/create', this.form);
-          this.$router.push('/login');
+      if (!value) return;
+      if (key == "phone" && !is.phone(f.phone)) {
+        e.push("手机格式有误");
+        return;
+      }
+
+      if (key == "mail" && !is.mail(f.mail)) {
+        e.push("邮箱格式有误");
+        return;
+      }
+      api("user/first", {
+        where: {
+          and: {
+            [key]: value
+          }
         }
-      })
+      }).then(r => {
+        if (r.data) {
+          this.errors.push("账号已存在");
+          this.unique = false;
+          return;
+        }
+        this.unique = true;
+      });
+    },
+    signup() {
+      let f = this.form;
+      if (!this.validate()) return;
+
+      api("user/create", f).then(r => {
+        if (r.success) {
+          api("user/create", f);
+          this.$router.push("/login");
+        }
+      });
     },
     sendCode() {
       if (this.sendCodeCountDown) return;
@@ -134,6 +168,10 @@ export default {
 </script>
 
 <style scoped>
-
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
 </style>
 

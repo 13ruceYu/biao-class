@@ -14,6 +14,7 @@ import Product from "./pages/Product";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Recover from "./pages/Recover";
 
 import My from "./pages/My";
 import Cart from "./pages/Cart";
@@ -47,6 +48,10 @@ const routes = [{
   {
     path: '/signup',
     component: Signup,
+  },
+  {
+    path: '/recover',
+    component: Recover,
   },
   {
     path: '/my',

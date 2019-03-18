@@ -11,7 +11,7 @@
               <el-input v-model="form.phone" placeholder="请输入手机号"></el-input>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="邮箱注册" name="email">
+          <el-tab-pane label="邮箱注册" name="mail">
             <div class="input-field">
               <div class="title">邮箱</div>
               <el-input v-model="form.mail" placeholder="请输入邮箱"></el-input>
@@ -35,9 +35,9 @@
           <div class="error" v-for="(e, index) in errors" :key="index">{{e}}</div>
         </div>
         <div>
-          <button type="submit">立即注册</button>
+          <button type="submit" class="el-button--primary">立即注册</button>
           <el-button type="text">
-            <router-link to="/">忘记密码</router-link>
+            <router-link to="/login" class="el-button el-button--text">已有账号？登录</router-link>
           </el-button>
         </div>
       </form>

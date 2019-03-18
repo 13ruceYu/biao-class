@@ -12,6 +12,17 @@ a {
     text-decoration: none;
 }
 
+button {
+    background: #fff;
+    padding: .3em .8em;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 .form-container,
 .container {
     max-width: 800px;
@@ -88,4 +99,8 @@ form .input-field {
 
 form .input-field .title {
     margin-bottom: 5px;
+}
+
+.el-button--text {
+    padding: .5em;
 }

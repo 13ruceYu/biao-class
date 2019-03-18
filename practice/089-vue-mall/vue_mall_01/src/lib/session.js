@@ -7,18 +7,21 @@ function loggedIn() {
 
 function login(sessionId, user, redirect = '/') {
   localStorage.setItem('sessionId', sessionId);
-  store.set('user',user);
+  store.set('user', user);
   location.href = redirect;
 }
 
-function logout(redirect = '/') {
+function logout(redirect = '/login') {
   localStorage.removeItem('sessionId');
   localStorage.removeItem('user');
   location.href = redirect;
 }
 
-function user() {
-  return store.get('user');
+function user(key) {
+  let user = store.get('user');
+  if (!key)
+    return user;
+  return user[key];
 }
 
 function isAdmin() {

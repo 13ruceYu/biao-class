@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import "./css/global.css";
 
 import api from "./lib/api";
+import session from "./lib/session";
 
 import Home from "./pages/Home";
 import Product from "./pages/Product";
@@ -23,6 +24,7 @@ import Setting from "./pages/Setting";
 
 import Base from "./pages/admin/Base";
 import AdminUser from "./pages/admin/User";
+import AdminBrand from "./pages/admin/Brand";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
@@ -73,14 +75,30 @@ const routes = [{
     path: '/admin',
     component: Base,
     children: [{
-      path: 'user',
-      component: AdminUser,
-    }, ]
+        path: 'user',
+        component: AdminUser,
+      },
+      {
+        path: 'brand',
+        component: AdminBrand,
+      },
+    ]
   },
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  let toAdmin = to.matched[0].path == '/admin';
+  let isAdmin = session.isAdmin();
+
+  if (toAdmin && !isAdmin) {
+    return;
+  }
+  next();
 })
 
 Vue.config.productionTip = false;

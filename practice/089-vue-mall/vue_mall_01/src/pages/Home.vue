@@ -13,7 +13,7 @@
       <el-row class="card-list" :gutter="5">
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -25,7 +25,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -37,7 +37,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -49,7 +49,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -63,7 +63,7 @@
       <el-row class="card-list" :gutter="5">
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -75,7 +75,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -87,7 +87,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -99,7 +99,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -114,7 +114,7 @@
       <el-row class="card-list" :gutter="5">
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -126,7 +126,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -138,7 +138,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">
@@ -150,7 +150,7 @@
         </el-col>
         <el-col :span="6">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
+            <img src="../img/sample-goods.png" class="image">
             <div style="padding: 14px;">
               <span>好吃的汉堡</span>
               <div class="bottom clearfix">

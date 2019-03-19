@@ -25,7 +25,8 @@ function user(key) {
 }
 
 function isAdmin() {
-  return this.user().IS_ADMIN;
+  let u = user();
+  return u && u.IS_ADMIN;
 }
 
 export default {

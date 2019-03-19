@@ -1,6 +1,6 @@
 <template>
   <div class="admin">
-    <el-row :gutter="10">
+    <el-row>
       <el-col :span="6">
         <el-menu
           :router="true"
@@ -9,7 +9,7 @@
           @open="handleOpen"
           @close="handleClose"
         >
-          <el-menu-item index="order">
+          <el-menu-item index="/admin/order">
             <i class="el-icon-document"></i>
             <span slot="title">订单管理</span>
           </el-menu-item>
@@ -17,18 +17,17 @@
             <i class="el-icon-goods"></i>
             <span slot="title">用户管理</span>
           </el-menu-item>
-          <el-menu-item index="brand">
+          <el-menu-item index="/admin/brand">
             <i class="el-icon-setting"></i>
             <span slot="title">品牌管理</span>
           </el-menu-item>
-          <el-menu-item index="cat">
+          <el-menu-item index="/admin/cat">
             <i class="el-icon-menu"></i>
             <span slot="title">分类管理</span>
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="18">
-        <h1>管理页</h1>
+      <el-col :span="18" class="admin-view">
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -46,3 +45,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.admin-view {
+  padding-left: .5em;
+}
+</style>

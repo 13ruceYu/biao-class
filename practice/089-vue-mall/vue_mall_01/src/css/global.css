@@ -14,8 +14,7 @@ a {
 
 button {
     background: #fff;
-    padding: .3em .8em;
-    border-radius: 5px;
+    padding: .2em .8em;
     border: 1px solid #bbb;
 }
 
@@ -38,6 +37,7 @@ button:hover {
 
 .error {
     color: #b10;
+    margin: .5em 0;
 }
 
 .text-left {

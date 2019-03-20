@@ -1,6 +1,6 @@
 <template>
-  <div class="admin-brand">
-    <h1>品牌管理</h1>
+  <div class="admin-cat">
+    <h1>分类管理</h1>
     <div class="tool-bar">
       <el-button-group>
         <el-button type="primary" @click="ui.formVisible = !ui.formVisible">创建</el-button>
@@ -10,8 +10,24 @@
       <form @submit="createOrUpdate" v-if="ui.formVisible">
         <h2>添加/修改</h2>
         <div class="input-field">
-          <div class="title">品牌名</div>
+          <div class="title">分类名</div>
           <input type="text" v-model="form.name" class="el-input__inner">
+          <div class="error-list">
+            <div class="error" v-for="(invalid, e) in errors.name" :key="e.id">
+              <span v-if="invalid">{{rules.name[e].msg}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-field">
+          <div class="title">父级分类</div>
+          <Dropdown
+            api="cat/read"
+            searchBy="name"
+            displayBy="name"
+            klass="el-input__inner"
+            :onSelect="makeSelect('parent_id')"
+          />
+          <!-- <input type="text" v-model="form.name" class="el-input__inner"> -->
           <div class="error-list">
             <div class="error" v-for="(invalid, e) in errors.name" :key="e.id">
               <span v-if="invalid">{{rules.name[e].msg}}</span>
@@ -25,11 +41,12 @@
         <el-input placeholder="请输入内容"></el-input>
       </el-form>-->
     </div>
-    <div>
+    <div class="cat-table">
       <h2>列表</h2>
-      <p>总用户数：{{total}}</p>
+      <p>总分类数：{{total}}</p>
       <el-table :data="list" stripe style="width: 100%">
-        <el-table-column prop="name" label="品牌名" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="分类名" min-width="100"></el-table-column>
+        <el-table-column prop="$parent.name" label="父级分类名" min-width="100"></el-table-column>
         <el-table-column fixed="right" label="操作" width="110">
           <template slot-scope="scope">
             <el-button @click="fill(scope.row)" type="text" size="small">更新</el-button>
@@ -51,16 +68,28 @@
 </template>
 <script>
 import admin from "../../mixins/admin";
+import Dropdown from "../../components/Dropdown";
 export default {
   mixins: [admin],
+  components: { Dropdown },
   data() {
     return {
-      model: "brand",
+      model: "cat",
+      readParam: {
+        with: [
+          {
+            model: "cat",
+            relation: "belongs_to",
+            foreign_key: "parent_id",
+            as: "parent"
+          }
+        ]
+      },
       rules: {
         name: {
           unique: {
-            params: ["brand", "exists", "name"],
-            msg: "品牌名已存在"
+            params: ["cat", "exists", "name"],
+            msg: "分类名已存在"
           },
           required: {
             msg: "此项为必填项"
@@ -68,7 +97,8 @@ export default {
         }
       }
     };
-  }
+  },
+  methods: {}
 };
 </script>
 

@@ -36,7 +36,7 @@ export let is = {
    * @return {boolean}
    */
   min(value, comparison) {
-    if (value < comparison)
+    if (parseFloat(value) < comparison)
       return false;
     return true;
   },
@@ -48,7 +48,7 @@ export let is = {
    * @return {boolean}
    */
   max(value, comparison) {
-    if (value > comparison)
+    if (parseFloat(value) > comparison)
       return false;
     return true;
   },

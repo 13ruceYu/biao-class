@@ -1,10 +1,12 @@
-import { call as valee } from "../lib/valee";
+import {
+  call as valee
+} from "../lib/valee";
 import api from "../lib/api";
 export default {
   data() {
     return {
       ui: {
-        formVisible: false
+        formVisible: true
       },
       list: [],
       form: {},
@@ -36,7 +38,9 @@ export default {
     fill(row) {
       this.ui.formVisible = true;
       this.formOriginal = row;
-      this.form = {...row };
+      this.form = {
+        ...row
+      };
     },
     createOrUpdate() {
       if (!this.validateForm()) {
@@ -67,7 +71,9 @@ export default {
     remove(id) {
       if (!confirm("确定删除？")) return;
 
-      api(`${this.model}/delete`, { id }).then(r => {
+      api(`${this.model}/delete`, {
+        id
+      }).then(r => {
         if (r.success) {
           this.read();
         }
@@ -156,6 +162,17 @@ export default {
       // 将对象中对应的验证规则设为valee返回的结果
       // 如：fieldObj['lengthBetween'] = true;
       this.$set(fieldObj, key, !valid);
+    },
+
+    makeSelect(prop) {
+      // let me = this;
+      // return function(it) {
+      //   me.form[prop] = it.id;
+      // }
+      // 箭头函数来规避传统方式动态导致的混论
+      return it => {
+        this.form[prop] = it.id;
+      }
     }
   }
 };

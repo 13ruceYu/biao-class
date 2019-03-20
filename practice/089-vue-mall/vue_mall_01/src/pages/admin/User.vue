@@ -3,7 +3,7 @@
     <h1>用户管理</h1>
     <div class="tool-bar">
       <el-button-group>
-        <el-button size="mini" @click="ui.formVisible = !ui.formVisible">创建</el-button>
+        <el-button type="primary" @click="ui.formVisible = !ui.formVisible">创建</el-button>
       </el-button-group>
     </div>
     <div class="modify-form">
@@ -11,7 +11,7 @@
         <h2>添加/修改</h2>
         <div class="input-field">
           <div class="title">昵称</div>
-          <input type="text" v-model="form.nickname">
+          <input type="text" v-model="form.nickname" class="el-input__inner">
           <div class="error-list">
             <div class="error" v-for="(invalid, e) in errors.nickname" :key="e.id">
               <span v-if="invalid">{{rules.nickname[e].msg}}</span>
@@ -20,7 +20,7 @@
         </div>
         <div class="input-field">
           <div class="title">电话</div>
-          <input type="text" v-model="form.phone">
+          <input type="text" v-model="form.phone" class="el-input__inner">
           <div class="error-list">
             <div class="error" v-for="(invalid, e) in errors.phone" :key="e.id">
               <span v-if="invalid">{{rules.phone[e].msg}}</span>
@@ -29,7 +29,7 @@
         </div>
         <div class="input-field">
           <div class="title">邮箱</div>
-          <input type="email" v-model="form.mail">
+          <input type="email" v-model="form.mail" class="el-input__inner">
           <div class="error-list">
             <div class="error" v-for="(invalid, e) in errors.mail" :key="e.id">
               <span v-if="invalid">{{rules.mail[e].msg}}</span>
@@ -38,14 +38,15 @@
         </div>
         <div class="input-field">
           <div class="title">密码</div>
-          <input type="text" v-model="form.password">
+          <input type="text" v-model="form.password" class="el-input__inner">
           <div class="error-list">
             <div class="error" v-for="(invalid, e) in errors.password" :key="e.id">
               <span v-if="invalid">{{rules.password[e].msg}}</span>
             </div>
           </div>
         </div>
-        <button type="submit">提交</button>
+        <button type="submit" class="el-button el-button--primary">提交</button>
+        <button type="button" class="el-button" v-if="ui.formVisible==true" @click="resetForm">取消</button>
       </form>
       <!-- <el-form>
         <el-input placeholder="请输入内容"></el-input>

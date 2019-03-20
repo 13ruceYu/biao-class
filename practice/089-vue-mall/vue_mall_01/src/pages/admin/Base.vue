@@ -25,6 +25,10 @@
             <i class="el-icon-menu"></i>
             <span slot="title">分类管理</span>
           </el-menu-item>
+          <el-menu-item index="/admin/product">
+            <i class="el-icon-star-on"></i>
+            <span slot="title">商品管理</span>
+          </el-menu-item>
         </el-menu>
       </el-col>
       <el-col :span="18" class="admin-view">
@@ -48,6 +52,7 @@ export default {
 
 <style scoped>
 .admin-view {
-  padding-left: .5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 </style>

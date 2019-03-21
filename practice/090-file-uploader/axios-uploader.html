@@ -1,0 +1,51 @@
+<input type="file" id="uploader" />
+
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+
+<script>
+    const APP_KEY = 'e9e2d4a84cb52e273f7da98c9e64ab0c71b0015ebf7de4a0225f80abba55fa47';
+    const BASE_API = 'https://mock.biaoyansu.com/api/1/';
+
+    const uploader = document.getElementById('uploader');
+
+    uploader.addEventListener('change', function() {
+        let file = uploader.files[0];
+        let fd = new FormData();
+        fd.append("file", file);
+        fd.append('name', 'my-file.jpg');
+
+        api('_file/create', fd)
+            .then(r => {
+                let data = r.data;
+                let image = document.createElement('img');
+                image.src = 'https://' + data._base_url + '/' + data._key;
+                document.body.appendChild(image);
+            });
+    });
+
+    function sign(app_key, timestamp) {
+        return btoa(app_key + timestamp);
+    }
+
+    function api(url, params) {
+        let timestamp = (new Date).getTime();
+        let signature = sign(APP_KEY, timestamp);
+
+        let opt = {
+            headers: {
+                'BIAO-MOCK-APP-KEY': APP_KEY,
+                'BIAO-MOCK-TIMESTAMP': timestamp,
+                'BIAO-MOCK-SIGNATURE': signature,
+            },
+        };
+
+        url = BASE_API + url;
+        return axios
+            .post(url, params, opt)
+            .then(r => {
+                return r.data;
+            });
+    };
+
+    api('_file/read');
+</script>

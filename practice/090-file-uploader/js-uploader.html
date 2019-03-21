@@ -1,0 +1,61 @@
+<input type="file" id="uploader">
+
+<script>
+    const APP_KEY = 'a5f52bf347a055e45217064ed3e152f6f50d8c7262b37d19c4323381090993dc';
+    const BASE_API = 'https://mock.biaoyansu.com/api/1/';
+
+    /**
+     * @description: 签名
+     * @param timestamp
+     * @return: {string}
+     */
+    function sign(app_key, timestamp) {
+        return btoa(app_key + timestamp);
+    }
+
+    // 文件 input
+    const uploader = document.getElementById('uploader');
+
+    // 当文件被选中时
+    uploader.addEventListener('change', function() {
+        // 选中第一个文件对象
+        let file = uploader.files[0];
+
+        // 造一个新表单
+        let fd = new FormData();
+
+        // 填充数据
+        fd.append("file", file);
+        fd.append('name', 'my-file.jpg');
+
+        // 初始化异步请求
+        let http = new XMLHttpRequest();
+        http.open('POST', BASE_API + '_file/create', true);
+
+        // 设置头
+        http.setRequestHeader('Biao-mock-app-key', APP_KEY);
+        http.setRequestHeader('Biao-mock-timestamp', 1);
+        http.setRequestHeader('Biao-mock-signature', sign(APP_KEY, 1));
+
+        // 上传
+        http.send(fd);
+
+        // 显示上传进度
+        http.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                let percentComplete = (e.loaded / e.total) * 100;
+                console.log(percentComplete + '% uploaded');
+            }
+        };
+
+        http.onload = function() {
+            // 当上传成功时
+            if (this.status == 200) {
+                let data = JSON.parse(this.response).data;
+                let image = document.createElement('img');
+                image.src = 'https://' + data._base_url + '/' + data._key;
+                document.body.appendChild(image);
+            };
+        };
+    }, false)
+</script>

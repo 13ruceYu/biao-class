@@ -99,6 +99,7 @@ button:hover {
 
 form .input-field {
     margin-bottom: 15px;
+    display: block;
 }
 
 form .input-field .title {

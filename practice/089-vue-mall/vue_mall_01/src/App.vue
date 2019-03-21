@@ -12,7 +12,7 @@
 import GlobalNav from "./components/GlobalNav";
 import GlobalFooter from "./components/GlobalFooter";
 export default {
-  components: { GlobalNav,GlobalFooter }
+  components: { GlobalNav, GlobalFooter }
 };
 </script>
 

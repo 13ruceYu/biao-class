@@ -77,7 +77,7 @@
             </div>
           </div>
         </label>
-        
+
         <label class="input-field">
           <div class="title">独有属性</div>
           <!-- <button type="button" class="el-button">+</button> -->
@@ -100,6 +100,38 @@
             </div>
           </div>
         </label>
+        <div class="input-field">
+          <div class="title">上传主图</div>
+          <Uploader :autoUpload="true" @uploadSuccess="singleCoverUploaded"></Uploader>
+          <el-row :gutter="3" class="thumbnail">
+            <el-col :span="6" v-for="(img, index) in form.main_img" :key="index">
+              <img :src="'https://' + img._base_url + '/' + img._key" :alt="img.name">
+              <div>{{img._original_name}}</div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="input-field">
+          <div class="title">商品详情</div>
+          <button type="button" @click="insertDesc('text')">添加文字</button>
+          <button type="button" @click="insertDesc('image')">添加图片</button>
+          <div>
+            <div v-for="(it, index) in form.detail" :key="index" class="segment">
+              <button type="button" @click="removeDesc(index)">删除</button>
+              <div v-if="it.type === 'text'" class="text">
+                <el-input type="textarea" v-model="it.value"></el-input>
+              </div>
+              <div v-else class="image">
+                <Uploader
+                  :autoUpload="true"
+                  @uploadSuccess="singleDescImageUploaded($event, index)"
+                ></Uploader>
+                <div v-if="it.value">
+                  <img :src="'https://' + it.value._base_url + '/' + it.value._key" alt>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <button type="submit" class="el-button el-button--primary">提交</button>
         <button type="button" class="el-button" v-if="ui.formVisible==true" @click="resetForm">取消</button>
       </form>
@@ -117,6 +149,14 @@
         <el-table-column prop="total" label="库存" min-width="100"></el-table-column>
         <el-table-column prop="$cat.name" label="分类" min-width="100"></el-table-column>
         <el-table-column prop="$brand.name" label="品牌" min-width="100"></el-table-column>
+        <el-table-column label="主图" min-width="200">
+          <template slot-scope="scope">
+            <div class="thumbnail" v-for="(img, index) in scope.row.main_img" :key="index">
+              <img :src="'https://' + img._base_url + '/' + img._key" :alt="img.name">
+              <div>{{img._original_name}}</div>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column fixed="right" label="操作" width="110">
           <template slot-scope="scope">
             <el-button @click="fill(scope.row)" type="text" size="small">更新</el-button>
@@ -139,9 +179,10 @@
 <script>
 import admin from "../../mixins/admin";
 import Dropdown from "../../components/Dropdown";
+import Uploader from "../../components/Uploader";
 export default {
   mixins: [admin],
-  components: { Dropdown },
+  components: { Dropdown, Uploader },
   data() {
     return {
       model: "product",
@@ -218,14 +259,46 @@ export default {
       this.$set(f.prop, key, value);
       this.propForm = {};
     },
-    removeProp(key){
-      this.$delete(this.form.prop, key)
+    removeProp(key) {
+      this.$delete(this.form.prop, key);
     },
-    fillPropForm(key, value){
-      this.$set(this.propForm, 'key', key);
-      this.$set(this.propForm, 'value', value);
+    fillPropForm(key, value) {
+      this.$set(this.propForm, "key", key);
+      this.$set(this.propForm, "value", value);
+    },
+    singleCoverUploaded(data) {
+      if (!this.form.main_img) {
+        this.$set(this.form, "main_img", []);
+        // this.form.main_img = [];
+      }
+      this.form.main_img.push(data);
+    },
+    insertDesc(type) {
+      if (!this.form.detail) {
+        this.$set(this.form, "detail", []);
+      }
+
+      this.form.detail.push({ type });
+    },
+    singleDescImageUploaded(image, index) {
+      // console.log(image, detail);
+      this.updateDesc(index, image);
+    },
+    updateDesc(index, value) {
+      this.$set(this.form.detail[index], "value", value);
+    },
+    removeDesc(index) {
+      this.form.detail.splice(index, 1);
     }
   }
 };
 </script>
+
+<style scoped>
+.segment {
+  border: 1px solid #888;
+  margin: .5em 0;
+}
+</style>
+
 

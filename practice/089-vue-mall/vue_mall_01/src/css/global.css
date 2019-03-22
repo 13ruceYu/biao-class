@@ -72,7 +72,7 @@ button:hover {
 }
 
 .pair>*:nth-child(odd) {
-    color: #666;
+    color: #999;
 }
 
 .well {

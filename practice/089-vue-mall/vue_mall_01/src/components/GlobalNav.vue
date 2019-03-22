@@ -41,4 +41,7 @@ export default {
 .nav {
   background: #ddd;
 }
+a {
+  cursor: pointer;
+}
 </style>

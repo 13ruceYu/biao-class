@@ -1,6 +1,6 @@
 <template>
   <div class="my">
-    <el-row :gutter="10">
+    <el-row>
       <el-col :span="6">
         <el-menu
           :router="true"
@@ -23,8 +23,7 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="18">
-        <h1>用户设置</h1>
+      <el-col :span="18" class="view">
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -42,3 +41,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.view {
+  padding: 0 .5em;
+}
+</style>

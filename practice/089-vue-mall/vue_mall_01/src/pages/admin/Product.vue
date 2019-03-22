@@ -105,7 +105,7 @@
           <Uploader :autoUpload="true" @uploadSuccess="singleCoverUploaded"></Uploader>
           <el-row :gutter="3" class="thumbnail">
             <el-col :span="6" v-for="(img, index) in form.main_img" :key="index">
-              <img :src="'https://' + img._base_url + '/' + img._key" :alt="img.name">
+              <img :src="fileUrl(img)" :alt="img.name">
               <div>{{img._original_name}}</div>
             </el-col>
           </el-row>
@@ -126,7 +126,7 @@
                   @uploadSuccess="singleDescImageUploaded($event, index)"
                 ></Uploader>
                 <div v-if="it.value">
-                  <img :src="'https://' + it.value._base_url + '/' + it.value._key" alt>
+                  <img :src="fileUrl(it.value)" alt>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@
         <el-table-column label="主图" min-width="200">
           <template slot-scope="scope">
             <div class="thumbnail" v-for="(img, index) in scope.row.main_img" :key="index">
-              <img :src="'https://' + img._base_url + '/' + img._key" :alt="img.name">
+              <img :src="fileUrl(img)" :alt="img.name">
               <div>{{img._original_name}}</div>
             </div>
           </template>
@@ -180,6 +180,8 @@
 import admin from "../../mixins/admin";
 import Dropdown from "../../components/Dropdown";
 import Uploader from "../../components/Uploader";
+import {fileUrl} from "../../lib/helper";
+
 export default {
   mixins: [admin],
   components: { Dropdown, Uploader },
@@ -246,6 +248,7 @@ export default {
     };
   },
   methods: {
+    fileUrl,
     addProp() {
       let pf = this.propForm;
       let f = this.form;

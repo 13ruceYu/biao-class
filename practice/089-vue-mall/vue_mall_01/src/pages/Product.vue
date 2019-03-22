@@ -2,16 +2,17 @@
   <div>
     <RegularNav/>
     <div class="container overview">
-      <el-row class="" :gutter="10">
+      <el-row class :gutter="10">
         <el-col :span="10" class="preview">
           <el-carousel indicator-position="outside">
-            <el-carousel-item v-for="item in 4" :key="item">
-              <h3>{{ item }}</h3>
+            <el-carousel-item v-for="it in row.main_img" :key="it.id">
+              <!-- <h3>{{ item }}</h3> -->
+              <img :src="fileUrl(it)" alt>
             </el-carousel-item>
           </el-carousel>
         </el-col>
         <el-col :span="14" class="text">
-          <div class="title">辣辣辣辣条</div>
+          <div class="title">{{row.title}}</div>
           <div class="well">
             <!-- <el-row>
               <el-col span="6">价格</el-col>
@@ -20,11 +21,11 @@
             </el-row>-->
             <dl class="pair">
               <dt>价格</dt>
-              <dd class="hot cny">19.90</dd>
+              <dd class="hot cny">{{row.price}}</dd>
             </dl>
             <dl class="pair">
               <dt>运费</dt>
-              <dd class="cny">10.00</dd>
+              <dd class="cny">{{row.shipping_fee}}</dd>
             </dl>
           </div>
           <div class="sale-info">
@@ -38,18 +39,21 @@
                 <span class="hot">888</span>
               </el-col>
               <el-col :span="8">
-                送积分
-                <span class="hot">666</span>
+                库存
+                <span class="hot">{{row.total}}</span>
               </el-col>
             </el-row>
           </div>
           <div class="option">
-            <dl class="pair">
-              <dt>口味</dt>
+            <dl class="pair" v-for="(options,key, index) in row.prop" :key="index">
+              <dt>{{key}}</dt>
               <dd>
-                <span class="pill-option">辣</span>
-                <span class="pill-option selected">甜</span>
-                <span class="pill-option">酸</span>
+                <span
+                  @click="setProp(key, option)"
+                  v-for="(option, index) in options"
+                  :key="index"
+                  :class="'pill-option ' + (form.prop[key] === option ? 'selected' :'')"
+                >{{option}}</span>
               </dd>
             </dl>
           </div>
@@ -57,7 +61,7 @@
             <dl class="pair">
               <dt>数量</dt>
               <dd>
-                <el-input-number size="mini" :min="1" :max="10" label="描述文字"></el-input-number>
+                <el-input-number v-model="form.count" size="mini" :min="1" :max="10" label="描述文字"></el-input-number>
               </dd>
             </dl>
           </div>
@@ -65,7 +69,7 @@
             <dl class="pair">
               <dt>购买</dt>
               <dd>
-                <el-button size="small" type="danger">立即购买</el-button>
+                <el-button size="small" type="danger" @click="createOrder">立即购买</el-button>
                 <el-button size="small" type="primary">
                   加入购物车
                   <i class="el-icon-goods el-icon--right"></i>
@@ -89,42 +93,132 @@
       </el-row>
     </div>
     <div class="container detail">
-        <div class="props">
-          <el-row :gutter="5">
-            <el-col class="info-item" :span="8">生产许可证编号：SC11333019700024</el-col>
-            <el-col class="info-item" :span="8">产品标准号：GB/T10782</el-col>
-            <el-col class="info-item" :span="8">厂名：杭州郝姆斯食品有限公司</el-col>
-          </el-row>
-          <el-row :gutter="5">
-            <el-col class="info-item" :span="8">厂名：杭州郝姆斯食品有限公司</el-col>
-            <el-col class="info-item" :span="8">生产许可证编号：SC11333019700024</el-col>
-            <el-col class="info-item" :span="8">产品标准号：GB/T10782</el-col>
-          </el-row>
-          <el-row :gutter="5">
-            <el-col class="info-item" :span="8">品牌: BE＆CHEERY/百草味</el-col>
-            <el-col class="info-item" :span="8">包装方式: 包装</el-col>
-            <el-col class="info-item" :span="8">食品添加剂：见包装</el-col>
-          </el-row>
-          <el-row :gutter="5">
-            <el-col class="info-item" :span="8">包装方式: 包装</el-col>
-            <el-col class="info-item" :span="8">生产许可证编号：SC11333019700024</el-col>
-            <el-col class="info-item" :span="8">产品标准号：GB/T10782</el-col>
-          </el-row>
+      <div class="props">
+        <el-row :gutter="5">
+          <el-col class="info-item" :span="8">生产许可证编号：SC11333019700024</el-col>
+          <el-col class="info-item" :span="8">产品标准号：GB/T10782</el-col>
+          <el-col class="info-item" :span="8">厂名：杭州郝姆斯食品有限公司</el-col>
+        </el-row>
+        <el-row :gutter="5">
+          <el-col class="info-item" :span="8">厂名：杭州郝姆斯食品有限公司</el-col>
+          <el-col class="info-item" :span="8">生产许可证编号：SC11333019700024</el-col>
+          <el-col class="info-item" :span="8">产品标准号：GB/T10782</el-col>
+        </el-row>
+        <el-row :gutter="5">
+          <el-col class="info-item" :span="8">品牌: BE＆CHEERY/百草味</el-col>
+          <el-col class="info-item" :span="8">包装方式: 包装</el-col>
+          <el-col class="info-item" :span="8">食品添加剂：见包装</el-col>
+        </el-row>
+        <el-row :gutter="5">
+          <el-col class="info-item" :span="8">包装方式: 包装</el-col>
+          <el-col class="info-item" :span="8">生产许可证编号：SC11333019700024</el-col>
+          <el-col class="info-item" :span="8">产品标准号：GB/T10782</el-col>
+        </el-row>
+      </div>
+      <div class="content">
+        <div v-for="(it, index) in row.detail" :key="index">
+          <div v-if="it.type === 'text'">{{it.value}}</div>
+          <div v-else>
+            <img :src="fileUrl(it.value)" :alt="it.value.name">
+          </div>
         </div>
-        <div class="content">
-          <img src="http://placekitten.com/1000/2000" alt="">
-        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import api from "../lib/api";
+import session from "../lib/session";
+import { fileUrl, orderSum } from "../lib/helper";
 import RegularNav from "../components/RegularNav";
 export default {
   components: {
     RegularNav
+  },
+  data() {
+    return {
+      row: {
+        id: null
+      },
+      form: {
+        prop: {},
+        count: 1
+      }
+    };
+  },
+  mounted() {
+    this.row.id = this.$route.params.id;
+    this.find();
+  },
+  methods: {
+    setProp(key, value) {
+      this.$set(this.form.prop, key, value);
+    },
+    createOrder() {
+      let p = this.row;
+      let f = this.form;
+      f.product_id = p.id;
+      f.product_snapshot = p;
+
+      let order = {
+        detail: [f]
+      };
+
+      order.sum = orderSum(order.detail);
+      let userId = session.user("id");
+      if (!userId) {
+        alert("请登录后购买");
+        return;
+      }
+      order.user_id = userId;
+
+      // console.log(order);
+
+      if (!this.allPropsChecked()) {
+        alert("请选择所有必要的信息");
+        return;
+      }
+
+      if (!this.form.count) {
+        alert("请选择需要购买的数量");
+        return;
+      }
+
+      api("order/create", order).then(r => {
+        if (r.success) {
+          this.$router.push(`/my/order/${r.data.id || ""}`);
+        }
+      });
+    },
+    allPropsChecked() {
+      let p = this.row.prop;
+      for (let key in p) {
+        if (!this.form.prop[key]) return false;
+      }
+      return true;
+    },
+    fileUrl,
+    find() {
+      api("product/find", this.row).then(r => {
+        this.row = r.data;
+        this.normalize();
+        // console.log(r);
+      });
+    },
+    normalize() {
+      let p = this.row.prop;
+      let betterProp = {};
+
+      for (let key in p) {
+        let options = p[key];
+        betterProp[key] = options.split("|");
+      }
+
+      this.$set(this.row, "prop", betterProp);
+    }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -200,10 +294,14 @@ dd .anchor {
 }
 
 .props > * {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .props .info-item {
   font-size: 0.8em;
+}
+
+.option .pair {
+  margin-bottom: 0.3em;
 }
 </style>

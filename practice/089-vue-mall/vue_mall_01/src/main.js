@@ -65,7 +65,7 @@ const routes = [{
         component: Cart,
       },
       {
-        path: 'order',
+        path: 'order/:id?',
         component: Order,
       }, {
         path: 'setting',
@@ -115,5 +115,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),
-  router
+  router,
 }).$mount('#app')

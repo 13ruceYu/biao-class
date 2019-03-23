@@ -100,6 +100,12 @@ const router = new VueRouter({
   routes
 })
 
+Vue.filter('cut', function(value, max) {
+  if (!value) return '';
+  value = value.toString();
+  return value.slice(0, max) + '...';
+})
+
 router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
   let toAdmin = to.matched[0].path == '/admin';

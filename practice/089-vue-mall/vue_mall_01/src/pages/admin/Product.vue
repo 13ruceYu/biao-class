@@ -107,6 +107,7 @@
             <el-col :span="6" v-for="(img, index) in form.main_img" :key="index">
               <img :src="fileUrl(img)" :alt="img.name">
               <div>{{img._original_name}}</div>
+              <button type="button" @click="deleteCover(index)">删除</button>
             </el-col>
           </el-row>
         </div>
@@ -132,6 +133,24 @@
             </div>
           </div>
         </div>
+        <div class="input-field">
+          <div class="title">新品</div>
+          <el-switch v-model="form.is_new" active-color="#13ce66" inactive-color="#999"></el-switch>
+        </div>
+        <div class="input-field">
+          <div class="title">热卖</div>
+          <el-switch v-model="form.is_hot" active-color="#13ce66" inactive-color="#999"></el-switch>
+        </div>
+        <div class="input-field">
+          <div class="title">轮播展示</div>
+          <el-switch v-model="form.is_carousel" active-color="#13ce66" inactive-color="#999"></el-switch>
+        </div>
+        <div class="input-field" v-if="form.is_carousel">
+          <div class="title">上传轮播图片</div>
+          <Uploader :autoUpload="true" @uploadSuccess="carouselUploaded"></Uploader>
+          <img v-if="form.carousel_img" :src="fileUrl(form.carousel_img)">
+          <button type="button" @click="deleteCarousel">删除</button>
+        </div>
         <button type="submit" class="el-button el-button--primary">提交</button>
         <button type="button" class="el-button" v-if="ui.formVisible==true" @click="resetForm">取消</button>
       </form>
@@ -143,7 +162,7 @@
       <h2>列表</h2>
       <p>总商品数：{{total}}</p>
       <el-table :data="list" stripe style="width: 100%">
-        <el-table-column prop="title" label="标题" min-width="100"></el-table-column>
+        <el-table-column prop="title" label="标题" min-width="200"></el-table-column>
         <el-table-column prop="price" label="价格" min-width="100"></el-table-column>
         <el-table-column prop="shipping_fee" label="运费" min-width="100"></el-table-column>
         <el-table-column prop="total" label="库存" min-width="100"></el-table-column>
@@ -151,10 +170,17 @@
         <el-table-column prop="$brand.name" label="品牌" min-width="100"></el-table-column>
         <el-table-column label="主图" min-width="200">
           <template slot-scope="scope">
-            <div class="thumbnail" v-for="(img, index) in scope.row.main_img" :key="index">
-              <img :src="fileUrl(img)" :alt="img.name">
-              <div>{{img._original_name}}</div>
-            </div>
+            <el-row :gutter="2">
+              <el-col
+                :span="8"
+                class="thumbnail"
+                v-for="(img, index) in scope.row.main_img"
+                :key="index"
+              >
+                <img :src="fileUrl(img)" :alt="img.name">
+                <div class="desc">{{img._original_name}}</div>
+              </el-col>
+            </el-row>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="110">
@@ -180,7 +206,7 @@
 import admin from "../../mixins/admin";
 import Dropdown from "../../components/Dropdown";
 import Uploader from "../../components/Uploader";
-import {fileUrl} from "../../lib/helper";
+import { fileUrl } from "../../lib/helper";
 
 export default {
   mixins: [admin],
@@ -248,6 +274,15 @@ export default {
     };
   },
   methods: {
+    carouselUploaded(data) {
+      this.$set(this.form, "carousel_img", data);
+    },
+    deleteCarousel(){
+      this.form.carousel_img = {};
+    },
+    deleteCover(index) {
+      this.$delete(this.form.main_img, index);
+    },
     fileUrl,
     addProp() {
       let pf = this.propForm;
@@ -300,7 +335,11 @@ export default {
 <style scoped>
 .segment {
   border: 1px solid #888;
-  margin: .5em 0;
+  margin: 0.5em 0;
+}
+
+.thumbnail .desc {
+  font-size: 10px;
 }
 </style>
 

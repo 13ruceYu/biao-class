@@ -14,7 +14,7 @@ export default {
       errors: {},
       total: 1,
       readParam: {
-        limit: 2,
+        limit: 10,
         page: 1
       },
     };

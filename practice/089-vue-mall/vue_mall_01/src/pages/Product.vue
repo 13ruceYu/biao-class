@@ -5,8 +5,10 @@
       <el-row class :gutter="10">
         <el-col :span="10" class="preview">
           <el-carousel indicator-position="outside">
+            <el-carousel-item v-if="!row.main_img || row.main_img.length==0">
+              <img src="https://mock-cdn.biaoyansu.com/MOCK-FILE-5c95c135a4d8b1.00195893.jpeg" alt>
+            </el-carousel-item>
             <el-carousel-item v-for="it in row.main_img" :key="it.id">
-              <!-- <h3>{{ item }}</h3> -->
               <img :src="fileUrl(it)" alt>
             </el-carousel-item>
           </el-carousel>
@@ -230,13 +232,13 @@ export default {
   margin: 0;
 }
 
-.el-carousel__item:nth-child(2n) {
+/* .el-carousel__item:nth-child(2n) {
   background-color: #99a9bf;
-}
+} */
 
-.el-carousel__item:nth-child(2n + 1) {
+/* .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
-}
+} */
 
 .overview {
   margin-top: 1em;

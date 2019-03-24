@@ -23,12 +23,15 @@
         </el-col>
       </el-row>
     </div>
+    <Cart></Cart>
   </div>
 </template>
 
 <script>
 import session from "../lib/session";
+import Cart from "./Cart";
 export default {
+  components: {Cart},
   data() {
     return {
       session

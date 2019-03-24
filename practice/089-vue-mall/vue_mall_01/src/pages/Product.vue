@@ -72,7 +72,7 @@
               <dt>购买</dt>
               <dd>
                 <el-button size="small" type="danger" @click="createOrder">立即购买</el-button>
-                <el-button size="small" type="primary">
+                <el-button size="small" type="primary" @click="cartService.change(row.id, form.count, row)">
                   加入购物车
                   <i class="el-icon-goods el-icon--right"></i>
                 </el-button>
@@ -134,12 +134,15 @@ import api from "../lib/api";
 import session from "../lib/session";
 import { fileUrl, orderSum } from "../lib/helper";
 import RegularNav from "../components/RegularNav";
+import cartService from "../service/cart";
+
 export default {
   components: {
     RegularNav
   },
   data() {
     return {
+      cartService,
       row: {
         id: null
       },
@@ -152,6 +155,7 @@ export default {
   mounted() {
     this.row.id = this.$route.params.id;
     this.find();
+    // cartService.onChange(localCart => console.log(localCart))
   },
   methods: {
     setProp(key, value) {

@@ -18,7 +18,6 @@ import Signup from "./pages/Signup";
 import Recover from "./pages/Recover";
 
 import My from "./pages/My";
-import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Setting from "./pages/Setting";
 
@@ -61,17 +60,12 @@ const routes = [{
     path: '/my',
     component: My,
     children: [{
-        path: 'cart',
-        component: Cart,
-      },
-      {
-        path: 'order/:id?',
-        component: Order,
-      }, {
-        path: 'setting',
-        component: Setting,
-      },
-    ]
+      path: 'order/:id?',
+      component: Order,
+    }, {
+      path: 'setting',
+      component: Setting,
+    }, ]
   },
   {
     path: '/admin',

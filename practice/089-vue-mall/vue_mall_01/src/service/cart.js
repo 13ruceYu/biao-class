@@ -15,28 +15,39 @@ const output = {
    * 更改购物车中某个产品的记录
    * @param {num} productId 产品id
    * @param {num} count 数量
-   * @param {obj} product 对应产品数据
+   * @param {obj} product_snapshot 对应产品数据
    */
-  change(productId, count, product) {
+  change(productId, count, product_snapshot, prop) {
     if (!localCart[productId])
       localCart[productId] = {
-        count,
-        product
+        productId,
+        count: 0,
+        product_snapshot,
+        prop
       };
-    localCart[productId].count += count;
+    let finalCount = localCart[productId].count += count;
+
+    if (finalCount <= 0)
+      this.remove(productId);
+
     this.callPool();
     this.sync();
   },
   // 执行observer
   callPool() {
-    callbackPool.forEach(fn => fn(localCart));
+    callbackPool.forEach(fn => fn({...localCart }));
   },
-  clear(productId) {
+  remove(productId) {
     delete localCart[productId];
     this.callPool();
   },
+  clear() {
+    localCart = {};
+    this.callPool();
+    this.sync();
+  },
   get() {
-    return localCart;
+    return {...localCart };
   },
   restore() {
     this.restoreLocal();

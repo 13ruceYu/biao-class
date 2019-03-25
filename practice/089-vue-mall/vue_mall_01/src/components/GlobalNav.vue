@@ -7,8 +7,7 @@
           <a href="#" class="anchor">item</a>
         </el-col>
         <el-col :span="12" class="text-right">
-          <a href="#" class="anchor">item</a>
-          <a href="#" class="anchor">item</a>
+          <span @click="ui.showCart=!ui.showCart" class="anchor">购物车</span>
           <span v-if="session.loggedIn()">
             <router-link
               class="anchor"
@@ -23,7 +22,7 @@
         </el-col>
       </el-row>
     </div>
-    <Cart></Cart>
+    <Cart @close="()=>ui.showCart=false" v-show="ui.showCart"></Cart>
   </div>
 </template>
 
@@ -31,10 +30,13 @@
 import session from "../lib/session";
 import Cart from "./Cart";
 export default {
-  components: {Cart},
+  components: { Cart },
   data() {
     return {
-      session
+      session,
+      ui: {
+        showCart: false
+      }
     };
   }
 };

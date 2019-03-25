@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="product-card">
     <el-card :body-style="{ padding: '0px' }" class="card">
       <router-link :to="`/product/${data.id}`">
         <img :src="fileUrl(data.main_img[0])" class="image">
@@ -43,5 +43,9 @@ export default {
 
 .card .title {
   font-size: 14px;
+}
+
+.product-card {
+  margin-bottom: 10px;
 }
 </style>

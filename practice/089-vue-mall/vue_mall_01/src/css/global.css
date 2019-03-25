@@ -57,6 +57,7 @@ button:hover {
     padding: .4em .5em;
     color: #555;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .anchor:hover {

@@ -14,3 +14,11 @@ export function orderSum(detail) {
 export function url(part) {
   return location.origin + part;
 }
+
+export function obj2Arr(obj) {
+  let arr = [];
+  for (let key in obj) {
+    arr.push(obj[key])
+  }
+  return arr;
+}

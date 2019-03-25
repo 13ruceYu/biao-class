@@ -72,7 +72,7 @@
               <dt>购买</dt>
               <dd>
                 <el-button size="small" type="danger" @click="createOrder">立即购买</el-button>
-                <el-button size="small" type="primary" @click="cartService.change(row.id, form.count, row)">
+                <el-button size="small" type="primary" @click="addToCart">
                   加入购物车
                   <i class="el-icon-goods el-icon--right"></i>
                 </el-button>
@@ -132,7 +132,8 @@
 <script>
 import api from "../lib/api";
 import session from "../lib/session";
-import { fileUrl, orderSum } from "../lib/helper";
+import { fileUrl } from "../lib/helper";
+import { createOrder } from "../lib/order";
 import RegularNav from "../components/RegularNav";
 import cartService from "../service/cart";
 
@@ -158,6 +159,12 @@ export default {
     // cartService.onChange(localCart => console.log(localCart))
   },
   methods: {
+    addToCart() {
+      let row = this.row;
+      let form = this.form;
+      if (!this.validateForm()) return;
+      cartService.change(row.id, form.count, row, form.prop);
+    },
     setProp(key, value) {
       this.$set(this.form.prop, key, value);
     },
@@ -167,35 +174,47 @@ export default {
       f.product_id = p.id;
       f.product_snapshot = p;
 
-      let order = {
-        detail: [f]
-      };
+      // let order = {
+      //   detail: [f]
+      // };
+      // order.sum = orderSum(order.detail);
+      // order.user_id = session.user("id");
 
-      order.sum = orderSum(order.detail);
-      let userId = session.user("id");
-      if (!userId) {
-        alert("请登录后购买");
-        return;
-      }
-      order.user_id = userId;
+      // if (order.user_id) {
+      //   alert("请登录后购买");
+      //   return;
+      // }
 
       // console.log(order);
 
+      if (!this.validateForm()) return;
+
+      // api("order/create", order).then(r => {
+      //   if (r.success) {
+      //     this.$router.push(`/my/order/${r.data.id || ""}`);
+      //   }
+      // });
+      createOrder([f], session.user('id')).then(r => {
+          this.$router.push(`/my/order/${r.data.id || ""}`);
+      })
+    },
+    validateForm() {
+      if(session.isAdmin()){
+        alert('管理员暂不可购买商品');
+        return;
+      }
+      
       if (!this.allPropsChecked()) {
         alert("请选择所有必要的信息");
-        return;
+        return false;
       }
 
       if (!this.form.count) {
         alert("请选择需要购买的数量");
-        return;
+        return false;
       }
 
-      api("order/create", order).then(r => {
-        if (r.success) {
-          this.$router.push(`/my/order/${r.data.id || ""}`);
-        }
-      });
+      return true;
     },
     allPropsChecked() {
       let p = this.row.prop;

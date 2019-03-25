@@ -72,7 +72,7 @@ export default {
     };
   },
   mounted() {
-    this.listCart = cartService.get();
+    // this.listCart = cartService.get();
     cartService.onChange(localCart => (this.listCart = localCart));
     // this.listCart = cartService.get();
     // cartService.change(1, +2);

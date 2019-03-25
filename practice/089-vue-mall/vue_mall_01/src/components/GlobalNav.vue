@@ -7,7 +7,7 @@
           <a href="#" class="anchor">item</a>
         </el-col>
         <el-col :span="12" class="text-right">
-          <span @click="ui.showCart=!ui.showCart" class="anchor">购物车</span>
+          <span @click="ui.showCart=!ui.showCart" class="anchor">购物车<span>({{cartCount}})</span> </span>
           <span v-if="session.loggedIn()">
             <router-link
               class="anchor"
@@ -29,6 +29,7 @@
 <script>
 import session from "../lib/session";
 import Cart from "./Cart";
+import cartService from "../service/cart";
 export default {
   components: { Cart },
   data() {
@@ -36,9 +37,15 @@ export default {
       session,
       ui: {
         showCart: false
-      }
+      },
+      cartCount:0,
     };
-  }
+  },
+  mounted() {
+    cartService.onChange(() => {
+      this.cartCount = cartService.productCount();
+    })
+  },
 };
 </script>
 

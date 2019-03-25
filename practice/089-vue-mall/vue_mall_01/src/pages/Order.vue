@@ -112,7 +112,11 @@ export default {
     }
   },
   watch: {
-    $route: "find"
+    $route: function(){
+      if(!this.$route.params){
+        this.find();
+      }
+    }
   }
 };
 </script>

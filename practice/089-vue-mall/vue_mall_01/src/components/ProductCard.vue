@@ -2,7 +2,7 @@
   <div class="product-card">
     <el-card :body-style="{ padding: '0px' }" class="card">
       <router-link :to="`/product/${data.id}`">
-        <img :src="fileUrl(data.main_img[0])" class="image">
+        <img :src="data.main_img ? fileUrl(data.main_img[0]) : holder.productMainImg" class="image">
       </router-link>
 
       <div style="padding: 10px;">
@@ -20,8 +20,14 @@
 
 <script>
 import {fileUrl} from "../lib/helper";
+import holder from "../config/holder";
 export default {
   props: ['data'],
+  data() {
+    return {
+      holder
+    }
+  },
   methods: {
     fileUrl,
   },

@@ -148,6 +148,8 @@ const output = {
 init();
 
 function init() {
+  if (session.isAdmin())
+    return;
   output.restore();
   if (output.isEmpty() && session.loggedIn())
     output.restoreCloud();

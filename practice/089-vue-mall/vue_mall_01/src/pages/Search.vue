@@ -1,12 +1,29 @@
 <template>
   <div>
-    <RegularNav/>
+    <div class="nav">
+      <div class="container">
+        <el-row :gutter="20">
+          <el-col :span="6">
+            <div class="logo">
+              <img src="../img/logo.png" alt="logo">
+            </div>
+          </el-col>
+          <el-col :span="12" class="search">
+            <form @submit.prevent="reload">
+              <el-input v-model="q.keyword" suffix-icon="el-icon-search"></el-input>
+            </form>
+          </el-col>
+          <el-col :span="6"></el-col>
+        </el-row>
+      </div>
+    </div>
+    <!-- <RegularNav/> -->
     <!-- <div class="container">
       <form class="search">
         <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
         <button type="submit" hidden></button>
       </form>
-    </div> -->
+    </div>-->
     <div class="container">
       <div class="filter">
         <div class="table">
@@ -44,28 +61,51 @@
           <div class="bar">
             <div class="group">
               <el-button-group>
-                <el-button size="mini">综合</el-button>
-                <el-button size="mini">价格</el-button>
-                <el-button size="mini">销量</el-button>
-                <el-button size="mini">新品</el-button>
+                <el-button @click="setSortBy('id')" size="mini">新品</el-button>
+                <el-button @click="setSortBy('price')" size="mini">价格</el-button>
+                <el-button @click="setSortBy('sales')" size="mini">销量</el-button>
               </el-button-group>
             </div>
             <div class="group price-limit">
               <el-row>
                 <el-col :span="12">
-                  <el-input size="mini" placeholder="最高价格"></el-input>
+                  <input
+                    size="mini"
+                    type="number"
+                    placeholder="最低价格"
+                    v-model="q.minPrice"
+                    @keyup="reload"
+                  >
                 </el-col>
                 <el-col :span="12">
-                  <el-input size="mini" placeholder="最低价格"></el-input>
+                  <input
+                    size="mini"
+                    type="number"
+                    placeholder="最高价格"
+                    v-model="q.maxPrice"
+                    @keyup="reload"
+                  >
                 </el-col>
               </el-row>
             </div>
             <div class="group">
-              <el-checkbox-group>
+              <label>
+                <input type="checkbox" @click="toggleBool('freeShipping')" :checked="q.freeShipping">
+                包邮
+              </label>
+              <label>
+                <input type="checkbox" @click="toggleBool('hasDiscount')" :checked="q.hasDiscount">                
+                折扣
+              </label>
+              <label>
+                <input type="checkbox" @click="toggleBool('cod')" :checked="q.cod">                
+                货到付款
+              </label>
+              <!-- <el-checkbox-group>
                 <el-checkbox label="包邮"></el-checkbox>
                 <el-checkbox label="折扣"></el-checkbox>
                 <el-checkbox label="货到付款"></el-checkbox>
-              </el-checkbox-group>
+              </el-checkbox-group>-->
             </div>
           </div>
         </div>
@@ -74,218 +114,95 @@
     <div class="container">
       <div class="result">
         <el-row class="card-list" :gutter="5">
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
+          <el-col :span="6" v-for="(it, index) in list" :key="index">
+            <ProductCard :data="it"></ProductCard>
           </el-col>
         </el-row>
-        <el-row class="card-list" :gutter="5">
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-row class="card-list" :gutter="5">
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-row class="card-list" :gutter="5">
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="6">
-            <el-card :body-style="{ padding: '0px' }">
-              <img src="https://dummyimage.com/500x500/22c3e3/fff" class="image">
-              <div style="padding: 14px;">
-                <span>好吃的汉堡</span>
-                <div class="bottom clearfix">
-                  <time class="time"></time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-pagination layout="prev, pager, next" :total="1000" class="text-center"></el-pagination>
+        <!-- <el-pagination layout="prev, pager, next" :total="1000" class="text-center"></el-pagination> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import RegularNav from "../components/RegularNav";
+// import RegularNav from "../components/RegularNav";
+import ProductCard from "../components/ProductCard";
+import api from "../lib/api";
 export default {
   components: {
-    RegularNav
+    // RegularNav
+    ProductCard
+  },
+  data() {
+    return {
+      formSearch: {},
+      q: {}, // 地址传参的暂存区（通过this.$route.query的拷贝）
+      list: [],
+      total: ""
+    };
+  },
+  mounted() {
+    this.q = { ...this.$route.query };
+    this.search();
+  },
+  methods: {
+    toggleBool(type) {
+      if (this.q[type]) {
+        delete this.q[type];
+      } else {
+        this.q[type] = "1";
+      }
+      this.reload();
+    },
+    setSortBy(type) {
+      this.q.sortBy = type;
+      this.reload();
+    },
+    reload() {
+      this.$router.push({ path: "/search", query: { ...this.q } });
+    },
+    search() {
+      let q = this.q;
+
+      let keywordQuery = `"title" contains "${q.keyword}"`;
+      let minPriceQuery = q.minPrice ? `and "price" >= ${q.minPrice}` : "";
+      let maxPriceQuery = q.maxPrice ? `and "price" <= ${q.maxPrice}` : "";
+      let freeShippingQuery = q.freeShipping ? `and "shipping_fee"=0` : '';
+      let hasDiscountQuery = q.hasDiscount ? `and "discount">0` : '';
+      let codQuery = q.cod ? `and "cod"=1` : '';
+
+      let query = `where(
+        ${keywordQuery}
+        ${minPriceQuery}
+        ${maxPriceQuery}
+        ${freeShippingQuery}
+        ${hasDiscountQuery}
+        ${codQuery}
+      )`;
+
+      let param = {
+        query,
+        sort_by: [q.sortBy || "id"]
+      };
+
+      api("product/read", param).then(r => {
+        if (r.success) {
+          this.list = r.data;
+          this.total = r.total;
+        }
+      });
+    }
+  },
+  watch: {
+    $route: {
+      deep: true,
+      handler(n) {
+        this.q = { ...n.query };
+        this.search();
+      }
+    }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -335,5 +252,10 @@ export default {
 
 .result {
   margin-top: 0.8em;
+}
+
+.price-limit input {
+  width: 100%;
+  font-size: 14px;
 }
 </style>

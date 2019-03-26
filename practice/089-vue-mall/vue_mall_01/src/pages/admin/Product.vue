@@ -46,6 +46,24 @@
           </div>
         </label>
         <label class="input-field">
+          <div class="title">销量</div>
+          <input type="number" v-model="form.sales" class="el-input__inner">
+          <div class="error-list">
+            <div class="error" v-for="(invalid, e) in errors.sales" :key="e.id">
+              <span v-if="invalid">{{rules.sales[e].msg}}</span>
+            </div>
+          </div>
+        </label>
+        <label class="input-field">
+          <div class="title">折扣</div>
+          <input type="number" step="0.01" v-model="form.discount" class="el-input__inner">
+          <div class="error-list">
+            <div class="error" v-for="(invalid, e) in errors.discount" :key="e.id">
+              <span v-if="invalid">{{rules.discount[e].msg}}</span>
+            </div>
+          </div>
+        </label>
+        <label class="input-field">
           <div class="title">分类</div>
           <Dropdown
             api="cat/read"
@@ -140,6 +158,10 @@
         <div class="input-field">
           <div class="title">热卖</div>
           <el-switch v-model="form.is_hot" active-color="#13ce66" inactive-color="#999"></el-switch>
+        </div>
+        <div class="input-field">
+          <div class="title">货到付款</div>
+          <el-switch v-model="form.cod" active-color="#13ce66" inactive-color="#999"></el-switch>
         </div>
         <div class="input-field">
           <div class="title">轮播展示</div>
@@ -260,7 +282,7 @@ export default {
         },
         shipping_fee: {
           min: {
-            params: [0.001],
+            params: [0],
             msg: "运费不可小于0"
           }
         },

@@ -8,8 +8,8 @@
           </div>
         </el-col>
         <el-col :span="12" class="search">
-          <form>
-            <el-input suffix-icon="el-icon-search"></el-input>
+          <form @submit.prevent="toSearch">
+            <el-input v-model="formSearch.keyword" suffix-icon="el-icon-search"></el-input>
           </form>
         </el-col>
         <el-col :span="6"></el-col>
@@ -18,13 +18,28 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      formSearch:{},
+    }
+  },
+  methods: {
+    toSearch(){
+      this.$router.push({path: '/search', query: this.formSearch})
+    }
+  },
+};
+</script>
+
 <style scoped>
 .nav {
   margin-top: 1.5em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .search {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 </style>

@@ -22,3 +22,7 @@ export function obj2Arr(obj) {
   }
   return arr;
 }
+
+export function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

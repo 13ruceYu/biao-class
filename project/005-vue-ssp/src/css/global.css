@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    color: #333;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #d7191a;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container,
+.container-form {
+    max-width: 1110px;
+    margin: 0 auto;
+}
+
+.container-form {
+    max-width: 550px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.f-small {
+    font-size: .85em;
+}
+
+.input-field {
+    margin-bottom: 30px;
+}
+
+.input-field input[type=text],
+.input-field button {
+    width: 100%;
+    padding: 10px;
+}

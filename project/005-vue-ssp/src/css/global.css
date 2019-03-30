@@ -30,13 +30,18 @@ button {
 }
 
 .container,
-.container-form {
+.container-form,
+.container-thread {
     max-width: 1110px;
     margin: 0 auto;
 }
 
 .container-form {
     max-width: 550px;
+}
+
+.container-thread {
+    max-width: 700px;
 }
 
 .text-left {

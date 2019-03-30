@@ -11,12 +11,17 @@ import {
 } from '@fortawesome/vue-fontawesome'
 import {
   faEnvelope,
-  faUser
+  faUser,
+  faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBookmark,
+  faHeart
+} from '@fortawesome/free-regular-svg-icons'
 import {
   faWeibo,
   faWeixin,
-  faTwitter
+  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
 
@@ -25,7 +30,10 @@ library.add(
   faWeibo,
   faWeixin,
   faTwitter,
-  faUser
+  faUser,
+  faHeart,
+  faExternalLinkAlt,
+  faBookmark
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

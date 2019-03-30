@@ -29,6 +29,7 @@ export default {
 .footer {
   padding: 40px 0;
   text-align: center;
+  background: #fff;
 }
 
 .share a {

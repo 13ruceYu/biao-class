@@ -192,8 +192,8 @@ export let is = {
    * @param {string} value
    * @return {boolean}
    */
-  username(value) {
-    let re = /^[a-zA-Z0-9]\w+$/;
+  nickname(value) {
+    let re = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,10}$/;
     if (!re.test(value))
       return false;
     return true;

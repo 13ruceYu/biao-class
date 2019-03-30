@@ -40,6 +40,7 @@ export default {
 <style scoped>
 .cat-nav {
   border-bottom: 1px solid #ccc;
+  background: #fff;
 }
 
 .cat-item {

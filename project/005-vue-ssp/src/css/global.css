@@ -25,6 +25,10 @@ button {
     cursor: pointer;
 }
 
+.holder {
+    min-height: 1px;
+}
+
 .container,
 .container-form {
     max-width: 1110px;
@@ -52,11 +56,26 @@ button {
 }
 
 .input-field {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .input-field input[type=text],
 .input-field button {
     width: 100%;
     padding: 10px;
+}
+
+.list-error {
+    margin-bottom: 10px;
+}
+
+.error {
+    color: #d7191a;
+    margin: 4px 0;
+}
+
+.btn-primary {
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #333;
 }

@@ -165,7 +165,7 @@ export default {};
 }
 
 .container {
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 0 10px;
 }
 

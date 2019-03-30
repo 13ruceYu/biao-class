@@ -10,7 +10,8 @@ import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
 import {
-  faEnvelope
+  faEnvelope,
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faWeibo,
@@ -23,7 +24,8 @@ library.add(
   faEnvelope,
   faWeibo,
   faWeixin,
-  faTwitter
+  faTwitter,
+  faUser
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -41,6 +43,22 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import Thread from "./pages/Thread";
+
+import My from "./pages/user/My";
+import Activity from "./pages/user/Activity";
+import Account from "./pages/user/Account";
+import Profile from "./pages/user/Profile";
+import Message from "./pages/user/Message";
+
+import Admin from "./pages/admin/Admin";
+import AdminUser from "./pages/admin/User";
+import AdminThread from "./pages/admin/Thread";
+import AdminCat from "./pages/admin/Cat";
+import AdminTheme from "./pages/admin/Theme";
+
+import api from "./lib/api";
+import session from "./lib/session";
+window.api = api;
 
 const routes = [{
     path: '/',
@@ -61,11 +79,64 @@ const routes = [{
   {
     path: '/thread',
     component: Thread,
+  },
+  {
+    path: '/my',
+    component: My,
+    children: [{
+        path: 'activity',
+        component: Activity
+      },
+      {
+        path: 'profile',
+        component: Profile
+      },
+      {
+        path: 'account',
+        component: Account
+      },
+      {
+        path: 'message',
+        component: Message
+      },
+    ]
+  },
+  {
+    path: '/admin',
+    component: Admin,
+    children: [{
+        path: 'user',
+        component: AdminUser,
+      },
+      {
+        path: 'thread',
+        component: AdminThread
+      },
+      {
+        path: 'cat',
+        component: AdminCat
+      },
+      {
+        path: 'theme',
+        component: AdminTheme
+      }
+    ]
   }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  let toAdmin = to.matched[0].path == '/admin';
+  let isAdmin = session.isAdmin();
+
+  if (toAdmin && !isAdmin) {
+    return;
+  }
+  next();
 })
 
 Vue.config.productionTip = false

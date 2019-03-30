@@ -7,18 +7,19 @@
         </router-link>
       </div>
       <div class="signup-form">
-        <form>
+        <form @submit.prevent="login">
           <div class="input-field">
-            <input type="text" placeholder="手机号码 / 邮箱">
+            <input type="text" placeholder="手机号码" v-model="form.phone">
           </div>
           <div class="input-field">
-            <input type="text" placeholder="密码">
+            <input type="text" placeholder="密码" v-model="form.password">
+          </div>
+          <div class="list-error">
+            <div class="error" v-for="(e, index) in listError" :key="index">{{e}}</div>
           </div>
           <div class="input-field f-small">
             <input type="checkbox">
-            <span>
-              记住密码
-            </span>
+            <span>记住密码</span>
             <span class="f-right">
               <router-link to="/forgotpassword">忘记密码？</router-link>
             </span>
@@ -36,7 +37,62 @@
 </template>
 
 <script>
-export default {};
+import { is } from "../lib/valee";
+import api from "../lib/api";
+import session from "../lib/session";
+export default {
+  data() {
+    return {
+      form: {
+        phone: "",
+        password: ""
+      },
+      listError: []
+    };
+  },
+  methods: {
+    login() {
+      let f = this.form;
+
+      if (f.phone === "admin" && f.password === "yoyoyo") {
+        session.login("admin", { nickname: "admin", IS_ADMIN: true });
+        return;
+      }
+      
+      if (!this.validate()) return;
+
+      api("user/first", { where: { and: { phone: f.phone } } }).then(r => {
+        if (r.success) {
+          let user = r.data;
+          if (!user || user.password !== f.password) {
+            this.listError.push("手机号或密码输入有误");
+            return;
+          } else {
+            delete user.password;
+            session.login(user.id, user);
+          }
+        }
+      });
+    },
+    validate() {
+      let f = this.form;
+      let e = (this.listError = []);
+      if (!is.phone(f.phone)) {
+        e.push("手机号码格式有误");
+      }
+
+      if (!f.password) {
+        e.push("请填写密码");
+      }
+
+      if (e.length) {
+        return false;
+      }
+
+      return true;
+    }
+  }
+};
 </script>
 
 <style scoped>

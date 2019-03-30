@@ -11,10 +11,10 @@ function login(sessionId, user, redirect = '/') {
   location.href = redirect;
 }
 
-function logout(redirect = '/login') {
+function logout() {
   localStorage.removeItem('sessionId');
   localStorage.removeItem('user');
-  location.href = redirect;
+  location.reload();
 }
 
 function user(key) {

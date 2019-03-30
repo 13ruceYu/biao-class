@@ -26,6 +26,7 @@ import AdminUser from "./pages/admin/User";
 import AdminBrand from "./pages/admin/Brand";
 import AdminCat from "./pages/admin/Cat";
 import AdminProduct from "./pages/admin/Product";
+import AdminOrder from "./pages/admin/Order";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
@@ -85,6 +86,10 @@ const routes = [{
       {
         path: 'product',
         component: AdminProduct,
+      },
+      {
+        path: 'order',
+        component: AdminOrder,
       },
     ]
   },

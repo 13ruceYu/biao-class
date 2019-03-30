@@ -1,13 +1,13 @@
 <template>
   <div class="product-card">
-    <el-card :body-style="{ padding: '0px' }" class="card">
+    <el-card :body-style="{ padding: '0px' }" class="card" shadow="hover">
       <router-link :to="`/product/${data.id}`">
         <img :src="data.main_img ? fileUrl(data.main_img[0]) : holder.productMainImg" class="image">
       </router-link>
 
       <div style="padding: 10px;">
         <router-link :to="`/product/${data.id}`">
-          <span class="title">{{data.title | cut(18)}}</span>
+          <span class="title">{{data.title | cut(24)}}</span>
         </router-link>
 
         <div class="price">
@@ -35,12 +35,13 @@ export default {
 </script>
 
 <style scoped>
-.card a {
-  color: #222;
+.product-card:hover a {
+  color: rgb(236, 65, 108);
+
 }
 
-.card a:hover {
-  color: #555;
+.card a {
+  color: #222;
 }
 
 .card .price {

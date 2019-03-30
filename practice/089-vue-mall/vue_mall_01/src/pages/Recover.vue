@@ -2,7 +2,6 @@
   <div class="recover">
     <div class="form-container">
       <h1>账号找回</h1>
-
       <form>
         <div v-if="step==1">
           <el-tabs v-model="recoverBy">
@@ -52,7 +51,9 @@
         <div class="error-list">
           <div class="error" v-for="(e, index) in errors" :key="index">{{e}}</div>
         </div>
-        <button @click="nextStep" class="el-button--primary">下一步</button>
+        <div class="input-field">
+          <el-button @click="nextStep" type="primary">下一步</el-button>
+        </div>
       </form>
     </div>
   </div>
@@ -168,5 +169,18 @@ export default {
 </script>
 
 <style scoped>
+.recover {
+  padding: 250px 0 350px 0;
+}
+
+.form-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.input-field button {
+  width: 100%;
+}
 </style>
 

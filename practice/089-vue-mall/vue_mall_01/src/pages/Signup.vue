@@ -2,7 +2,6 @@
   <div class="signup">
     <div class="form-container">
       <h1>注册</h1>
-
       <form @submit.prevent="signup">
         <el-tabs v-model="signupBy">
           <el-tab-pane label="手机注册" name="phone">
@@ -14,7 +13,7 @@
           <el-tab-pane label="邮箱注册" name="mail">
             <div class="input-field">
               <div class="title">邮箱</div>
-              <el-input v-model="form.mail" placeholder="请输入邮箱"></el-input>
+              <el-input @blur="uniqueExist" v-model="form.mail" placeholder="请输入邮箱"></el-input>
             </div>
           </el-tab-pane>
         </el-tabs>
@@ -36,11 +35,11 @@
         <div class="error-list">
           <div class="error" v-for="(e, index) in errors" :key="index">{{e}}</div>
         </div>
-        <div>
-          <button type="submit" class="el-button--primary">立即注册</button>
-          <el-button type="text">
-            <router-link to="/login" class="el-button el-button--text">已有账号？登录</router-link>
-          </el-button>
+        <div class="go-login">
+          <router-link to="/login" class="el-button el-button--text">已有账号？登录</router-link>
+        </div>
+        <div class="input-field">
+          <el-button native-type="submit" type="primary">立即注册</el-button>
         </div>
       </form>
     </div>
@@ -99,7 +98,7 @@ export default {
       let f = this.form;
       let key = this.signupBy;
       let value = this.form[this.signupBy];
-      let e = this.errors = [];
+      let e = (this.errors = []);
 
       if (!value) return;
       if (key == "phone" && !is.phone(f.phone)) {
@@ -132,7 +131,6 @@ export default {
 
       api("user/create", f).then(r => {
         if (r.success) {
-          api("user/create", f);
           this.$router.push("/login");
         }
       });
@@ -172,6 +170,24 @@ fieldset {
   border: none;
   padding: 0;
   margin: 0;
+}
+
+.signup {
+  padding: 150px 0 350px 0;
+}
+
+.form-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.input-field button {
+  width: 100%;
+}
+
+.go-login {
+  margin-bottom: 5px;
 }
 </style>
 

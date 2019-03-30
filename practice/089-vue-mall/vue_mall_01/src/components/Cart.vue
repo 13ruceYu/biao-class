@@ -102,11 +102,12 @@ export default {
 .cart {
   position: fixed;
   z-index: 20;
-  border: 1px solid #666;
+  border: 1px solid #ccc;
   right: 0;
   /* top: 20px; */
   background: #fff;
   max-width: 400px;
+  margin-right: 5px;
 }
 
 .el-input-number--mini {
@@ -115,6 +116,8 @@ export default {
 
 .card-close {
   cursor: pointer;
+  color: #f04141;
+  margin-left: 15px;
 }
 
 .card-title {

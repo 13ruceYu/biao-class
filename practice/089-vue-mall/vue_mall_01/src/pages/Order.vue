@@ -30,12 +30,12 @@
             <el-button @click="generatePaymentUrl('wechat')">微信支付</el-button>
             <el-button @click="generatePaymentUrl('alipay')">支付宝</el-button>
 
-            <div v-if="form.$payment">
+            <div v-if="form.$payment" class="pay">
               <div v-if="form._pay_by === 'wechat'">
                 <img :src="form.$payment.qrcode" alt="微信支付二维码" class="qrcode">
                 <el-button type="primary" @click="find">支付完毕</el-button>
               </div>
-              <div v-else>
+              <div v-else class="alipay">
                 <a :href="form.$payment.url">点击跳转支付宝支付</a>
               </div>
             </div>
@@ -112,8 +112,8 @@ export default {
     }
   },
   watch: {
-    $route: function(){
-      if(!this.$route.params){
+    $route: function() {
+      if (!this.$route.params) {
         this.find();
       }
     }
@@ -138,5 +138,11 @@ export default {
   max-width: 200px;
 }
 
+.alipay a {
+  color: #40b6ff;
+}
 
+.pay {
+  margin-top: 10px;
+}
 </style>

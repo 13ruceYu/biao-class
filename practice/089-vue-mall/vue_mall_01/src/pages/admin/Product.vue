@@ -184,7 +184,7 @@
       <h2>列表</h2>
       <p>总商品数：{{total}}</p>
       <el-table :data="list" stripe style="width: 100%">
-        <el-table-column prop="title" label="标题" min-width="200"></el-table-column>
+        <el-table-column prop="title" label="标题" min-width="200" fixed="left"></el-table-column>
         <el-table-column prop="price" label="价格" min-width="100"></el-table-column>
         <el-table-column prop="shipping_fee" label="运费" min-width="100"></el-table-column>
         <el-table-column prop="total" label="库存" min-width="100"></el-table-column>

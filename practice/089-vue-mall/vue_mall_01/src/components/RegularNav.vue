@@ -4,12 +4,14 @@
       <el-row :gutter="20">
         <el-col :span="6">
           <div class="logo">
-            <img src="../img/logo.png" alt="logo">
+            <router-link to="/">
+              <img src="../img/logo.png" alt="logo">
+            </router-link>
           </div>
         </el-col>
         <el-col :span="12" class="search">
           <form @submit.prevent="toSearch">
-            <el-input v-model="formSearch.keyword" suffix-icon="el-icon-search"></el-input>
+            <el-input placeholder="请输入商品名" v-model="formSearch.keyword" suffix-icon="el-icon-search"></el-input>
           </form>
         </el-col>
         <el-col :span="6"></el-col>
@@ -22,14 +24,14 @@
 export default {
   data() {
     return {
-      formSearch:{},
-    }
+      formSearch: {}
+    };
   },
   methods: {
-    toSearch(){
-      this.$router.push({path: '/search', query: this.formSearch})
+    toSearch() {
+      this.$router.push({ path: "/search", query: this.formSearch });
     }
-  },
+  }
 };
 </script>
 

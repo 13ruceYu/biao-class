@@ -1,23 +1,25 @@
 <template>
-  <div>
+  <div class="home">
     <RegularNav/>
     <div class="container carousel">
-      <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel :interval="4000" type="card" height="220px">
         <el-carousel-item v-for="(it, index) in list_carousel" :key="index">
-          <img :src="fileUrl(it.carousel_img)" alt="">
+          <router-link :to="`/product/${it.id}`">
+            <img :src="fileUrl(it.carousel_img)" alt>
+          </router-link>
           <!-- <h3>{{ it }}</h3> -->
         </el-carousel-item>
       </el-carousel>
     </div>
     <div class="container">
       <h2>新品</h2>
-      <el-row class="card-list" :gutter="5">
+      <el-row class="card-list" :gutter="10">
         <el-col :span="6" v-for="(it, index) in list_new" :key="index">
           <ProductCard :data="it"></ProductCard>
         </el-col>
       </el-row>
       <h2>促销</h2>
-      <el-row class="card-list" :gutter="5">
+      <el-row class="card-list" :gutter="10">
         <el-col :span="6" v-for="(it, index) in list_hot" :key="index">
           <ProductCard :data="it"></ProductCard>
         </el-col>
@@ -65,6 +67,10 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  margin-bottom: 60px;
+}
+
 .carousel {
   margin-top: 2em;
 }
@@ -84,4 +90,5 @@ export default {
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
 }
+
 </style>

@@ -6,7 +6,7 @@
         <el-col :span="10" class="preview">
           <el-carousel indicator-position="outside">
             <el-carousel-item v-if="!row.main_img || row.main_img.length==0">
-              <img src="https://mock-cdn.biaoyansu.com/MOCK-FILE-5c95c135a4d8b1.00195893.jpeg" alt>
+              <img :src="holder.productMainImg" alt>
             </el-carousel-item>
             <el-carousel-item v-for="it in row.main_img" :key="it.id">
               <img :src="fileUrl(it)" alt>
@@ -136,6 +136,7 @@ import { fileUrl } from "../lib/helper";
 import { createOrder } from "../lib/order";
 import RegularNav from "../components/RegularNav";
 import cartService from "../service/cart";
+import holder from "../config/holder";
 
 export default {
   components: {
@@ -144,6 +145,7 @@ export default {
   data() {
     return {
       cartService,
+      holder,
       row: {
         id: null
       },

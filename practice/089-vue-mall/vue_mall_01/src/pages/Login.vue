@@ -15,10 +15,10 @@
           <div class="error" v-for="(error, index) in errors" :key="index">{{error}}</div>
         </div>
         <div>
-          <button type="submit" class="el-button--primary">登录</button>
-          <el-button type="text">
-            <router-link to="/recover" class="el-button el-button--text">忘记密码</router-link>
-          </el-button>
+          <router-link to="/recover" class="text-right el-button el-button--text">忘记密码？</router-link>
+        </div>
+        <div class="input-field">
+          <el-button native-type="submit" type="primary">登录</el-button>
         </div>
       </form>
     </div>
@@ -80,3 +80,20 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.login {
+  padding: 250px 0 350px 0;
+}
+
+.form-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.input-field button {
+  width: 100%;
+}
+</style>
+

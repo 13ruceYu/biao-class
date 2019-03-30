@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       ui: {
-        formVisible: true
+        formVisible: false
       },
       list: [],
       form: {},

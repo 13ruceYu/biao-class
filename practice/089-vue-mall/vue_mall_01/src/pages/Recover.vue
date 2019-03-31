@@ -170,7 +170,7 @@ export default {
 
 <style scoped>
 .recover {
-  padding: 250px 0 350px 0;
+  padding: 180px 15px 420px 15px;
 }
 
 .form-container {

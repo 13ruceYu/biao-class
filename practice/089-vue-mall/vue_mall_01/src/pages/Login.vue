@@ -20,6 +20,13 @@
         <div class="input-field">
           <el-button native-type="submit" type="primary">登录</el-button>
         </div>
+        <div class="input-field">
+          <div class="title">管理员账号：<span>admin</span></div>
+          <div class="title">管理员密码：<span>yoyoyo</span></div>
+          <div>
+            欢迎测试 o(*￣▽￣*)o
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -83,7 +90,7 @@ export default {
 
 <style scoped>
 .login {
-  padding: 250px 0 350px 0;
+  padding: 150px 15px 450px 15px;
 }
 
 .form-container {

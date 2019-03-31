@@ -104,7 +104,7 @@ export default {
   z-index: 20;
   border: 1px solid #ccc;
   right: 0;
-  /* top: 20px; */
+  top: 55px;
   background: #fff;
   max-width: 400px;
   margin-right: 5px;

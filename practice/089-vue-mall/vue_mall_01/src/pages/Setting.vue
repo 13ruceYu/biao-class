@@ -1,6 +1,6 @@
 <template>
   <div class="setting">
-    <h1>设置</h1>
+    <h1>账号设置</h1>
     <div class="toolbar">
       <button @click="editMode = !editMode">
         <span v-if="editMode">取消</span>

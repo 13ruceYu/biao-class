@@ -5,11 +5,15 @@
         <el-col :span="6">
           <el-menu
             :router="true"
-            default-active="/admin/order"
+            default-active="/admin/product"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
           >
+            <el-menu-item index="/admin/product">
+              <i class="el-icon-star-on"></i>
+              <span slot="title">商品管理</span>
+            </el-menu-item>
             <el-menu-item index="/admin/order">
               <i class="el-icon-document"></i>
               <span slot="title">订单管理</span>
@@ -25,10 +29,6 @@
             <el-menu-item index="/admin/cat">
               <i class="el-icon-menu"></i>
               <span slot="title">分类管理</span>
-            </el-menu-item>
-            <el-menu-item index="/admin/product">
-              <i class="el-icon-star-on"></i>
-              <span slot="title">商品管理</span>
             </el-menu-item>
           </el-menu>
         </el-col>

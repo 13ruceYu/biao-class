@@ -7,7 +7,7 @@
 
       <div style="padding: 10px;">
         <router-link :to="`/product/${data.id}`">
-          <span class="title">{{data.title | cut(24)}}</span>
+          <span class="title">{{data.title | cut(21)}}</span>
         </router-link>
 
         <div class="price">

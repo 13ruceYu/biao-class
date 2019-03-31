@@ -2,10 +2,10 @@
   <div class="nav">
     <div class="container">
       <el-row>
-        <el-col :span="12">
+        <el-col :sm="12" :xs="6">
           <router-link class="anchor" to="/">首页</router-link>
         </el-col>
-        <el-col :span="12" class="text-right">
+        <el-col :sm="12" :xs="18" class="text-right">
           <span @click="ui.showCart=!ui.showCart" class="anchor">
             购物车
             <span>({{cartCount}})</span>

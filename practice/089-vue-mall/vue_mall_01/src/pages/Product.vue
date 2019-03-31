@@ -3,7 +3,7 @@
     <RegularNav/>
     <div class="container overview">
       <el-row class :gutter="10">
-        <el-col :span="10" class="preview">
+        <el-col :sm="10" :xs="24" class="preview">
           <el-carousel indicator-position="outside">
             <el-carousel-item v-if="!row.main_img || row.main_img.length==0">
               <img :src="holder.productMainImg" alt>
@@ -13,7 +13,7 @@
             </el-carousel-item>
           </el-carousel>
         </el-col>
-        <el-col :span="14" class="text">
+        <el-col :sm="14" :xs="24" class="text">
           <div class="title">{{row.title}}</div>
           <div class="well">
             <!-- <el-row>
@@ -162,6 +162,10 @@ export default {
   },
   methods: {
     addToCart() {
+      if (!session.loggedIn()) {
+        alert("请登录后操作");
+        return;
+      }
       let row = this.row;
       let form = this.form;
       if (!this.validateForm()) return;
@@ -171,6 +175,10 @@ export default {
       this.$set(this.form.prop, key, value);
     },
     createOrder() {
+      if (!session.loggedIn()) {
+        alert("请登录后操作");
+        return;
+      }
       let p = this.row;
       let f = this.form;
       f.product_id = p.id;
@@ -196,16 +204,16 @@ export default {
       //     this.$router.push(`/my/order/${r.data.id || ""}`);
       //   }
       // });
-      createOrder([f], session.user('id')).then(r => {
-          this.$router.push(`/my/order/${r.data.id || ""}`);
-      })
+      createOrder([f], session.user("id")).then(r => {
+        this.$router.push(`/my/order/${r.data.id || ""}`);
+      });
     },
     validateForm() {
-      if(session.isAdmin()){
-        alert('管理员暂不可购买商品');
+      if (session.isAdmin()) {
+        alert("管理员暂不可购买商品");
         return;
       }
-      
+
       if (!this.allPropsChecked()) {
         alert("请选择所有必要的信息");
         return false;

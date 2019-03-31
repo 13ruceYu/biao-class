@@ -173,7 +173,7 @@ fieldset {
 }
 
 .signup {
-  padding: 150px 0 350px 0;
+  padding: 150px 15px 350px 15px;
 }
 
 .form-container {

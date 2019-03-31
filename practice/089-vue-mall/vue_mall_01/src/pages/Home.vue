@@ -14,13 +14,13 @@
     <div class="container">
       <h2>新品</h2>
       <el-row class="card-list" :gutter="10">
-        <el-col :span="6" v-for="(it, index) in list_new" :key="index">
+        <el-col :md="6" :sm="6" :xs="12" v-for="(it, index) in list_new" :key="index">
           <ProductCard :data="it"></ProductCard>
         </el-col>
       </el-row>
       <h2>促销</h2>
       <el-row class="card-list" :gutter="10">
-        <el-col :span="6" v-for="(it, index) in list_hot" :key="index">
+        <el-col :md="6" :sm="6" :xs="12" v-for="(it, index) in list_hot" :key="index">
           <ProductCard :data="it"></ProductCard>
         </el-col>
       </el-row>
@@ -71,24 +71,29 @@ export default {
   margin-bottom: 60px;
 }
 
+h2 {
+  border-left: 4px solid #ff6b6b;
+  padding-left: 10px;
+}
+
 .carousel {
   margin-top: 2em;
 }
 
 .el-carousel__item h3 {
-  color: #475669;
+  /* color: #475669; */
   font-size: 14px;
   opacity: 0.75;
   line-height: 200px;
   margin: 0;
 }
 
-.el-carousel__item:nth-child(2n) {
+/* .el-carousel__item:nth-child(2n) {
   background-color: #99a9bf;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
-}
+} */
 
 </style>

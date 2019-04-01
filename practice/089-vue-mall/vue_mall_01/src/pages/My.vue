@@ -2,13 +2,13 @@
   <div class="my">
     <div class="container">
       <el-row>
-        <el-col :span="6">
           <el-menu
             :router="true"
             default-active="/my/setting"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
+            mode="horizontal"
           >
             <el-menu-item index="order">
               <i class="el-icon-document"></i>
@@ -19,10 +19,9 @@
               <span slot="title">账号设置</span>
             </el-menu-item>
           </el-menu>
-        </el-col>
-        <el-col :span="18" class="view">
+        <div class="view">
           <router-view></router-view>
-        </el-col>
+        </div>
       </el-row>
     </div>
   </div>

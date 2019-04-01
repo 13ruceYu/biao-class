@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <RegularNav/>
-    <div class="container carousel">
-      <el-carousel :interval="4000" type="card" height="220px">
+    <div class="container carousel hidden-xs-only">
+      <el-carousel :interval="4000" height="480px">
         <el-carousel-item v-for="(it, index) in list_carousel" :key="index">
           <router-link :to="`/product/${it.id}`">
             <img :src="fileUrl(it.carousel_img)" alt>

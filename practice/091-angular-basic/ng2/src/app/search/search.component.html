@@ -1,3 +1,6 @@
-<p>
-  search works!
-</p>
+<input type="search" [(ngModel)]="keyword">
+<button type="button" (click)="search()">search</button>
+<div>关键词是：<strong [title]="keyword">{{keyword}}</strong></div>
+<div>
+    <app-result></app-result>
+</div>

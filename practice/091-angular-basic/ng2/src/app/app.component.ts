@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng2';
+  title = 'my second ngapp';
+  name = 'lalala';
+
+  getUpdate(eventData) {
+    console.log(eventData);
+  }
 }

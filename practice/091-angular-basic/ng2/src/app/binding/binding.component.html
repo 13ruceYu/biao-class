@@ -1,0 +1,25 @@
+<h2>数据的单向绑定</h2>
+<input type="text" [value]="val">
+<input type="text" bind-value='val'>
+<input type="text" value="{{val}}">
+
+<h2>事件的单向绑定</h2>
+<button type="button" (click)="log()">点我log1</button>
+<button type="button" on-click="log()">点我log1</button>
+
+<h2>双向绑定</h2>
+<input type="text" [(ngModel)]="val">
+<input type="text" bindon-ngModel="val">
+
+<h2>类绑定</h2>
+<p class="a b {{visible ? 'c' : ''}}">Lorem ipsum dolor sit amet.</p>
+<p class="a b" [class.c]="visible">Lorem ipsum dolor sit amet.</p>
+<p [ngClass]="{'a': true, 'b': false, c: true}">Lorem ipsum dolor sit amet.</p>
+
+<h2>样式绑定</h2>
+<p style="border: solid" [style.background]="visible ? 'orange' : 'tomato'">Lorem ipsum dolor sit amet.</p>
+<p [ngStyle]="{'font-size': visible ? '8px' : '30px', 'color': 'pink'}">Lorem ipsum dolor sit amet.</p>
+
+<h2>通用显示属性绑定</h2>
+<p [title]="val">Lorem ipsum dolor sit amet.</p>
+<p [attr.title]="val">Lorem ipsum dolor sit amet.</p>

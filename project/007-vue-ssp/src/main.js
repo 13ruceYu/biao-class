@@ -5,6 +5,7 @@ import App from './App.vue'
 
 import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/display.css'
 import './css/global.css'
 
 Vue.use(VueRouter)

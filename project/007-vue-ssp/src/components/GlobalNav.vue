@@ -2,17 +2,17 @@
   <div class="global-nav">
     <div class="container">
       <el-row type="flex" justify="space-between">
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="logo">
             <router-link to="/">
               <img src="../img/logo-white.png" alt="logo">
             </router-link>
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="reserve"></div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="nav-right text-right">
             <a href="#">
               <i class="el-icon-edit"></i>
@@ -20,20 +20,8 @@
             <a href="#">
               <i class="el-icon-search"></i>
             </a>
-            <router-link to="/login">登录</router-link>
-            <el-dropdown trigger="click" placement="bottom">
-              <span class="el-dropdown-link">
-                <i class="el-icon-bell"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown" class="notify">
-                <el-dropdown-item>黄金糕</el-dropdown-item>
-                <el-dropdown-item>狮子头</el-dropdown-item>
-                <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                <el-dropdown-item>双皮奶</el-dropdown-item>
-                <el-dropdown-item>蚵仔煎</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <router-link to="/my">用户名</router-link>
+            <router-link to="/my" v-if="session.loggedIn()">{{session.user('nickname')}}</router-link>
+            <router-link to="/login" v-else>登录</router-link>
           </div>
         </el-col>
       </el-row>
@@ -42,7 +30,14 @@
 </template>
 
 <script>
-export default {};
+import session from "../lib/session";
+export default {
+  data() {
+    return {
+      session
+    }
+  },
+};
 </script>
 
 <style scoped>
@@ -66,7 +61,11 @@ export default {};
 }
 
 .nav-right > * {
-  margin-left: 14px;
+  margin-left: 18px;
+}
+
+.nav-right a:hover {
+  color: #ccc;
 }
 
 .nav-right i {

@@ -45,6 +45,7 @@ import "normalize.css/normalize.css";
 import 'element-ui/lib/theme-chalk/index.css';
 import "./css/global.css";
 import "./css/grid.css";
+import 'element-ui/lib/theme-chalk/display.css';
 
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";

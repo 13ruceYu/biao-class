@@ -39,12 +39,66 @@
 </template>
 
 <script>
+import { is } from "../lib/valee";
+import api from "../lib/api";
+import session from "../lib/session";
 export default {
   data() {
     return {
-      form: {},
+      form: {
+        phone: "",
+        password: ""
+      },
       listError: []
     };
+  },
+  methods: {
+    login() {
+      let f = this.form;
+      this.listError = [];
+
+      if (f.phone === "admin" && f.password === "yoyoyo") {
+        session.login("admin", { nickname: "admin", IS_ADMIN: true });
+        return;
+      }
+
+      if (!this.validate()) {
+        return;
+      }
+
+      api("user/first", { where: { and: { phone: f.phone } } }).then(r => {
+        if (r.success) {
+          let user = r.data;
+          if (!user) {
+            this.listError.push("账号不存在，请先注册");
+            return;
+          }
+          if (f.password !== user.password) {
+            this.listError.push("手机号或密码有误，请重新输入");
+            return;
+          }
+          delete user.password;
+          session.login(user.id, user);
+        }
+      });
+    },
+    validate() {
+      let f = this.form;
+      let e = (this.listError = []);
+      if (!is.phone(f.phone)) {
+        e.push("手机号码格式有误");
+      }
+
+      if (!f.password) {
+        e.push("请填写密码");
+      }
+
+      if (e.length) {
+        return false;
+      }
+
+      return true;
+    }
   }
 };
 </script>

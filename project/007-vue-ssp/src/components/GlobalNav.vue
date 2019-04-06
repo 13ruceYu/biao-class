@@ -20,7 +20,8 @@
             <a href="#">
               <i class="el-icon-search"></i>
             </a>
-            <router-link to="/my" v-if="session.loggedIn()">{{session.user('nickname')}}</router-link>
+            <router-link to="/my/activity" v-if="session.loggedIn() && !session.user('IS_ADMIN')">{{session.user('nickname')}}</router-link>
+            <router-link to="/admin/user" v-else-if="session.loggedIn() && session.user('IS_ADMIN')">{{session.user('nickname')}}</router-link>
             <router-link to="/login" v-else>登录</router-link>
           </div>
         </el-col>

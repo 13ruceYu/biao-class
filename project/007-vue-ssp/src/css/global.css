@@ -21,6 +21,11 @@ button:hover {
     cursor: pointer;
 }
 
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
 .container {
     max-width: 1110px;
     margin: 0 auto;

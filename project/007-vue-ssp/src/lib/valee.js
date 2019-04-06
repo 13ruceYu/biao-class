@@ -199,6 +199,13 @@ export let is = {
     return true;
   },
 
+  nickname(value) {
+    let re = /^[a-zA-Z0-9\u4e00-\u9fa5]{2,10}$/;
+    if (!re.test(value))
+      return false;
+    return true;
+  },
+
   /**
    * 手机号格式是否合法
    * @param {string} value

@@ -5,19 +5,24 @@
       <form @submit="createOrUpdate">
         <div class="input-field">
           <div class="title">昵称</div>
-          <el-input></el-input>
+          <el-input v-model="form.nickname"></el-input>
+          <div class="list-error">
+            <div class="error" v-for="(value, key, index) in errors.nickname" :key="index">
+              <span v-if="value">{{rules.nickname[key].msg}}</span>
+            </div>
+          </div>
         </div>
         <div class="input-field">
           <div class="title">手机号</div>
-          <el-input></el-input>
+          <el-input v-model="form.phone"></el-input>
         </div>
         <div class="input-field">
           <div class="title">邮箱</div>
-          <el-input></el-input>
+          <el-input v-model="form.mail"></el-input>
         </div>
         <div class="input-field">
           <div class="title">密码</div>
-          <el-input></el-input>
+          <el-input v-model="form.password"></el-input>
         </div>
         <div class="el-input-field">
           <el-button type="primary" native-type="submit">确定</el-button>
@@ -26,13 +31,11 @@
       </form>
     </div>
     <div class="table-user">
-      <el-table :data="tableData" style="width: 100%" max-height="250">
-        <el-table-column fixed prop="date" label="日期" width="150"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-        <el-table-column prop="province" label="省份" width="120"></el-table-column>
-        <el-table-column prop="city" label="市区" width="120"></el-table-column>
-        <el-table-column prop="address" label="地址" width="300"></el-table-column>
-        <el-table-column prop="zip" label="邮编" width="120"></el-table-column>
+      <el-table :data="list" style="width: 100%">
+        <el-table-column fixed prop="nickname" label="昵称" width="150"></el-table-column>
+        <el-table-column prop="phone" label="手机号" width="120"></el-table-column>
+        <el-table-column prop="mail" label="邮箱" width="120"></el-table-column>
+        <el-table-column prop="password" label="密码" width="120"></el-table-column>
         <el-table-column fixed="right" label="操作" width="160">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -45,72 +48,70 @@
 </template>
 
 <script>
+import api from "../../lib/api";
 export default {
   data() {
     return {
-      formUser: {},
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-08",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
+      form: {},
+      list: [],
+      errors: {
+        nickname: {unique: false, regex: false}
+      },
+      rules: {
+        nickname: {
+          unique: {
+            params: ["user", "exists", "nickname"],
+            msg: "用户名已存在"
+          },
+          required: {
+            msg: "此项为必填项"
+          },
+          lengthBetween: {
+            params: [2, 12],
+            msg: "最小长度需在2至12位之间"
+          },
+          regex: {
+            params: [/^[a-zA-Z0-9\u4e00-\u9fa5]{2,10}$/],
+            msg: "用户名格式不和法，需包含字母"
+          }
         }
-      ]
+      }
     };
   },
+  mounted() {
+    this.read();
+  },
   methods: {
-    createOrUpdate() {},
+    read() {
+      api("user/read").then(r => {
+        if (r.success) {
+          this.list = r.data;
+        }
+      });
+    },
+    createOrUpdate() {
+      let f = this.form;
+      let action;
+
+      if (!this.validateForm()) {
+        return;
+      }
+
+      if (f.id) {
+        action = "update";
+      } else {
+        action = "create";
+      }
+
+      api(`user/${action}`, f).then(r => {
+        if(r.success) {
+          this.read();
+        }
+      })
+    },
+    validateForm() {
+
+    },
     handleEdit() {},
     handleDelete() {}
   }

@@ -41,7 +41,7 @@
         </div>
         <div class="el-input-field">
           <el-button type="primary" native-type="submit">确定</el-button>
-          <el-button @click="ui.formVisible=false">取消</el-button>
+          <el-button @click="ui.formVisible=false;form = {}">取消</el-button>
         </div>
       </form>
     </div>
@@ -86,7 +86,7 @@ export default {
       total: 0,
       readParam: {
         limit: 4,
-        page: 1,
+        page: 1
       },
       list: [],
       errors: {
@@ -230,6 +230,7 @@ export default {
       this.$set(fieldObj, rule, !valid);
     },
     handleEdit(index, row) {
+      this.ui.formVisible = true;
       this.form = { ...row };
       this.formOriginal = row;
     },

@@ -7,20 +7,20 @@
         </a>
       </div>
       <div class="col nickname-time">
-        <a href="#">少数派编辑部</a>
+        <a href="#">{{data.user_id}}</a>
         <div class="time">22小时前 推荐</div>
       </div>
     </div>
     <div class="cover">
-      <a href="#">
-        <img src="../img/thread-cover.png">
-      </a>
+      <router-link :to="`/thread/${data.id}`">
+        <img :src="data.cover">
+      </router-link>
     </div>
     <div class="title-desc">
       <div class="title">
-        <a href="#">
-          <h3>HomePod 降价 500 元，现在是入手的好时机吗？</h3>
-        </a>
+        <router-link :to="`/thread/${data.id}`">
+          <h3>{{data.title}}</h3>
+        </router-link>
       </div>
       <div class="desc">苹果官网 HomePod 降价到 2299 元，还在犹豫要不要买？可以看看我们之前关于 HomePod 的体验文章。</div>
     </div>
@@ -28,7 +28,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["data"]
+};
 </script>
 
 <style scoped>

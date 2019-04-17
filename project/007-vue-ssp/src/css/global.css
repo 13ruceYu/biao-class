@@ -59,6 +59,10 @@ button:disabled {
     margin-top: 20px;
 }
 
+.input-field .title {
+    margin-bottom: 5px;
+}
+
 .input-field input[type=text],
 .input-field button {
     width: 100%;

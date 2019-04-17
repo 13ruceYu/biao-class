@@ -58,7 +58,7 @@ export default {
       this.listError = [];
 
       if (f.phone === "admin" && f.password === "yoyoyo") {
-        session.login("admin", { nickname: "admin", IS_ADMIN: true });
+        session.login("admin", { id: 0, nickname: "admin", IS_ADMIN: true });
         return;
       }
 

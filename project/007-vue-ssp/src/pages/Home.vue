@@ -36,7 +36,7 @@
     <div class="container">
       <el-row>
         <el-col :md="16" class="list-thread">
-          <ThreadCard></ThreadCard>
+          <div v-for="(item, index) in listThread" :key="index"><ThreadCard :data="item"></ThreadCard></div>
         </el-col>
         <el-col :md="8"></el-col>
       </el-row>
@@ -46,8 +46,21 @@
 
 <script>
 import ThreadCard from "../components/ThreadCard";
+import api from "../lib/api";
 export default {
-  components: { ThreadCard }
+  components: { ThreadCard },
+  data() {
+    return {
+      listThread: []
+    }
+  },
+  mounted() {
+    api('thread/read').then(r => {
+      if(r.success) {
+        this.listThread = r.data;
+      }
+    })
+  },
 };
 </script>
 

@@ -92,6 +92,7 @@ export default {
           // 异步验证结果处理
           valid.then(r => {
             this.afterValidate(field, key, r);
+            if (!r) fieldValid = false;
           });
         }
       }
